@@ -1,0 +1,77 @@
+EDFD Hospital[
+	assets:
+		Asset PatientList values: [H C] source: HospitalDS targets: Declassifier,
+		Asset PatientList_ source: Declassifier targets: Employee, DropBox,
+		Asset ModifiedList values: [H C] source: Employee targets: HospitalDS,
+		Asset AppCode values: [H I] source: HospitalApp targets: Employee,
+		Asset Policy source: HospitalApp targets: Authorise,
+		Asset Request source: Employee targets: HospitalDS,
+		Asset Permissions values: [H I] source: Authorise targets: Employee
+	elements:
+		ExternalEntity HospitalApp[
+			assets: AppCode, Policy
+			outgoing flows: loadAppCode [num: 1 assets: AppCode targets: Employee],
+							loadPolicy [num: 2 assets: Policy targets: Authorise]
+		],
+		DataStore HospitalDS[
+			assets: PatientList, ModifiedList, Request
+			incoming flows: "ReadList.forwardRequest", "WriteList.forwardModifiedList"
+			outgoing flows: providePatientList [num: 6 assets: PatientList targets: Declassifier]
+		],
+		DataStore DropBox[
+			assets: PatientList_
+			incoming flows: "Employee.writeDropBox"
+			outgoing flows: readDropBox [num: 9 assets: PatientList_ targets: Employee]
+		],
+		Process Employee[
+			responsibilities: [PatientList_ Store::],
+							  [AppCode User::],
+							  [Permissions User::],
+							  [PatientList_ Copier:: PatientList_]
+			assets: AppCode, PatientList_, ModifiedList, Request, Policy
+			incoming flows: "DropBox.readDropBox", "Authorise.providePermissions", "HospitalApp.loadAppCode", "ReadList.forwardPatientList"
+			outgoing flows: sendModifiedList [num: 10 assets: ModifiedList targets: WriteList],
+							sendRequest [num: 4 assets: Request targets: ReadList],
+							writeDropBox [num: 9 assets: PatientList_ targets: DropBox]
+		],
+		Process ReadList[
+			responsibilities: [Request Forward::Request],
+							  [PatientList_ Forward:: PatientList_]
+			assets: Request, PatientList_
+			incoming flows: "Employee.sendRequest", "Declassifier.providePatientList_"
+			outgoing flows: forwardRequest [num: 5 assets: Request targets: HospitalDS],
+							forwardPatientList [num: 8 assets: PatientList_ targets: Employee],
+							stealPatientList [num: 12 assets: PatientList_ targets: Attacker]
+		],
+		Process WriteList[
+			responsibilities: [ModifiedList Forward::ModifiedList],
+							  [ModifiedList Store::]
+			assets: ModifiedList
+			incoming flows: "Employee.sendModifiedList"
+			outgoing flows: forwardModifiedList [num: 11 assets: ModifiedList targets: HospitalDS]		
+		],
+		Process Authorise[
+			responsibilities: [Policy Authoriser::Permissions]
+			assets: Policy, Permissions
+			incoming flows: "HospitalApp.loadPolicy"
+			outgoing flows: providePermissions [num: 3 assets: Permissions targets: Employee]
+		],
+		Process Declassifier[
+			responsibilities: [PatientList EncryptOrHash::PatientList_]
+			assets: PatientList, PatientList_
+			incoming flows: "HospitalDS.providePatientList"
+			outgoing flows: providePatientList_ [num: 7 assets: PatientList_ targets: ReadList]
+		],
+		ExternalEntity Attacker[
+			assets: PatientList_
+			incoming flows: "ReadList.stealPatientList"
+		]
+	attack zones:
+		Attackerzone1[
+			attacker profiles:
+				ExternalHacker [
+					observation: 1
+				]
+			elements: Attacker
+		]
+]

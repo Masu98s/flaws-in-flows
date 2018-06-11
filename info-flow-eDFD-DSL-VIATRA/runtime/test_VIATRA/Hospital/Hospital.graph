@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="HospitalDS" inedges="forwardRequest forwardModifiedList">
+      <outedges ID="providePatientList" number="6" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.0" EdgeLabel="1" graphassets="PatientList" visited="true"/>
+    </nodes>
+    <nodes name="HospitalApp">
+      <outedges ID="loadAppCode" number="1" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.1" EdgeLabel="0" graphassets="AppCode" visited="true"/>
+      <outedges ID="loadPolicy" number="2" target="//@subgraphs.0/@nodes.6" source="//@subgraphs.0/@nodes.1" EdgeLabel="0" graphassets="Policy" visited="true"/>
+    </nodes>
+    <nodes name="WriteList" inedges="sendModifiedList">
+      <outedges ID="forwardModifiedList" number="10" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="ModifiedList" visited="true"/>
+      <responsibility ID="WriteList[Forward][eDFDFlowTracking.impl.AssetImpl@63c6a639 (name: ModifiedList, number: 0)]" outgoingassets="ModifiedList" incomingassets="ModifiedList">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="WriteList[Store][eDFDFlowTracking.impl.AssetImpl@63c6a639 (name: ModifiedList, number: 0)]" incomingassets="ModifiedList">
+        <operation>Store</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="ReadList" inedges="sendRequest providePatientList">
+      <outedges ID="forwardRequest" number="5" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.3" EdgeLabel="0" graphassets="Request" visited="true"/>
+      <outedges ID="forwardPatientList" number="7" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="PatientList" visited="true"/>
+      <outedges ID="stealPatientList" number="11" target="//@subgraphs.0/@nodes.7" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="PatientList" visited="true"/>
+      <responsibility ID="ReadList[Forward][eDFDFlowTracking.impl.AssetImpl@509ab3b0 (name: PatientList, number: 0)]" outgoingassets="PatientList" incomingassets="PatientList">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="ReadList[Forward][eDFDFlowTracking.impl.AssetImpl@33117039 (name: Request, number: 0)]" outgoingassets="Request" incomingassets="Request">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Employee" inedges="readDropBox providePermissions loadAppCode forwardPatientList">
+      <outedges ID="sendModifiedList" number="9" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.4" EdgeLabel="1" graphassets="ModifiedList" visited="true"/>
+      <outedges ID="sendRequest" number="4" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.4" EdgeLabel="0" graphassets="Request" visited="true"/>
+      <outedges ID="writeDropBox" number="8" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.4" EdgeLabel="1" graphassets="PatientList" visited="true"/>
+      <responsibility ID="Employee[User][eDFDFlowTracking.impl.AssetImpl@58fd4e05 (name: Permissions, number: 0)]" incomingassets="Permissions">
+        <operation>User</operation>
+      </responsibility>
+      <responsibility ID="Employee[Store][eDFDFlowTracking.impl.AssetImpl@509ab3b0 (name: PatientList, number: 0)]" incomingassets="PatientList">
+        <operation>Store</operation>
+      </responsibility>
+      <responsibility ID="Employee[User][eDFDFlowTracking.impl.AssetImpl@1a38040 (name: AppCode, number: 0)]" incomingassets="AppCode">
+        <operation>User</operation>
+      </responsibility>
+      <responsibility ID="Employee[Copier][eDFDFlowTracking.impl.AssetImpl@509ab3b0 (name: PatientList, number: 0)]" outgoingassets="PatientList" incomingassets="PatientList">
+        <operation>Copier</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="DropBox" inedges="writeDropBox">
+      <outedges ID="readDropBox" number="8" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.5" EdgeLabel="1" graphassets="PatientList" visited="true"/>
+    </nodes>
+    <nodes name="Authorise" inedges="loadPolicy">
+      <outedges ID="providePermissions" number="3" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.6" EdgeLabel="0" graphassets="Permissions" visited="true"/>
+      <responsibility ID="Authorise[Authoriser][eDFDFlowTracking.impl.AssetImpl@69a1186c (name: Policy, number: 0)]" outgoingassets="Permissions" incomingassets="Policy">
+        <operation>Authoriser</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Attacker" inedges="stealPatientList" Attacker="true"/>
+    <assets ID="Policy" Label="0" source="//@subgraphs.0/@nodes.1" targets="//@subgraphs.0/@nodes.6"/>
+    <assets ID="ModifiedList" Label="1" source="//@subgraphs.0/@nodes.4" targets="//@subgraphs.0/@nodes.0"/>
+    <assets ID="Request" Label="0" source="//@subgraphs.0/@nodes.4" targets="//@subgraphs.0/@nodes.0"/>
+    <assets ID="Permissions" Label="0" source="//@subgraphs.0/@nodes.6" targets="//@subgraphs.0/@nodes.4"/>
+    <assets ID="PatientList" Label="1" source="//@subgraphs.0/@nodes.0" targets="//@subgraphs.0/@nodes.4 //@subgraphs.0/@nodes.5"/>
+    <assets ID="AppCode" Label="0" source="//@subgraphs.0/@nodes.1" targets="//@subgraphs.0/@nodes.4"/>
+  </subgraphs>
+</graph:Graph>

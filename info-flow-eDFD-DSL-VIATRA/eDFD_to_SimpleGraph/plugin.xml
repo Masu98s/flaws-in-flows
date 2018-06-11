@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="edfdtosimplegraph.EDFDXformM2M" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:edfdtosimplegraph.EDFDXformM2M" id="edfdtosimplegraph.EDFDXformM2M">
+      <query-specification fqn="edfdtosimplegraph.EDFD"/>
+      <query-specification fqn="edfdtosimplegraph.Graph"/>
+      <query-specification fqn="edfdtosimplegraph.EDFDAsset"/>
+      <query-specification fqn="edfdtosimplegraph.Boundaries"/>
+      <query-specification fqn="edfdtosimplegraph.BoundariesAssets"/>
+      <query-specification fqn="edfdtosimplegraph.NodeElements"/>
+      <query-specification fqn="edfdtosimplegraph.NodeElementsAssets"/>
+      <query-specification fqn="edfdtosimplegraph.EEandDSElement"/>
+      <query-specification fqn="edfdtosimplegraph.EEandDSAssetElement"/>
+      <query-specification fqn="edfdtosimplegraph.EEElements"/>
+      <query-specification fqn="edfdtosimplegraph.EEElement"/>
+      <query-specification fqn="edfdtosimplegraph.AssetSource"/>
+      <query-specification fqn="edfdtosimplegraph.DSElements"/>
+      <query-specification fqn="edfdtosimplegraph.ProcessElements"/>
+      <query-specification fqn="edfdtosimplegraph.ProcessElementsAssets"/>
+      <query-specification fqn="edfdtosimplegraph.FlowElements"/>
+      <query-specification fqn="edfdtosimplegraph.Assets"/>
+      <query-specification fqn="edfdtosimplegraph.Responsibilities"/>
+      <query-specification fqn="edfdtosimplegraph.ResponsibilityTypes"/>
+      <query-specification fqn="edfdtosimplegraph.sourceOfFlow"/>
+      <query-specification fqn="edfdtosimplegraph.targetOfFlow"/>
+      <query-specification fqn="edfdtosimplegraph.highPriorityAsset"/>
+      <query-specification fqn="edfdtosimplegraph.confidentialAsset"/>
+      <query-specification fqn="edfdtosimplegraph.publicAsset"/>
+      <query-specification fqn="edfdtosimplegraph.comparatorProcesses"/>
+      <query-specification fqn="edfdtosimplegraph.edfd2simplegraph"/>
+      <query-specification fqn="edfdtosimplegraph.Graph2EndToEnd"/>
+    </group>
+  </extension>
+</plugin>

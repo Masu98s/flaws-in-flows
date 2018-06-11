@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+<extension point="org.eclipse.ui.commands">
+    <command
+        defaultHandler="commandruntransformation.handlers.TransformHandler"
+        id="commandruntransformation.handlers.command"
+        name="Transform">
+    </command>
+    <command
+        defaultHandler="commandruntransformation.handlers.TransformEndToEndHandler"
+        id="commandrunendtoendtransformation.handlers.command"
+        name="TransformEndToEnd">
+    </command>
+</extension>
+<extension point="org.eclipse.ui.menus">
+    <menuContribution allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+        <command commandId="commandruntransformation.handlers.command"
+                style="push">
+            <visibleWhen checkEnabled="false">
+                <with variable="selection">
+                    <count value="1">
+                    </count>
+                    <iterate>
+                        <adapt type="traceability.EDFDToGraph">
+                        </adapt>
+                    </iterate>
+                </with>
+            </visibleWhen>
+        </command>
+    </menuContribution>
+    <menuContribution allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+        <command commandId="commandrunendtoendtransformation.handlers.command"
+                style="push">
+            <visibleWhen checkEnabled="false">
+                <with variable="selection">
+                    <count value="1">
+                    </count>
+                    <iterate>
+                        <adapt type="traceability.EDFDToGraph">
+                        </adapt>
+                    </iterate>
+                </with>
+            </visibleWhen>
+        </command>
+    </menuContribution>
+</extension>
+</plugin>

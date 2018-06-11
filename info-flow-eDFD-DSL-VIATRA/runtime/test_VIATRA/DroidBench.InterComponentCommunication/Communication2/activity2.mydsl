@@ -1,0 +1,37 @@
+// https://github.com/secure-software-engineering/DroidBench/tree/master/eclipse-project/InterComponentCommunication/ActivityCommunication2
+EDFD ActivityCommunication2[
+	assets: 
+		Asset InterAppAsset values: [H C] source: SourceDS targets: Activity1,
+		//modeler decides to model substring as not confidential, even though it might be
+		Asset Substring source: Activity1 targets: SinkDS
+	elements:
+		DataStore SourceDS[
+			assets: InterAppAsset
+			outgoing flows: readAppAsset [num: 1 assets: InterAppAsset targets: Activity2]
+		],
+		DataStore SinkDS[
+			assets: Substring
+			incoming flows: "Activity1.storeAppAsset"
+		],
+		Process Activity2[
+			responsibilities: [InterAppAsset Forward::InterAppAsset]
+			assets: InterAppAsset
+			incoming flows: "SourceDS.readAppAsset"	
+			outgoing flows: forwardAppAsset [num: 2 assets: InterAppAsset targets: Activity1]		
+		],
+		Process Activity1[
+			responsibilities: [InterAppAsset Splitter::Substring], 
+							  [Substring Store::Substring]
+			assets: InterAppAsset, Substring
+			incoming flows: "Activity2.forwardAppAsset"
+			outgoing flows: storeAppAsset [num: 3 assets: Substring targets: SinkDS]
+		]
+	attack zones:
+		Attackerzone1[
+			attacker profiles:
+				ExternalHacker [
+					observation: 1
+				]
+			elements: Activity1
+		]
+]

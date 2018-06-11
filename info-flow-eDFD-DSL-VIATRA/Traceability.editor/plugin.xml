@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated traceability -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="traceability.presentation.TraceabilityModelWizardID"
+            name="%_UI_TraceabilityModelWizard_label"
+            class="traceability.presentation.TraceabilityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TraceabilityModelFile.gif">
+         <description>%_UI_TraceabilityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated traceability -->
+      <editor
+            id="traceability.presentation.TraceabilityEditorID"
+            name="%_UI_TraceabilityEditor_label"
+            icon="icons/full/obj16/TraceabilityModelFile.gif"
+            extensions="traceability"
+            class="traceability.presentation.TraceabilityEditor"
+            contributorClass="traceability.presentation.TraceabilityActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated traceability -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="eDFDFlowTracking.presentation.EDFDFlowTrackingModelWizardID"
+            name="%_UI_EDFDFlowTrackingModelWizard_label"
+            class="eDFDFlowTracking.presentation.EDFDFlowTrackingModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EDFDFlowTrackingModelFile.gif">
+         <description>%_UI_EDFDFlowTrackingModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated traceability -->
+      <editor
+            id="eDFDFlowTracking.presentation.EDFDFlowTrackingEditorID"
+            name="%_UI_EDFDFlowTrackingEditor_label"
+            icon="icons/full/obj16/EDFDFlowTrackingModelFile.gif"
+            extensions="edfdflowtracking"
+            class="eDFDFlowTracking.presentation.EDFDFlowTrackingEditor"
+            contributorClass="eDFDFlowTracking.presentation.EDFDFlowTrackingActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated traceability -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="graph.presentation.GraphModelWizardID"
+            name="%_UI_GraphModelWizard_label"
+            class="graph.presentation.GraphModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GraphModelFile.gif">
+         <description>%_UI_GraphModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated traceability -->
+      <editor
+            id="graph.presentation.GraphEditorID"
+            name="%_UI_GraphEditor_label"
+            icon="icons/full/obj16/GraphModelFile.gif"
+            extensions="graph"
+            class="graph.presentation.GraphEditor"
+            contributorClass="graph.presentation.GraphActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

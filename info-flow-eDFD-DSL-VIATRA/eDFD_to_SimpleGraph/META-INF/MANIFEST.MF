@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eDFD_to_SimpleGraph
+Bundle-SymbolicName: eDFD_to_SimpleGraph;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Export-Package: edfdtosimplegraph,
+  edfdtosimplegraph.util
+Require-Bundle: org.eclipse.viatra.transformation.runtime.emf,
+  org.eclipse.viatra.transformation.evm,
+  org.eclipse.emf.ecore,
+  org.eclipse.viatra.query.runtime,
+  org.eclipse.xtext.xbase.lib,
+  Traceability;bundle-version="0.1.0",
+  Graph;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.apache.log4j
+Automatic-Module-Name: eDFD_to_SimpleGraph

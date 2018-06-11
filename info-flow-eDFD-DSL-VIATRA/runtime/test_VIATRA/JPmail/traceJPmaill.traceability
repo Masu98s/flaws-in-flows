@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eDFDFlowTracking="http://www.example.org/eDFDFlowTracking" xmlns:graph="http://www.example.org/graph" xmlns:traceability="http://www.example.org/traceability">
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:EDFD" href="JPmail.mydsl#JPMail"/>
+    <graphElements xsi:type="graph:Subgraphs" href="WholeGraphJPmail.graph#//@subgraphs.0"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#BobPrivateKey"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#BobPrivateKey"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#Policy"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#Policy"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#EmailBody"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#EmailBody"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#BobPublicKey"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#BobPublicKey"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#EncryptedBody"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#EncryptedBody"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#EmailHeader"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#EmailHeader"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="JPmail.mydsl#EmailBodyAndHeader"/>
+    <graphElements xsi:type="graph:GraphAsset" href="WholeGraphJPmail.graph#EmailBodyAndHeader"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="JPmail.mydsl#Alice"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.0"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="JPmail.mydsl#PolicyDS"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.1"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="JPmail.mydsl#SMTPServer"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.2"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="JPmail.mydsl#EncryptBody"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.3"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="JPmail.mydsl#DecryptBody"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.4"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="JPmail.mydsl#BobDS"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.5"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="JPmail.mydsl#ReclassifyBodyAndHeader"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.6"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="JPmail.mydsl#Bob"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.7"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="JPmail.mydsl#POP3Server"/>
+    <graphElements xsi:type="graph:Node" href="WholeGraphJPmail.graph#//@subgraphs.0/@nodes.8"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#provideHeaderAndEncrBody"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#provideHeaderAndEncrBody"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#readPolicy1"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#readPolicy1"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#readPolicy2"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#readPolicy2"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#readPublicKey"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#readPublicKey"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#provideHeaderAndBody"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#provideHeaderAndBody"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#sendHeaderAndEncrBodySMTP"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#sendHeaderAndEncrBodySMTP"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#sendSplitAssets4Encryption"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#sendSplitAssets4Encryption"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#sendOutEmail"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#sendOutEmail"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#sendHeaderAndEncrBodyPOP3"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#sendHeaderAndEncrBodyPOP3"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="JPmail.mydsl#readPrivateKey"/>
+    <graphElements xsi:type="graph:Edge" href="WholeGraphJPmail.graph#readPrivateKey"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.8/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#DecryptBody[Authoriser][eDFDFlowTracking.impl.AssetImpl@646a9907 (name: Policy, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.5/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#EncryptBody[Authoriser][eDFDFlowTracking.impl.AssetImpl@646a9907 (name: Policy, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.7/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#POP3Server[Copier][eDFDFlowTracking.impl.AssetImpl@d7da0ae (name: EncryptedBody, number: 0), eDFDFlowTracking.impl.AssetImpl@267a3722 (name: EmailHeader, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.6/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#SMTPServer[Forward][eDFDFlowTracking.impl.AssetImpl@d7da0ae (name: EncryptedBody, number: 0), eDFDFlowTracking.impl.AssetImpl@267a3722 (name: EmailHeader, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.4/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#ReclassifyBodyAndHeader[Splitter][eDFDFlowTracking.impl.AssetImpl@51dc7140 (name: EmailBodyAndHeader, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.8/@responsibility.2"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#DecryptBody[Forward][eDFDFlowTracking.impl.AssetImpl@267a3722 (name: EmailHeader, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.7/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#POP3Server[Store][eDFDFlowTracking.impl.AssetImpl@d7da0ae (name: EncryptedBody, number: 0), eDFDFlowTracking.impl.AssetImpl@267a3722 (name: EmailHeader, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.4/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#ReclassifyBodyAndHeader[Authoriser][eDFDFlowTracking.impl.AssetImpl@646a9907 (name: Policy, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.8/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#DecryptBody[Decrypt][eDFDFlowTracking.impl.AssetImpl@d7da0ae (name: EncryptedBody, number: 0), eDFDFlowTracking.impl.AssetImpl@ae4fa3f (name: BobPrivateKey, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.5/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#EncryptBody[EncryptOrHash][eDFDFlowTracking.impl.AssetImpl@16cb470a (name: EmailBody, number: 0), eDFDFlowTracking.impl.AssetImpl@41bbdb8d (name: BobPublicKey, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="JPmail.mydsl#//@elements.5/@responsibility.2"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="WholeGraphJPmail.graph#EncryptBody[Forward][eDFDFlowTracking.impl.AssetImpl@267a3722 (name: EmailHeader, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfds href="JPmail.mydsl#JPMail"/>
+  <graphs href="WholeGraphJPmail.graph#/"/>
+  <endtoendgraph href="endtoend.graph#/"/>
+</traceability:EDFDToGraph>

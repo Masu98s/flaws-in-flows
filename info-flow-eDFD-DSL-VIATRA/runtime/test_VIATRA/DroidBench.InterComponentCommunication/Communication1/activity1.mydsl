@@ -1,0 +1,34 @@
+// https://github.com/secure-software-engineering/DroidBench/blob/master/eclipse-project/InterComponentCommunication/ActivityCommunication1/src/de/ecspride/Activity1.java
+EDFD ActivityCommunication1[
+	assets: 
+		Asset InterAppAsset values: [H C] source: SourceDS targets: SinkDS
+	elements:
+		DataStore SourceDS[
+			assets: InterAppAsset
+			outgoing flows: readAppAsset [num: 1 assets: InterAppAsset targets: Activity2]
+		],
+		DataStore SinkDS[
+			assets: InterAppAsset
+			incoming flows: "Activity1.storeAppAsset"
+		],
+		Process Activity2[
+			responsibilities: [InterAppAsset Forward::InterAppAsset]
+			assets: InterAppAsset
+			incoming flows: "SourceDS.readAppAsset"	
+			outgoing flows: forwardAppAsset [num: 2 assets: InterAppAsset targets: Activity1]		
+		],
+		Process Activity1[
+			responsibilities: [InterAppAsset Store::InterAppAsset]
+			assets: InterAppAsset
+			incoming flows: "Activity2.forwardAppAsset"
+			outgoing flows: storeAppAsset [num: 3 assets: InterAppAsset targets: SinkDS]
+		]
+	attack zones:
+		Attackerzone1[
+			attacker profiles:
+				ExternalHacker [
+					observation: 1
+				]
+			elements: Activity1
+		]
+]

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eDFDFlowTracking="http://www.example.org/eDFDFlowTracking" xmlns:graph="http://www.example.org/graph" xmlns:traceability="http://www.example.org/traceability">
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:EDFD" href="Hospital.mydsl#Hospital"/>
+    <graphElements xsi:type="graph:Subgraphs" href="Hospital.graph#//@subgraphs.0"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="Hospital.mydsl#Policy"/>
+    <graphElements xsi:type="graph:GraphAsset" href="Hospital.graph#Policy"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="Hospital.mydsl#ModifiedList"/>
+    <graphElements xsi:type="graph:GraphAsset" href="Hospital.graph#ModifiedList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="Hospital.mydsl#Request"/>
+    <graphElements xsi:type="graph:GraphAsset" href="Hospital.graph#Request"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="Hospital.mydsl#Permissions"/>
+    <graphElements xsi:type="graph:GraphAsset" href="Hospital.graph#Permissions"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="Hospital.mydsl#PatientList"/>
+    <graphElements xsi:type="graph:GraphAsset" href="Hospital.graph#PatientList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="Hospital.mydsl#AppCode"/>
+    <graphElements xsi:type="graph:GraphAsset" href="Hospital.graph#AppCode"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="Hospital.mydsl#HospitalDS"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.0"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="Hospital.mydsl#HospitalApp"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.1"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="Hospital.mydsl#WriteList"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.2"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="Hospital.mydsl#ReadList"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.3"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="Hospital.mydsl#Employee"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.4"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="Hospital.mydsl#DropBox"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.5"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="Hospital.mydsl#Authorise"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.6"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="Hospital.mydsl#Attacker"/>
+    <graphElements xsi:type="graph:Node" href="Hospital.graph#//@subgraphs.0/@nodes.7"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#readDropBox"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#readDropBox"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#providePatientList"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#providePatientList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#sendModifiedList"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#sendModifiedList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#sendRequest"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#sendRequest"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#writeDropBox"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#writeDropBox"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#forwardModifiedList"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#forwardModifiedList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#providePermissions"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#providePermissions"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#loadAppCode"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#loadAppCode"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#loadPolicy"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#loadPolicy"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#forwardRequest"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#forwardRequest"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#forwardPatientList"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#forwardPatientList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="Hospital.mydsl#stealPatientList"/>
+    <graphElements xsi:type="graph:Edge" href="Hospital.graph#stealPatientList"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.3/@responsibility.2"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#Employee[User][eDFDFlowTracking.impl.AssetImpl@58fd4e05 (name: Permissions, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.3/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#Employee[Store][eDFDFlowTracking.impl.AssetImpl@509ab3b0 (name: PatientList, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.5/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#WriteList[Forward][eDFDFlowTracking.impl.AssetImpl@63c6a639 (name: ModifiedList, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.4/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#ReadList[Forward][eDFDFlowTracking.impl.AssetImpl@509ab3b0 (name: PatientList, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.3/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#Employee[User][eDFDFlowTracking.impl.AssetImpl@1a38040 (name: AppCode, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.6/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#Authorise[Authoriser][eDFDFlowTracking.impl.AssetImpl@69a1186c (name: Policy, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.3/@responsibility.3"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#Employee[Copier][eDFDFlowTracking.impl.AssetImpl@509ab3b0 (name: PatientList, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.4/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#ReadList[Forward][eDFDFlowTracking.impl.AssetImpl@33117039 (name: Request, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="Hospital.mydsl#//@elements.5/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="Hospital.graph#WriteList[Store][eDFDFlowTracking.impl.AssetImpl@63c6a639 (name: ModifiedList, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfds href="Hospital.mydsl#Hospital"/>
+  <graphs href="Hospital.graph#/"/>
+</traceability:EDFDToGraph>

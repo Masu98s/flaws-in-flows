@@ -1,0 +1,479 @@
+package edfdtosimplegraph
+
+import eDFDFlowTracking.Asset
+import eDFDFlowTracking.AttackerProfile
+import eDFDFlowTracking.Element
+import eDFDFlowTracking.Flow
+import eDFDFlowTracking.NamedEntity
+import eDFDFlowTracking.Responsibility
+import eDFDFlowTracking.Value
+import graph.GraphAsset
+import graph.GraphPackage
+import graph.Identifiable
+import graph.Node
+import graph.Subgraphs
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine
+import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.IModelManipulations
+import org.eclipse.viatra.transformation.runtime.emf.modelmanipulation.SimpleModelManipulations
+import org.eclipse.viatra.transformation.runtime.emf.rules.batch.BatchTransformationRuleFactory
+import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformation
+import org.eclipse.viatra.transformation.runtime.emf.transformation.batch.BatchTransformationStatements
+import traceability.EDFDToGraph
+import traceability.TraceabilityPackage
+import graph.Edge
+
+abstract class eDFDToEndToEndGraphTransformation {
+	/** VIATRA Query Pattern group **/
+	val extension EDFDXformM2M edfdxformm2m = EDFDXformM2M.instance
+
+	/** EMF metamodels **/
+	val extension TraceabilityPackage trPackage = TraceabilityPackage.eINSTANCE
+	val extension GraphPackage graphPackage = GraphPackage.eINSTANCE
+	
+    /* Transformation-related extensions */
+    extension BatchTransformation transformation
+    extension BatchTransformationStatements statements
+    
+    /* Transformation rule-related extensions */
+    extension BatchTransformationRuleFactory = new BatchTransformationRuleFactory
+    extension IModelManipulations manipulation
+
+    protected ViatraQueryEngine engine
+    protected Resource resource
+    //protected BatchTransformationRule<?,?> exampleRule
+    val EDFDToGraph edfd2graph
+        
+    new(EDFDToGraph edfd2graph, ViatraQueryEngine engine){
+    	this.edfd2graph = edfd2graph
+    	resource = edfd2graph.graphs.eResource
+    	this.engine = engine
+    	prepare(engine)
+    	createTransformation
+    }
+	
+
+    private def createTransformation() {
+        //Create VIATRA model manipulations
+        this.manipulation = new SimpleModelManipulations(engine)
+        //Create VIATRA Batch transformation
+        transformation = BatchTransformation.forEngine(engine)
+        .build
+        //Initialize batch transformation statements
+        statements = transformation.transformationStatements
+    }
+
+/*
+ * user defined transformation rules
+ */
+ 
+     val buildFirstSubgraphRule = createRule.precondition(EDFDAssetMatcher.querySpecification).action[
+    	val eDFD = it.edfd
+    	val eDFDAsset = it.a
+    	val eDFDAssetValues = eDFDAsset.value
+    	
+ 		val subgraph = edfd2graph.graphs.createChild(graph_Subgraphs, subgraphs) as Subgraphs => [
+ 			//set all graph nodes later once they are transformed
+ 			//set all graph assets below!
+ 		]subgraph.ID = eDFDAsset.name.concat(' End-to-end')
+ 		
+    	edfd2graph.createChild(EDFDToGraph_EdfdGraphTraces, EDFDGraphTrace) => [
+    		addTo(EDFDGraphTrace_EdfdElements, eDFD)
+    		addTo(EDFDGraphTrace_GraphElements, subgraph)
+    	]
+    	
+		val graph_asset = subgraph.createChild(subgraphs_Assets, graphAsset) as GraphAsset => [
+	    	var confidential = false
+	    	for (Value av : eDFDAssetValues){
+	    		//if there is any confidentiality values then the label is secret
+	    		if (av.objective.toString == 'Confidentiality'){
+	    			confidential = true
+	    		}//otherwise its public
+	    	}
+	    	//set label
+	    	if (confidential==true){
+	    		// 1 means secret
+	    		set(graphAsset_Label, 1)
+	    	}else{
+	    		// 0 means public
+	    		set(graphAsset_Label, 0)
+	    	}
+    	]
+    	graph_asset.ID = eDFDAsset.name
+
+    	edfd2graph.createChild(EDFDToGraph_EdfdGraphTraces, EDFDGraphTrace) => [
+    		addTo(EDFDGraphTrace_EdfdElements, eDFDAsset)
+    		addTo(EDFDGraphTrace_GraphElements, graph_asset)
+    	]
+    	
+    	//finally set asset as the only asset in current subgraph
+    	subgraph.assets.add(graph_asset) 
+    	
+    ].build
+
+    val eDFDNodeElementRule = createRule.precondition(NodeElementsAssetsMatcher.querySpecification).action[
+    	val eDFDElement = it.el
+    	val eDFDElementName = eDFDElement.name
+    	val eDFDAsset = it.a
+
+    	println('''Mapping eDFD Node element with Graph Nodes: «eDFDElementName»''')
+    	
+    	//find asset in target model
+    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDAsset as NamedEntity).filter(GraphAsset).head
+    	
+    	//find subgraph in target model
+    	val subgraph = asset.eContainer
+    
+    	//create a new node in target model and append to subgraph
+    	val graphNode = subgraph.createChild(subgraphs_Nodes, node) => [
+    		set(node_Name, eDFDElementName)
+    		//set default attacker observation to -1 -> has not been set
+    		set(node_AttackerObservation, -1)
+    	]
+    	
+    	//create trace
+    	edfd2graph.createChild(EDFDToGraph_EdfdGraphTraces, EDFDGraphTrace) => [
+    		addTo(EDFDGraphTrace_EdfdElements, eDFDElement)
+    		addTo(EDFDGraphTrace_GraphElements, graphNode)
+    	]
+    ].build
+    
+  val eDFDFlowRule = createRule.precondition(NodeElementsAssetsMatcher.querySpecification).action[
+  	/*
+  	 * Since this transformation is not end-to-end, finding the correct subgraph is redundant - there is only one subgraph
+  	 */
+    	val eDFDElement = it.el
+    	val eDFDElementName = eDFDElement.name
+    	val eDFDAsset = it.a
+    	val eDFDIncomingFlows = eDFDElement.inflows
+    	val eDFDOutgoingFlows = eDFDElement.outflows
+    	
+
+    	println('''Adding flows to node: «eDFDElementName»''')
+    	
+    	//find asset in target model
+    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDAsset as NamedEntity).filter(GraphAsset).head
+    	
+    	//find subgraph in target model
+    	val subgraph = asset.eContainer as Subgraphs
+    	
+    	var locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDElement as NamedEntity).filter(Node).head
+    	for (Node n : subgraph.nodes){
+    		if (n.name == locate_correct_graph_node.name){
+    			locate_correct_graph_node = n
+    		}
+    	}
+    	val correct_graph_node = locate_correct_graph_node
+
+    	//create incoming flows and link them to the nodes
+    	for (Flow fl : eDFDIncomingFlows){
+    		val source = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, fl.source).filter(Node).head
+    		
+    		//find assets in target model
+	    	val graphassets = newArrayList()
+	    	for(Asset edfdasset : fl.assets){
+	    		graphassets.add(engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, edfdasset as NamedEntity).filter(GraphAsset).head)
+	    	}
+
+			//create new child of that node
+	    	val graphEdge = correct_graph_node.createChild(node_Inedges, edge) as Identifiable => [
+	    		//do not set the target yet
+	    		addTo(edge_Target, correct_graph_node)
+	    		//set the source to the found node in target model
+	    		set(edge_Source, source)
+	    		//add reference to all the assets
+	    		addTo(edge_Graphassets, graphassets)
+	    	]
+	    	//concat the asset name to differentiate between subgraph elements
+	    	graphEdge.ID = fl.name.concat('_')+eDFDAsset.name
+	    	edfd2graph.createChild(EDFDToGraph_EdfdGraphTraces, EDFDGraphTrace) => [
+	    		addTo(EDFDGraphTrace_EdfdElements, fl)
+	    		addTo(EDFDGraphTrace_GraphElements, graphEdge)
+	    	]
+    	}  
+   	
+    	//create outgoing flows and link them to the nodes
+    	for (Flow fl : eDFDOutgoingFlows){
+	    	val targets = newArrayList()
+	    	for(Element target : fl.target){
+	    		val t = target as NamedEntity
+	    		targets.add(engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, t).filter(Node).head)
+	    	}
+	
+    		//find assets in target model
+	    	val graphassets = newArrayList()
+	    	for(Asset edfdasset : fl.assets){
+	    		graphassets.add(engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, edfdasset as NamedEntity).filter(GraphAsset).head)
+	    	}
+	  		
+			//create new child of that node
+	    	val graphEdge = correct_graph_node.createChild(node_Outedges, edge) as Identifiable => [
+	    		//set the source as this node
+	    		set(edge_Source, correct_graph_node)
+	    		//set the target as the list of found references to other nodes
+	    		addTo(edge_Target, targets)
+	    		//add reference to all the assets
+	    		addTo(edge_Graphassets, graphassets)
+	    	]
+	    	//concat the asset name to differentiate between subgraph elements
+	    	graphEdge.ID = fl.name.concat('_')+eDFDAsset.name
+	    	edfd2graph.createChild(EDFDToGraph_EdfdGraphTraces, EDFDGraphTrace) => [
+	    		addTo(EDFDGraphTrace_EdfdElements, fl)
+	    		addTo(EDFDGraphTrace_GraphElements, graphEdge)
+	    	]
+    	}
+    	
+    ].build
+
+
+   
+    val eDFDProcessResponsibilitiesRule = createRule.precondition(ProcessElementsAssetsMatcher.querySpecification).action[
+		val eDFDProcess = it.p
+    	val eDFDAsset = it.a
+    	val eDFDResponsibilities = eDFDProcess.responsibility
+
+    	//find asset in target model
+    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDAsset as NamedEntity).filter(GraphAsset).head
+    	
+    	//find subgraph in target model
+    	val subgraph = asset.eContainer as Subgraphs
+    	
+    	var locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDProcess as NamedEntity).filter(Node).head
+    	for (Node n : subgraph.nodes){
+    		if (n.name == locate_correct_graph_node.name){
+    			locate_correct_graph_node = n
+    		}
+    	}
+    	val correct_graph_node = locate_correct_graph_node
+    	
+    	for (Responsibility r : eDFDResponsibilities){
+	    	val eDFDIncomingAssets = r.incomeassets
+	    	val eDFDOutgoingAssets = r.outcomeassets
+	    	val eDFDResponsibilityActions = r.action
+	    	
+	    	println('''Mapping eDFD Responsibility with Graph NodeResponsibility: «r»''')
+	    	
+			//find incoming assets (in graph)
+	   		val incomingassets_of_process  = newArrayList()
+	   		for (Asset s : eDFDIncomingAssets){
+	   			val o = s as NamedEntity
+	   			incomingassets_of_process.add(engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, o).filter(GraphAsset).head)
+	   		}
+	   		//find outgoing assets (in graph)
+	   		val outgoingassets_of_process  = newArrayList()
+	   		for (Asset s : eDFDOutgoingAssets){
+	   			val o = s as NamedEntity
+	   			outgoingassets_of_process.add(engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, o).filter(GraphAsset).head)
+	   		}
+	
+	    	//create new child of that node (node contains responsibilities)
+	    	val graphResponsibility = correct_graph_node.createChild(node_Responsibility, nodeResponsibility) as Identifiable => [
+	    		//set incoming assets
+	    		addTo(nodeResponsibility_Incomingassets, incomingassets_of_process)
+	    		//set outgoing assets
+				addTo(nodeResponsibility_Outgoingassets, outgoingassets_of_process)
+	    		//set operations
+	    		addTo(nodeResponsibility_Operation, eDFDResponsibilityActions)
+	    	]
+	    	
+	    	graphResponsibility.ID = eDFDProcess.name.concat(eDFDResponsibilityActions.toString.concat('_')+eDFDAsset.name)
+	    	
+	    	edfd2graph.createChild(EDFDToGraph_EdfdGraphTraces, EDFDGraphTrace) => [
+	    		addTo(EDFDGraphTrace_EdfdElements, r)
+	    		addTo(EDFDGraphTrace_GraphElements, graphResponsibility)
+	    	] 
+	    	
+    	}
+ 	
+    ].build
+
+    val eDFDTBRule = createRule.precondition(BoundariesAssetsMatcher.querySpecification).action[
+	    /*
+		 * attacker profile from eDFD to graph -> attacker profiles are related to trust zones/subzones which are related to a group of elements. 
+		 * if the attacker profile has skill level: -1 (default; not set), 0 (she can neither read/modify info here), 1 (she can intercept/read info here), 2 (she can tamper with it), ...
+		 * attacker observation in graph is an attribute of Node
+		 */
+    	val eDFDTB  = it.tb
+    	val eDFDAsset = it.a
+    	val eDFDElementsInBoundary = eDFDTB.elements
+    	val eDFDAttackerProfilesForBoundary = eDFDTB.attackerprofile
+    	
+    	println('''Setting attacker observations to Graph Node: «eDFDTB.name»''')
+    	
+    	//find asset in target model
+    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDAsset as NamedEntity).filter(GraphAsset).head
+    	
+    	//find subgraph in target model
+    	val subgraph = asset.eContainer as Subgraphs
+	    	   	
+    	for (Element e : eDFDElementsInBoundary){
+	    	var locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, e as NamedEntity).filter(Node).head
+	    	for (Node n : subgraph.nodes){
+	    		if (n.name == locate_correct_graph_node.name){
+	    			locate_correct_graph_node = n
+	    		}
+	    	}
+	    	val correct_graph_node = locate_correct_graph_node
+	   		
+	   		for (AttackerProfile ap : eDFDAttackerProfilesForBoundary){
+	   			val attacker_observation_skill = ap.observation
+	   			if(attacker_observation_skill> correct_graph_node.attackerObservation){
+	   				//the attacker is more powerful -> always take the max observation power
+	   				correct_graph_node.attackerObservation = attacker_observation_skill
+	   			}
+	   		}
+	   		
+    	}
+   		
+    ].build
+    
+    val eDFDModifyAsset = createRule.precondition(EDFDAssetMatcher.querySpecification).action[
+    	val eDFDAsset = it.a
+    	val eDFDAssetSource = eDFDAsset.source //reference to one element
+    	val eDFDAssetTargets = eDFDAsset.targets //list of references to elements
+    	
+    	println('''Setting asset source and targets : «eDFDAsset.name»''')
+    	
+    	//find asset in target model
+    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDAsset as NamedEntity).filter(GraphAsset).head
+    	
+    	//find subgraph in target model
+    	val subgraph = asset.eContainer as Subgraphs
+	    
+	    //find and add the source graph node
+		var locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, eDFDAssetSource as NamedEntity).filter(Node).head
+    	for (Node n : subgraph.nodes){
+    		if (n.name == locate_correct_graph_node.name){
+    			locate_correct_graph_node = n
+    		}
+    	}	
+    	asset.source = locate_correct_graph_node
+	   
+	   	//find and add the target graph nodes
+    	for (Element e : eDFDAssetTargets){
+	    	locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, e as NamedEntity).filter(Node).head
+	    	for (Node n : subgraph.nodes){
+	    		if (n.name == locate_correct_graph_node.name){
+	    			locate_correct_graph_node = n
+	    		}
+	    	}
+	    	asset.targets.add(locate_correct_graph_node)
+    	}
+    ].build
+    
+    
+    val initLabels = createRule.precondition(EEandDSAssetElementMatcher.querySpecification).action[
+    	println('''Initializing labels of outgoing flows to: «it.el.name»''')
+    	
+    	//find asset in target model
+    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, it.a as NamedEntity).filter(GraphAsset).head
+    	//find subgraph in target model
+      	val subgraph = asset.eContainer as Subgraphs
+       	// get the node of EE or DS
+		var locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, it.el as NamedEntity).filter(Node).head
+    	for (Node n : subgraph.nodes){
+    		if (n.name == locate_correct_graph_node.name){
+    			locate_correct_graph_node = n
+    		}
+    	}
+  	
+    	// set the nodes of the outgoing flows only
+    	for (Edge e : locate_correct_graph_node.outedges){
+    	// for each set label according to the most restrictive asset on the flow
+    		var setlabel = -1 // not set
+    		for (GraphAsset gs: e.graphassets){
+    			if (gs.label > setlabel)
+    				setlabel = gs.label	
+    		}
+    		e.edgeLabel = setlabel
+    	}
+
+    ].build
+    
+    def Boolean recursiveDFS (Node node){ 
+    	//exit when all outgoingflows have been visited and the node was visited
+		if (node.visited == false){
+			//mark node
+			node.visited = true
+			
+			val neighbor_nodes  = newArrayList()
+			for (Edge outgoing : node.outedges){
+				outgoing.visited = true
+				println(outgoing.ID)
+				//do stuff
+	    			//for each responsibility
+	    			//depending on the type of responsibility propagate label (switch)
+    			
+    			//collect target nodes				
+    			neighbor_nodes.addAll(outgoing.target)
+			}
+
+    		
+    		for (Node neighbor : neighbor_nodes){
+    			//recursive call for other edges of the same node
+    			println(neighbor.name)
+    		    recursiveDFS(neighbor)	
+    		}
+    		return true
+		}
+		return true 
+    }
+    
+    val propagateLabels = createRule.precondition(AssetSourceMatcher.querySpecification).action[
+    	//what is the beginning? Asset.source, since we are looking for end-to-end
+    	if (it.el.outflows.length > 0){	
+	    	//find asset in target model
+	    	val asset = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, it.a as NamedEntity).filter(GraphAsset).head
+	    	//find subgraph in target model
+	      	val subgraph = asset.eContainer as Subgraphs
+	       	// get the node of EE
+			var locate_correct_graph_node = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, it.el as NamedEntity).filter(Node).head
+	    	for (Node n : subgraph.nodes){
+	    		if (n.name == locate_correct_graph_node.name){
+	    			locate_correct_graph_node = n
+	    		}
+	    	}	    	
+	    	println()
+	    	println('''Starting propagation at: «it.el.name»''')  
+	    	recursiveDFS(locate_correct_graph_node)
+    	}
+    	
+
+
+    ].build
+
+    public def execute() {
+
+    	println('''Executing transformation eDFD, end-to-end: «edfd2graph.edfds.name»''')
+		edfd2graph.graphs.subgraphs.clear
+		edfd2graph.edfdGraphTraces.clear
+		
+		//fire the first rule that creates subgraphs and assets for each subgraph
+		buildFirstSubgraphRule.fireAllCurrent
+		//fire the rule to create nodes
+		eDFDNodeElementRule.fireAllCurrent
+		//fire the rule to create edges
+		eDFDFlowRule.fireAllCurrent
+		//fire the rules for responsibilities
+		eDFDProcessResponsibilitiesRule.fireAllCurrent
+		//fire rules to set attacker observations of nodes according to attacker profiles in trust zones
+		eDFDTBRule.fireAllCurrent	
+		eDFDModifyAsset.fireAllCurrent
+	
+		//initLabels.fireAllCurrent
+		//propagateLabels.fireAllCurrent
+		
+		/*
+		 * todo fix flows (in-/out)
+		 * OBSOLETE!!
+		 */
+    }
+    
+    def dispose() {
+        if (transformation !== null) {
+            transformation.ruleEngine.dispose
+        }
+        transformation = null
+        return
+    }
+}

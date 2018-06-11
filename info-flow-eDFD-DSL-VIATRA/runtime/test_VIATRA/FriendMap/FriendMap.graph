@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="Google" AttackerObservation="1" inedges="getMap" Attacker="true"/>
+    <nodes name="AliceWorkerNode" inedges="readLocal sendLocations getFriendMap sendMap loadAppCode">
+      <outedges ID="requestLocations" number="2" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.1" visited="true"/>
+      <outedges ID="requestEmptyMap" number="6" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.1" visited="true"/>
+      <outedges ID="invokeFunction" number="11" target="//@subgraphs.0/@nodes.7" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="BobsLocation AliceLocation MapCode" visited="true"/>
+      <outedges ID="post2SocialNetwork" number="13" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="Map" visited="true"/>
+      <outedges ID="storeLocal" number="10" target="//@subgraphs.0/@nodes.6" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="ApplicationCode BobsLocation AliceLocation Map MapCode" visited="true"/>
+      <responsibility ID="AliceWorkerNode[Copier][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]" outgoingassets="BobsLocation AliceLocation Map" incomingassets="BobsLocation AliceLocation Map">
+        <operation>Copier</operation>
+      </responsibility>
+      <responsibility ID="AliceWorkerNode[Store][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]" incomingassets="BobsLocation AliceLocation Map">
+        <operation>Store</operation>
+      </responsibility>
+      <responsibility ID="AliceWorkerNode[Forward][eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]" outgoingassets="Map" incomingassets="Map">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="MapServices" AttackerObservation="1" inedges="requestEmptyMap provideMap" Attacker="true">
+      <outedges ID="requestMap" number="7" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.2" visited="true"/>
+      <outedges ID="sendMap" number="9" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.2" EdgeLabel="0" graphassets="MapCode" visited="true"/>
+      <responsibility ID="MapServices[Forward][eDFDFlowTracking.impl.AssetImpl@15f436d7 (name: MapCode, number: 0)]" outgoingassets="MapCode" incomingassets="MapCode">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="SNAPP" inedges="requestLocation">
+      <outedges ID="provideLoc" number="4" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="BobsLocation AliceLocation" visited="true"/>
+    </nodes>
+    <nodes name="MapProvider" AttackerObservation="1" inedges="requestMap" Attacker="true">
+      <outedges ID="provideMap" number="8" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.4" EdgeLabel="0" graphassets="MapCode" visited="true"/>
+    </nodes>
+    <nodes name="SocialNetworkAPI" inedges="requestLocations post2SocialNetwork provideLoc">
+      <outedges ID="requestLocation" number="3" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.5" visited="true"/>
+      <outedges ID="sendLocations" number="5" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.5" EdgeLabel="1" graphassets="BobsLocation AliceLocation" visited="true"/>
+      <outedges ID="postMap" number="14" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.5" EdgeLabel="1" graphassets="Map" visited="true"/>
+      <responsibility ID="SocialNetworkAPI[Forward][eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]" outgoingassets="Map" incomingassets="Map">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="SocialNetworkAPI[Forward][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0)]" outgoingassets="BobsLocation AliceLocation" incomingassets="BobsLocation AliceLocation">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="LocalDS" inedges="storeLocal">
+      <outedges ID="readLocal" number="10" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.6" EdgeLabel="1" graphassets="BobsLocation AliceLocation Map" visited="true"/>
+    </nodes>
+    <nodes name="CreateMap" inedges="invokeFunction">
+      <outedges ID="getFriendMap" number="12" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.7" EdgeLabel="1" graphassets="Map" visited="true"/>
+      <outedges ID="getMap" number="15" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.7" EdgeLabel="1" graphassets="BobsLocation AliceLocation" visited="true"/>
+      <responsibility ID="CreateMap[User][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0)]" outgoingassets="Map" incomingassets="BobsLocation AliceLocation">
+        <operation>User</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="FriendMap">
+      <outedges ID="loadAppCode" number="1" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.8" EdgeLabel="0" graphassets="ApplicationCode" visited="true"/>
+    </nodes>
+    <assets ID="BobsLocation" Label="1" source="//@subgraphs.0/@nodes.3" targets="//@subgraphs.0/@nodes.7 //@subgraphs.0/@nodes.6"/>
+    <assets ID="Map" Label="1" source="//@subgraphs.0/@nodes.7" targets="//@subgraphs.0/@nodes.6 //@subgraphs.0/@nodes.3"/>
+    <assets ID="MapCode" Label="0" source="//@subgraphs.0/@nodes.4" targets="//@subgraphs.0/@nodes.1"/>
+    <assets ID="ApplicationCode" Label="0" source="//@subgraphs.0/@nodes.8" targets="//@subgraphs.0/@nodes.1"/>
+    <assets ID="AliceLocation" Label="1" source="//@subgraphs.0/@nodes.3" targets="//@subgraphs.0/@nodes.7 //@subgraphs.0/@nodes.6"/>
+  </subgraphs>
+</graph:Graph>

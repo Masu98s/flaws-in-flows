@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="Activity2" inedges="readAppAsset">
+      <outedges ID="forwardAppAsset" number="2" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.0" EdgeLabel="1" graphassets="InterAppAsset" visited="true"/>
+      <responsibility ID="Activity2[Forward][eDFDFlowTracking.impl.AssetImpl@35dba0b4 (name: InterAppAsset, number: 0)]" outgoingassets="InterAppAsset" incomingassets="InterAppAsset">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="SourceDS">
+      <outedges ID="readAppAsset" number="1" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="InterAppAsset" visited="true"/>
+    </nodes>
+    <nodes name="SinkDS" inedges="storeAppAsset"/>
+    <nodes name="Activity1" AttackerObservation="1" inedges="forwardAppAsset" Attacker="true">
+      <outedges ID="storeAppAsset" number="3" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="Substring" visited="true"/>
+      <responsibility ID="Activity1[Store][eDFDFlowTracking.impl.AssetImpl@50dd2e86 (name: Substring, number: 0)]" outgoingassets="Substring" incomingassets="Substring">
+        <operation>Store</operation>
+      </responsibility>
+      <responsibility ID="Activity1[Splitter][eDFDFlowTracking.impl.AssetImpl@35dba0b4 (name: InterAppAsset, number: 0)]" outgoingassets="Substring" incomingassets="InterAppAsset">
+        <operation>Splitter</operation>
+      </responsibility>
+    </nodes>
+    <assets ID="Substring" Label="0" source="//@subgraphs.0/@nodes.3" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="InterAppAsset" Label="1" source="//@subgraphs.0/@nodes.1" targets="//@subgraphs.0/@nodes.3"/>
+  </subgraphs>
+</graph:Graph>

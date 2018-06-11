@@ -1,0 +1,36 @@
+// The analysis tool has to be able to track an Intent through a list operation (joiner responsibility again the same logic)
+EDFD ActivityCommunication6[
+	assets: 
+		Asset a source: SourceDS targets: Activity1,
+		Asset b values: [H C] source: SourceDS targets: Activity1,
+		Asset listofab source: Activity1 targets: Intent
+	elements:
+		DataStore SourceDS[
+			assets: a,b
+			outgoing flows: readAppAsset [num: 1 assets: a,b targets: Activity1]
+		],
+		DataStore SinkDS[
+			assets: listofab
+			incoming flows: "Activity1.sendAppAsset"
+		],
+		Process Intent[
+			responsibilities: [listofab User::], [listofab Store::listofab]
+			assets: listofab
+			incoming flows: "SourceDS.readAppAsset"	
+			outgoing flows: storeAppAsset [num: 2 assets: listofab targets: SinkDS]		
+		],
+		Process Activity1[
+			responsibilities: [a,b Joiner::listofab]
+			assets: a,b,listofab
+			incoming flows: "SourceDS.readAppAsset"
+			outgoing flows: sendAppAsset [num: 3 assets: listofab targets: Intent]
+		]
+	attack zones:
+		Attackerzone1[
+			attacker profiles:
+				ExternalHacker [
+					observation: 1
+				]
+			elements: Activity1
+		]
+]

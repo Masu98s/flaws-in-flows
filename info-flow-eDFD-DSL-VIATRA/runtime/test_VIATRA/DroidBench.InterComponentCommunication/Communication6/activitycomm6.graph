@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="SinkDS" visited="true" inedges="sendAppAsset"/>
+    <nodes name="SourceDS" visited="true">
+      <outedges ID="readAppAsset" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="a b" visited="true"/>
+    </nodes>
+    <nodes name="Intent" visited="true" inedges="readAppAsset">
+      <outedges ID="storeAppAsset" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="listofab" visited="true"/>
+      <responsibility ID="Intent[User]" incomingassets="listofab">
+        <operation>User</operation>
+      </responsibility>
+      <responsibility ID="Intent[Store]" outgoingassets="listofab" incomingassets="listofab">
+        <operation>Store</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Activity1" visited="true" inedges="readAppAsset" Attacker="true">
+      <outedges ID="sendAppAsset" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="listofab" visited="true"/>
+      <responsibility ID="Activity1[Joiner]" outgoingassets="listofab" incomingassets="a b">
+        <operation>Joiner</operation>
+      </responsibility>
+    </nodes>
+    <assets ID="b" Label="1" source="//@subgraphs.0/@nodes.1" targets="//@subgraphs.0/@nodes.3"/>
+    <assets ID="listofab" Label="0" source="//@subgraphs.0/@nodes.3" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="a" Label="0" source="//@subgraphs.0/@nodes.1" targets="//@subgraphs.0/@nodes.3"/>
+  </subgraphs>
+</graph:Graph>

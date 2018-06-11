@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="SourceDS" visited="true">
+      <outedges ID="readAppAsset" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.0" EdgeLabel="1" graphassets="InterAppAsset String" visited="true"/>
+    </nodes>
+    <nodes name="SinkDS" visited="true" inedges="storeAppAsset"/>
+    <nodes name="Activity2" visited="true" inedges="readAppAsset">
+      <outedges ID="forwardAppAsset" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="InterAppAsset_" visited="true"/>
+      <responsibility ID="Activity2[Forward]" outgoingassets="InterAppAsset_" incomingassets="InterAppAsset_">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="Activity2[Joiner]" outgoingassets="InterAppAsset_" incomingassets="InterAppAsset String">
+        <operation>Joiner</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Activity1" visited="true" inedges="forwardAppAsset" Attacker="true">
+      <outedges ID="storeAppAsset" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="InterAppAsset_" visited="true"/>
+      <responsibility ID="Activity1[Store]" outgoingassets="InterAppAsset_" incomingassets="InterAppAsset_">
+        <operation>Store</operation>
+      </responsibility>
+    </nodes>
+    <assets ID="String" Label="0" source="//@subgraphs.0/@nodes.0" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="InterAppAsset" Label="1" source="//@subgraphs.0/@nodes.0" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="InterAppAsset_" Label="0" source="//@subgraphs.0/@nodes.2" targets="//@subgraphs.0/@nodes.1"/>
+  </subgraphs>
+</graph:Graph>

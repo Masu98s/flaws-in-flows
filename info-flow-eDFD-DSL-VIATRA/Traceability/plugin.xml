@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated traceability -->
+      <package
+            uri="http://www.example.org/traceability"
+            class="traceability.TraceabilityPackage"
+            genModel="model/traceability.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated traceability -->
+      <package
+            uri="http://www.example.org/eDFDFlowTracking"
+            class="eDFDFlowTracking.EDFDFlowTrackingPackage"
+            genModel="model/traceability.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated traceability -->
+      <package
+            uri="http://www.example.org/graph"
+            class="graph.GraphPackage"
+            genModel="model/traceability.genmodel"/>
+   </extension>
+
+</plugin>

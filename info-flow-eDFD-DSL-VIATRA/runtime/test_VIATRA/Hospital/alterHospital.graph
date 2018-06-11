@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="WriteList" inedges="sendModifiedList">
+      <outedges ID="forwardModifiedList" number="11" target="//@subgraphs.0/@nodes.7" source="//@subgraphs.0/@nodes.0" EdgeLabel="1" graphassets="ModifiedList" visited="true"/>
+      <responsibility ID="WriteList[Store][eDFDFlowTracking.impl.AssetImpl@58c7073f (name: ModifiedList, number: 0)]" incomingassets="ModifiedList">
+        <operation>Store</operation>
+      </responsibility>
+      <responsibility ID="WriteList[Forward][eDFDFlowTracking.impl.AssetImpl@58c7073f (name: ModifiedList, number: 0)]" outgoingassets="ModifiedList" incomingassets="ModifiedList">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Declassifier" inedges="providePatientList">
+      <outedges ID="providePatientList_" number="7" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.1" EdgeLabel="0" graphassets="PatientList_" visited="true"/>
+      <responsibility ID="Declassifier[EncryptOrHash][eDFDFlowTracking.impl.AssetImpl@767bb276 (name: PatientList, number: 0)]" outgoingassets="PatientList_" incomingassets="PatientList">
+        <operation>EncryptOrHash</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Employee" inedges="readDropBox providePermissions loadAppCode forwardPatientList">
+      <outedges ID="sendModifiedList" number="10" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="ModifiedList" visited="true"/>
+      <outedges ID="sendRequest" number="4" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.2" EdgeLabel="0" graphassets="Request" visited="true"/>
+      <outedges ID="writeDropBox" number="9" target="//@subgraphs.0/@nodes.6" source="//@subgraphs.0/@nodes.2" EdgeLabel="0" graphassets="PatientList_" visited="true"/>
+      <responsibility ID="Employee[Copier][eDFDFlowTracking.impl.AssetImpl@6c5be07c (name: PatientList_, number: 0)]" outgoingassets="PatientList_" incomingassets="PatientList_">
+        <operation>Copier</operation>
+      </responsibility>
+      <responsibility ID="Employee[User][eDFDFlowTracking.impl.AssetImpl@7f145f22 (name: Permissions, number: 0)]" incomingassets="Permissions">
+        <operation>User</operation>
+      </responsibility>
+      <responsibility ID="Employee[Store][eDFDFlowTracking.impl.AssetImpl@6c5be07c (name: PatientList_, number: 0)]" incomingassets="PatientList_">
+        <operation>Store</operation>
+      </responsibility>
+      <responsibility ID="Employee[User][eDFDFlowTracking.impl.AssetImpl@489541f8 (name: AppCode, number: 0)]" incomingassets="AppCode">
+        <operation>User</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Attacker" inedges="stealPatientList" Attacker="true"/>
+    <nodes name="ReadList" inedges="sendRequest providePatientList_">
+      <outedges ID="forwardRequest" number="5" target="//@subgraphs.0/@nodes.7" source="//@subgraphs.0/@nodes.4" EdgeLabel="0" graphassets="Request" visited="true"/>
+      <outedges ID="forwardPatientList" number="8" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.4" EdgeLabel="0" graphassets="PatientList_" visited="true"/>
+      <outedges ID="stealPatientList" number="12" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.4" EdgeLabel="0" graphassets="PatientList_" visited="true"/>
+      <responsibility ID="ReadList[Forward][eDFDFlowTracking.impl.AssetImpl@5175d07d (name: Request, number: 0)]" outgoingassets="Request" incomingassets="Request">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="ReadList[Forward][eDFDFlowTracking.impl.AssetImpl@6c5be07c (name: PatientList_, number: 0)]" outgoingassets="PatientList_" incomingassets="PatientList_">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Authorise" inedges="loadPolicy">
+      <outedges ID="providePermissions" number="3" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.5" EdgeLabel="0" graphassets="Permissions" visited="true"/>
+      <responsibility ID="Authorise[Authoriser][eDFDFlowTracking.impl.AssetImpl@413d8c78 (name: Policy, number: 0)]" outgoingassets="Permissions" incomingassets="Policy">
+        <operation>Authoriser</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="DropBox" inedges="writeDropBox">
+      <outedges ID="readDropBox" number="9" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.6" EdgeLabel="0" graphassets="PatientList_" visited="true"/>
+    </nodes>
+    <nodes name="HospitalDS" inedges="forwardRequest forwardModifiedList">
+      <outedges ID="providePatientList" number="6" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.7" EdgeLabel="1" graphassets="PatientList" visited="true"/>
+    </nodes>
+    <nodes name="HospitalApp">
+      <outedges ID="loadAppCode" number="1" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.8" EdgeLabel="0" graphassets="AppCode" visited="true"/>
+      <outedges ID="loadPolicy" number="2" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.8" EdgeLabel="0" graphassets="Policy" visited="true"/>
+    </nodes>
+    <assets ID="Request" Label="0" source="//@subgraphs.0/@nodes.2" targets="//@subgraphs.0/@nodes.7"/>
+    <assets ID="ModifiedList" Label="1" source="//@subgraphs.0/@nodes.2" targets="//@subgraphs.0/@nodes.7"/>
+    <assets ID="Policy" Label="0" source="//@subgraphs.0/@nodes.8" targets="//@subgraphs.0/@nodes.5"/>
+    <assets ID="PatientList_" Label="0" source="//@subgraphs.0/@nodes.1" targets="//@subgraphs.0/@nodes.2 //@subgraphs.0/@nodes.6"/>
+    <assets ID="Permissions" Label="0" source="//@subgraphs.0/@nodes.5" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="AppCode" Label="0" source="//@subgraphs.0/@nodes.8" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="PatientList" Label="1" source="//@subgraphs.0/@nodes.7" targets="//@subgraphs.0/@nodes.1"/>
+  </subgraphs>
+</graph:Graph>

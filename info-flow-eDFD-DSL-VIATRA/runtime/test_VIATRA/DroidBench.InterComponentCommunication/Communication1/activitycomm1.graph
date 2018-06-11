@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="Activity1" AttackerObservation="1" inedges="forwardAppAsset" Attacker="true">
+      <outedges ID="storeAppAsset" number="3" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.0" EdgeLabel="1" graphassets="InterAppAsset" visited="true"/>
+      <responsibility ID="Activity1[Store][eDFDFlowTracking.impl.AssetImpl@330da803 (name: InterAppAsset, number: 0)]" outgoingassets="InterAppAsset" incomingassets="InterAppAsset">
+        <operation>Store</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Activity2" inedges="readAppAsset">
+      <outedges ID="forwardAppAsset" number="2" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="InterAppAsset" visited="true"/>
+      <responsibility ID="Activity2[Forward][eDFDFlowTracking.impl.AssetImpl@330da803 (name: InterAppAsset, number: 0)]" outgoingassets="InterAppAsset" incomingassets="InterAppAsset">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="SinkDS" inedges="storeAppAsset"/>
+    <nodes name="SourceDS">
+      <outedges ID="readAppAsset" number="1" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="InterAppAsset" visited="true"/>
+    </nodes>
+    <assets ID="InterAppAsset" Label="1" source="//@subgraphs.0/@nodes.3" targets="//@subgraphs.0/@nodes.2"/>
+  </subgraphs>
+</graph:Graph>

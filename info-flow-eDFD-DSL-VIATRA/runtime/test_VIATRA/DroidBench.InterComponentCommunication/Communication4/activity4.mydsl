@@ -1,0 +1,38 @@
+// https://github.com/secure-software-engineering/DroidBench/tree/master/eclipse-project/InterComponentCommunication/ActivityCommunication4
+EDFD ActivityCommunication4[
+	assets: 
+		Asset InterAppAsset values: [H C] source: SourceDS targets: Activity2,
+		//modeler decides to model string to concat as not confidential 
+		Asset String source: SourceDS targets: Activity2,
+		Asset InterAppAsset_ source: Activity2 targets: SinkDS
+	elements:
+		DataStore SourceDS[
+			assets: InterAppAsset, String
+			outgoing flows: readAppAsset [num: 1 assets: InterAppAsset, String targets: Activity2]
+		],
+		DataStore SinkDS[
+			assets: InterAppAsset_
+			incoming flows: "Activity1.storeAppAsset"
+		],
+		Process Activity2[
+			responsibilities: [InterAppAsset, String Joiner:: InterAppAsset_], 
+						      [InterAppAsset_ Forward::InterAppAsset_]
+			assets: InterAppAsset_, String, InterAppAsset
+			incoming flows: "SourceDS.readAppAsset"	
+			outgoing flows: forwardAppAsset [num: 2 assets: InterAppAsset_ targets: Activity1]		
+		],
+		Process Activity1[
+			responsibilities: [InterAppAsset_ Store::InterAppAsset_]
+			assets: InterAppAsset_
+			incoming flows: "Activity2.forwardAppAsset"
+			outgoing flows: storeAppAsset [num: 3 assets: InterAppAsset_ targets: SinkDS]
+		]
+	attack zones:
+		Attackerzone1[
+			attacker profiles:
+				ExternalHacker [
+					observation: 1
+				]
+			elements: Activity1
+		]
+]
