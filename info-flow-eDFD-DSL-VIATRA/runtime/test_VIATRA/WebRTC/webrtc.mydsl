@@ -1,0 +1,131 @@
+EDFD WebRTC[
+	assets: 
+		Asset AlicesMedia values: [L I], [H C], [H Av]
+			source: Alice
+			targets: Bob,
+		Asset BobsMedia values: [L I], [H C], [H Av]
+			source: Bob
+			targets: Alice,
+		Asset AliceBrowserID values: [H I], [H C], [H Av]
+			source: AliceBrowser
+			targets: X,
+		Asset BobBrowserID values: [H I], [H C], [H Av]
+			source: BobBrowser
+			targets: Y,
+		Asset AliceSessionData values: [L I], [L C], [H Av]
+			source: AliceBrowser
+			targets: BobBrowser,
+		Asset BobSessionData values: [L I], [L C], [H Av]
+			source: BobBrowser
+			targets: AliceBrowser	
+	elements:
+		ExternalEntity Alice[
+			assets: AlicesMedia, BobsMedia
+			incoming flows: "WebRTC.AliceBrowser.viewBobMedia"
+			outgoing flows: shareAliceMedia [num: 0 assets: AlicesMedia targets: AliceBrowser]
+			//attacker: true
+		],
+		ExternalEntity Bob[
+			assets: AlicesMedia, BobsMedia
+			incoming flows: "WebRTC.BobBrowser.viewAliceMedia"
+			outgoing flows: shareBobMedia [num: 0 assets: BobsMedia targets: BobBrowser]
+		],
+		DataStore X[
+			assets: AliceBrowserID
+			incoming flows: "IDPX.storeGeneratedAliceBrowserID"
+			outgoing flows: getAliceBrowserID [num: 0 assets: AliceBrowserID targets: IDPX]
+		],
+		DataStore Y[
+			assets: BobBrowserID
+			incoming flows: "IDPY.storeGeneratedBobBrowserID"
+			outgoing flows: getBobBrowserID [num: 0 assets: BobBrowserID targets: IDPY]
+		],
+		Process IDPX[
+			responsibilities: [AliceBrowserID Forward:: AliceBrowserID], 
+				[AliceBrowserID Store::]
+			assets: AliceBrowserID
+			//Laurens DFD has additional incoming flow from BrowserB to IDPX - what asset goes here?
+			incoming flows: "X.getAliceBrowserID", "AliceBrowser.generateAliceBrowserID"
+			outgoing flows: provideAliceBroswerIDtoBob [num: 0 assets: AliceBrowserID targets: BobBrowser],
+							provideAliceBroswerIDtoAlice [num: 0 assets: AliceBrowserID targets: AliceBrowser],
+							storeGeneratedAliceBrowserID [num: 0 assets: AliceBrowserID targets: X]
+		],
+		Process IDPY[
+			responsibilities: [BobBrowserID Forward:: BobBrowserID], 
+				[BobBrowserID Store::]
+			assets: BobBrowserID
+			//Laurens DFD has additional incoming flow from BrowserA to IDPY - what asset goes here?
+			incoming flows: "Y.getBobBrowserID", "BobBrowser.generateBobBrowserID"
+			outgoing flows: provideBobBroswerIDtoAlice [num: 0 assets: BobBrowserID targets: AliceBrowser],
+							provideBobBroswerIDtoBob [num: 0 assets: BobBrowserID targets: BobBrowser],
+							storeGeneratedBobBrowserID [num: 0 assets: BobBrowserID targets: Y]
+		],
+		Process AliceBrowser[
+			//generate AlicebrowserID, generate AliceSessionData, forward Alicebrowserid, verify BobBrowserId, forward AliceMedia and BobsMedia
+			responsibilities: [AliceBrowserID Forward::], 
+				[BobBrowserID User::], 
+				[AlicesMedia Forward::], 
+				[BobsMedia Forward::], 
+				[AliceSessionData, BobSessionData Comparator::]
+			assets: BobsMedia, AliceSessionData, AlicesMedia, AliceBrowserID, BobBrowserID, BobSessionData
+			incoming flows: "Alice.shareAliceMedia", "IDPY.provideBobBroswerIDtoAlice", "IDPX.provideAliceBroswerIDtoAlice", "Signaling_server.forwardBobSessionData", "STUN_TURNAlice.sendMediaToAliceBrowser", "BobBrowser.sendBobsMediaToAliceBrowser"
+			//Laurens DFD additional outgoing (see IDPY)
+			outgoing flows: viewBobMedia [num: 0 assets: BobsMedia targets: Alice],
+							sendAliceSessionData [num: 0 assets: AliceSessionData targets: Signaling_server],
+							sendAliceMedia [num: 0 assets: AlicesMedia targets: STUN_TURNAlice],
+							sendAliceMediaToBobBrowser [num: 0 assets: AlicesMedia targets: BobBrowser],
+							generateAliceBrowserID [num: 0 assets: AliceBrowserID targets: IDPX]
+		],
+		Process BobBrowser[
+			responsibilities: [BobBrowserID Forward::], 
+				[AliceBrowserID User::], 
+				[BobsMedia Forward::], 
+				[AlicesMedia Forward::], 
+				[AliceSessionData, BobSessionData Comparator::]
+			assets: BobsMedia, BobSessionData, AlicesMedia, AliceBrowserID, BobBrowserID, AliceSessionData
+			incoming flows: "Bob.shareBobMedia", "IDPX.provideAliceBroswerIDtoBob", "IDPY.provideBobBroswerIDtoBob", "Signaling_server.forwardAliceSessionData", "STUN_TURNBob.sendMediaToBobBrowser", "AliceBrowser.sendAliceMediaToBobBrowser"
+			//Laurens DFD additional outgoing (see IDPX)
+			outgoing flows: viewAliceMedia [num: 0 assets: AlicesMedia targets: Bob],
+							sendBobSessionData [num: 0 assets: BobSessionData targets: Signaling_server],
+							sendBobMedia [num: 0 assets: BobsMedia targets: STUN_TURNBob],
+							sendBobsMediaToAliceBrowser [num: 0 assets: BobsMedia targets: AliceBrowser],
+							generateBobBrowserID [num: 0 assets: BobBrowserID targets: IDPY]
+		],
+		Process STUN_TURNAlice[
+			responsibilities: [BobsMedia, AlicesMedia Forward::]
+			assets: BobsMedia, AlicesMedia
+			incoming flows: "STUN_TURNBob.sendMediaToTURNAlice", "AliceBrowser.sendAliceMedia"
+			outgoing flows: sendMediaToTURNBob [num: 0 assets: AlicesMedia targets: STUN_TURNBob],
+							sendMediaToAliceBrowser [num: 0 assets: BobsMedia targets: AliceBrowser]
+			
+		],
+		Process STUN_TURNBob[
+			responsibilities: [BobsMedia, AlicesMedia Forward::]
+			assets: BobsMedia, AlicesMedia
+			incoming flows: "STUN_TURNAlice.sendMediaToTURNBob", "BobBrowser.sendBobMedia"
+			outgoing flows: sendMediaToTURNAlice [num: 0 assets: BobsMedia targets: STUN_TURNAlice],
+							sendMediaToBobBrowser [num: 0 assets: AlicesMedia targets: BobBrowser]
+		],		
+		Process Signaling_server[
+			responsibilities: [BobSessionData, AliceSessionData Forward::]
+			assets: BobSessionData, AliceSessionData
+			incoming flows: "AliceBrowser.sendAliceSessionData", "BobBrowser.sendBobSessionData"
+			outgoing flows: forwardBobSessionData [num: 0 assets: BobSessionData targets: AliceBrowser],
+							forwardAliceSessionData [num: 0 assets: AliceSessionData targets: BobBrowser]
+			attacker: true
+		]
+	attack zones:
+		OpenNetworkZone[
+			attacker profiles:
+				ExternalHacker [
+					observation: 1
+				]
+			elements: Signaling_server
+		]
+]
+
+
+
+
+
+

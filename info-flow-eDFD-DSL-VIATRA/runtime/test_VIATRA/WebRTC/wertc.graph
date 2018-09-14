@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph:Graph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:graph="http://www.example.org/graph">
+  <subgraphs>
+    <nodes name="Alice" inedges="viewBobMedia">
+      <outedges ID="shareAliceMedia" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.0" EdgeLabel="1" graphassets="AlicesMedia" visited="true"/>
+    </nodes>
+    <nodes name="Y" inedges="storeGeneratedBobBrowserID">
+      <outedges ID="getBobBrowserID" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.1" EdgeLabel="1" graphassets="BobBrowserID" visited="true"/>
+    </nodes>
+    <nodes name="AliceBrowser" inedges="shareAliceMedia provideBobBroswerIDtoAlice provideAliceBroswerIDtoAlice forwardBobSessionData sendMediaToAliceBrowser sendBobsMediaToAliceBrowser">
+      <outedges ID="viewBobMedia" target="//@subgraphs.0/@nodes.0" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="BobsMedia" visited="true"/>
+      <outedges ID="sendAliceSessionData" target="//@subgraphs.0/@nodes.9" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="AliceSessionData" visited="true"/>
+      <outedges ID="sendAliceMedia" target="//@subgraphs.0/@nodes.7" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="AlicesMedia" visited="true"/>
+      <outedges ID="sendAliceMediaToBobBrowser" target="//@subgraphs.0/@nodes.10" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="AlicesMedia" visited="true"/>
+      <outedges ID="generateAliceBrowserID" target="//@subgraphs.0/@nodes.6" source="//@subgraphs.0/@nodes.2" EdgeLabel="1" graphassets="AliceBrowserID" visited="true"/>
+      <responsibility ID="AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0)]" incomingassets="BobsMedia">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="AliceBrowser[User][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]" incomingassets="BobBrowserID">
+        <operation>User</operation>
+      </responsibility>
+      <responsibility ID="AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]" incomingassets="AlicesMedia">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]" incomingassets="AliceBrowserID">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="AliceBrowser[Comparator][eDFDFlowTracking.impl.AssetImpl@b78738 (name: AliceSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@1584ebf7 (name: BobSessionData, number: 0)]" incomingassets="AliceSessionData BobSessionData">
+        <operation>Comparator</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="Bob" inedges="viewAliceMedia">
+      <outedges ID="shareBobMedia" target="//@subgraphs.0/@nodes.10" source="//@subgraphs.0/@nodes.3" EdgeLabel="1" graphassets="BobsMedia" visited="true"/>
+    </nodes>
+    <nodes name="IDPY" inedges="getBobBrowserID generateBobBrowserID">
+      <outedges ID="provideBobBroswerIDtoAlice" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.4" EdgeLabel="1" graphassets="BobBrowserID" visited="true"/>
+      <outedges ID="provideBobBroswerIDtoBob" target="//@subgraphs.0/@nodes.10" source="//@subgraphs.0/@nodes.4" EdgeLabel="1" graphassets="BobBrowserID" visited="true"/>
+      <outedges ID="storeGeneratedBobBrowserID" target="//@subgraphs.0/@nodes.1" source="//@subgraphs.0/@nodes.4" EdgeLabel="1" graphassets="BobBrowserID" visited="true"/>
+      <responsibility ID="IDPY[Forward][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]" outgoingassets="BobBrowserID" incomingassets="BobBrowserID">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="IDPY[Store][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]" incomingassets="BobBrowserID">
+        <operation>Store</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="STUN_TURNBob" inedges="sendMediaToTURNBob sendBobMedia">
+      <outedges ID="sendMediaToTURNAlice" target="//@subgraphs.0/@nodes.7" source="//@subgraphs.0/@nodes.5" EdgeLabel="1" graphassets="BobsMedia" visited="true"/>
+      <outedges ID="sendMediaToBobBrowser" target="//@subgraphs.0/@nodes.10" source="//@subgraphs.0/@nodes.5" EdgeLabel="1" graphassets="AlicesMedia" visited="true"/>
+      <responsibility ID="STUN_TURNBob[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0), eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]" incomingassets="BobsMedia AlicesMedia">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="IDPX" inedges="getAliceBrowserID generateAliceBrowserID">
+      <outedges ID="provideAliceBroswerIDtoBob" target="//@subgraphs.0/@nodes.10" source="//@subgraphs.0/@nodes.6" EdgeLabel="1" graphassets="AliceBrowserID" visited="true"/>
+      <outedges ID="provideAliceBroswerIDtoAlice" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.6" EdgeLabel="1" graphassets="AliceBrowserID" visited="true"/>
+      <outedges ID="storeGeneratedAliceBrowserID" target="//@subgraphs.0/@nodes.8" source="//@subgraphs.0/@nodes.6" EdgeLabel="1" graphassets="AliceBrowserID" visited="true"/>
+      <responsibility ID="IDPX[Store][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]" incomingassets="AliceBrowserID">
+        <operation>Store</operation>
+      </responsibility>
+      <responsibility ID="IDPX[Forward][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]" outgoingassets="AliceBrowserID" incomingassets="AliceBrowserID">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="STUN_TURNAlice" inedges="sendMediaToTURNAlice sendAliceMedia">
+      <outedges ID="sendMediaToTURNBob" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.7" EdgeLabel="1" graphassets="AlicesMedia" visited="true"/>
+      <outedges ID="sendMediaToAliceBrowser" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.7" EdgeLabel="1" graphassets="BobsMedia" visited="true"/>
+      <responsibility ID="STUN_TURNAlice[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0), eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]" incomingassets="BobsMedia AlicesMedia">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="X" inedges="storeGeneratedAliceBrowserID">
+      <outedges ID="getAliceBrowserID" target="//@subgraphs.0/@nodes.6" source="//@subgraphs.0/@nodes.8" EdgeLabel="1" graphassets="AliceBrowserID" visited="true"/>
+    </nodes>
+    <nodes name="Signaling_server" AttackerObservation="1" inedges="sendAliceSessionData sendBobSessionData" Attacker="true">
+      <outedges ID="forwardBobSessionData" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.9" EdgeLabel="1" graphassets="BobSessionData" visited="true"/>
+      <outedges ID="forwardAliceSessionData" target="//@subgraphs.0/@nodes.10" source="//@subgraphs.0/@nodes.9" EdgeLabel="1" graphassets="AliceSessionData" visited="true"/>
+      <responsibility ID="Signaling_server[Forward][eDFDFlowTracking.impl.AssetImpl@1584ebf7 (name: BobSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@b78738 (name: AliceSessionData, number: 0)]" incomingassets="BobSessionData AliceSessionData">
+        <operation>Forward</operation>
+      </responsibility>
+    </nodes>
+    <nodes name="BobBrowser" inedges="shareBobMedia provideAliceBroswerIDtoBob provideBobBroswerIDtoBob forwardAliceSessionData sendMediaToBobBrowser sendAliceMediaToBobBrowser">
+      <outedges ID="viewAliceMedia" target="//@subgraphs.0/@nodes.3" source="//@subgraphs.0/@nodes.10" EdgeLabel="1" graphassets="AlicesMedia" visited="true"/>
+      <outedges ID="sendBobSessionData" target="//@subgraphs.0/@nodes.9" source="//@subgraphs.0/@nodes.10" EdgeLabel="1" graphassets="BobSessionData" visited="true"/>
+      <outedges ID="sendBobMedia" target="//@subgraphs.0/@nodes.5" source="//@subgraphs.0/@nodes.10" EdgeLabel="1" graphassets="BobsMedia" visited="true"/>
+      <outedges ID="sendBobsMediaToAliceBrowser" target="//@subgraphs.0/@nodes.2" source="//@subgraphs.0/@nodes.10" EdgeLabel="1" graphassets="BobsMedia" visited="true"/>
+      <outedges ID="generateBobBrowserID" target="//@subgraphs.0/@nodes.4" source="//@subgraphs.0/@nodes.10" EdgeLabel="1" graphassets="BobBrowserID" visited="true"/>
+      <responsibility ID="BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]" incomingassets="BobBrowserID">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]" incomingassets="AlicesMedia">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="BobBrowser[Comparator][eDFDFlowTracking.impl.AssetImpl@b78738 (name: AliceSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@1584ebf7 (name: BobSessionData, number: 0)]" incomingassets="AliceSessionData BobSessionData">
+        <operation>Comparator</operation>
+      </responsibility>
+      <responsibility ID="BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0)]" incomingassets="BobsMedia">
+        <operation>Forward</operation>
+      </responsibility>
+      <responsibility ID="BobBrowser[User][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]" incomingassets="AliceBrowserID">
+        <operation>User</operation>
+      </responsibility>
+    </nodes>
+    <assets ID="AlicesMedia" Label="1" source="//@subgraphs.0/@nodes.0" targets="//@subgraphs.0/@nodes.3"/>
+    <assets ID="BobsMedia" Label="1" source="//@subgraphs.0/@nodes.3" targets="//@subgraphs.0/@nodes.0"/>
+    <assets ID="AliceBrowserID" Label="1" source="//@subgraphs.0/@nodes.2" targets="//@subgraphs.0/@nodes.8"/>
+    <assets ID="BobBrowserID" Label="1" source="//@subgraphs.0/@nodes.10" targets="//@subgraphs.0/@nodes.1"/>
+    <assets ID="BobSessionData" Label="1" source="//@subgraphs.0/@nodes.10" targets="//@subgraphs.0/@nodes.2"/>
+    <assets ID="AliceSessionData" Label="1" source="//@subgraphs.0/@nodes.2" targets="//@subgraphs.0/@nodes.10"/>
+  </subgraphs>
+</graph:Graph>

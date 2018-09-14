@@ -128,3 +128,5 @@
 /.ElementOutFlowsQuerySpecification.java._trace
 /.GraphProcessor.java._trace
 /.GraphQuerySpecification.java._trace
+/GraphProcessor.java
+/GraphQuerySpecification.java

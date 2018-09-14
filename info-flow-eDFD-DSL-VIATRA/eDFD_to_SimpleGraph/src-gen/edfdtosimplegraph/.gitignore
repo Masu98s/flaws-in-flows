@@ -130,3 +130,5 @@
 /.ElementOutFlowsMatcher.java._trace
 /.GraphMatch.java._trace
 /.GraphMatcher.java._trace
+/GraphMatch.java
+/GraphMatcher.java
