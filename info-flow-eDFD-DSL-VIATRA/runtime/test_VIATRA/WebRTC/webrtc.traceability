@@ -5,116 +5,104 @@
     <graphElements xsi:type="graph:Subgraphs" href="wertc.graph#//@subgraphs.0"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AlicesMedia"/>
-    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AlicesMedia"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AliceSessionData"/>
+    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AliceSessionData"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#BobPort"/>
+    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#BobPort"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#BobsMedia"/>
     <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#BobsMedia"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AliceBrowserID"/>
-    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AliceBrowserID"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AlicesMedia"/>
+    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AlicesMedia"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#BobBrowserID"/>
-    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#BobBrowserID"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AliceBrowserID"/>
+    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AliceBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#BobSessionData"/>
     <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#BobSessionData"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AliceSessionData"/>
-    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AliceSessionData"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#AlicePort"/>
+    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#AlicePort"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="webrtc.mydsl#Alice"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.0"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="webrtc.mydsl#Y"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.1"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#AliceBrowser"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.2"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="webrtc.mydsl#BobBrowserID"/>
+    <graphElements xsi:type="graph:GraphAsset" href="wertc.graph#BobBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="webrtc.mydsl#Bob"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.3"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#IDPY"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.4"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#STUN_TURNBob"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.5"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#IDPX"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.6"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.0"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#STUN_TURNAlice"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.7"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.1"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="webrtc.mydsl#X"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.8"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#Signaling_server"/>
-    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.9"/>
+    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="webrtc.mydsl#Alice"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.2"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#BobBrowser"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.3"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="webrtc.mydsl#X"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.4"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#Signaling_server"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.5"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#STUN_TURNBob"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.6"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#IDPY"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.7"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#AliceBrowser"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.8"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="webrtc.mydsl#Y"/>
+    <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.9"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Process" href="webrtc.mydsl#IDPX"/>
     <graphElements xsi:type="graph:Node" href="wertc.graph#//@subgraphs.0/@nodes.10"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#getAliceBrowserID"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#getAliceBrowserID"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#shareBobMedia"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#shareBobMedia"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendPortToTURNBob"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendPortToTURNBob"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#forwardPortToAliceBroswer"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#forwardPortToAliceBroswer"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#getBobBrowserID"/>
     <graphElements xsi:type="graph:Edge" href="wertc.graph#getBobBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#viewAliceMedia"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#viewAliceMedia"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendPortToTURNAlice"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendPortToTURNAlice"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendBobSessionData"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendBobSessionData"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendBobMedia"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendBobMedia"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendBobsMediaToAliceBrowser"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendBobsMediaToAliceBrowser"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#generateBobBrowserID"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#generateBobBrowserID"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendMediaToTURNBob"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendMediaToTURNBob"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendMediaToAliceBrowser"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendMediaToAliceBrowser"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#forwardBobSessionData"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#forwardBobSessionData"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#forwardAliceSessionData"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#forwardAliceSessionData"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#forwardPortToBobBroswer"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#forwardPortToBobBroswer"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#viewBobMedia"/>
@@ -125,8 +113,8 @@
     <graphElements xsi:type="graph:Edge" href="wertc.graph#sendAliceSessionData"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendAliceMedia"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendAliceMedia"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendAlicePort"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendAlicePort"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendAliceMediaToBobBrowser"/>
@@ -135,18 +123,6 @@
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#generateAliceBrowserID"/>
     <graphElements xsi:type="graph:Edge" href="wertc.graph#generateAliceBrowserID"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#provideAliceBroswerIDtoBob"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#provideAliceBroswerIDtoBob"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#provideAliceBroswerIDtoAlice"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#provideAliceBroswerIDtoAlice"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#storeGeneratedAliceBrowserID"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#storeGeneratedAliceBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#provideBobBroswerIDtoAlice"/>
@@ -161,88 +137,120 @@
     <graphElements xsi:type="graph:Edge" href="wertc.graph#storeGeneratedBobBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#shareBobMedia"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#shareBobMedia"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#forwardBobSessionData"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#forwardBobSessionData"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#forwardAliceSessionData"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#forwardAliceSessionData"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#provideAliceBroswerIDtoBob"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#provideAliceBroswerIDtoBob"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#provideAliceBroswerIDtoAlice"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#provideAliceBroswerIDtoAlice"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#storeGeneratedAliceBrowserID"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#storeGeneratedAliceBrowserID"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#getAliceBrowserID"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#getAliceBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#shareAliceMedia"/>
     <graphElements xsi:type="graph:Edge" href="wertc.graph#shareAliceMedia"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendMediaToTURNAlice"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendMediaToTURNAlice"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#viewAliceMedia"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#viewAliceMedia"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendMediaToBobBrowser"/>
-    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendMediaToBobBrowser"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendBobSessionData"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendBobSessionData"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.5/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPY[Forward][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendBobPort"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendBobPort"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.10/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#Signaling_server[Forward][eDFDFlowTracking.impl.AssetImpl@1584ebf7 (name: BobSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@b78738 (name: AliceSessionData, number: 0)]"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#sendBobsMediaToAliceBrowser"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#sendBobsMediaToAliceBrowser"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.4/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPX[Store][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.3"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.8/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#STUN_TURNAlice[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0), eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.9/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#STUN_TURNBob[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0), eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[User][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.4/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPX[Forward][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.2"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.3"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@2145c8cd (name: AlicesMedia, number: 0)]"/>
-  </edfdGraphTraces>
-  <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.4"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Comparator][eDFDFlowTracking.impl.AssetImpl@b78738 (name: AliceSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@1584ebf7 (name: BobSessionData, number: 0)]"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="webrtc.mydsl#generateBobBrowserID"/>
+    <graphElements xsi:type="graph:Edge" href="wertc.graph#generateBobBrowserID"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.2"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@5bc38f53 (name: BobsMedia, number: 0)]"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@5ed9d594 (name: BobsMedia, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.5/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPY[Store][eDFDFlowTracking.impl.AssetImpl@627aa665 (name: BobBrowserID, number: 0)]"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.2"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@2516503a (name: AlicesMedia, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]"/>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.4"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Comparator][eDFDFlowTracking.impl.AssetImpl@58f65486 (name: AliceSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@48935f79 (name: BobSessionData, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.4"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Comparator][eDFDFlowTracking.impl.AssetImpl@b78738 (name: AliceSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@1584ebf7 (name: BobSessionData, number: 0)]"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Comparator][eDFDFlowTracking.impl.AssetImpl@58f65486 (name: AliceSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@48935f79 (name: BobSessionData, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.9/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#STUN_TURNBob[Forward][eDFDFlowTracking.impl.AssetImpl@2bd5cc58 (name: BobPort, number: 0), eDFDFlowTracking.impl.AssetImpl@56083c91 (name: AlicePort, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.10/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#Signaling_server[Forward][eDFDFlowTracking.impl.AssetImpl@48935f79 (name: BobSessionData, number: 0), eDFDFlowTracking.impl.AssetImpl@58f65486 (name: AliceSessionData, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[User][eDFDFlowTracking.impl.AssetImpl@4f764ad2 (name: BobBrowserID, number: 0), eDFDFlowTracking.impl.AssetImpl@56083c91 (name: AlicePort, number: 0), eDFDFlowTracking.impl.AssetImpl@2bd5cc58 (name: BobPort, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.4/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPX[Store][eDFDFlowTracking.impl.AssetImpl@74bd4715 (name: AliceBrowserID, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.4/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPX[Forward][eDFDFlowTracking.impl.AssetImpl@74bd4715 (name: AliceBrowserID, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.8/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#STUN_TURNAlice[Forward][eDFDFlowTracking.impl.AssetImpl@2bd5cc58 (name: BobPort, number: 0), eDFDFlowTracking.impl.AssetImpl@56083c91 (name: AlicePort, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@74bd4715 (name: AliceBrowserID, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@4f764ad2 (name: BobBrowserID, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.5/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPY[Forward][eDFDFlowTracking.impl.AssetImpl@4f764ad2 (name: BobBrowserID, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
     <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[User][eDFDFlowTracking.impl.AssetImpl@543a6d9a (name: AliceBrowserID, number: 0)]"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[User][eDFDFlowTracking.impl.AssetImpl@74bd4715 (name: AliceBrowserID, number: 0), eDFDFlowTracking.impl.AssetImpl@56083c91 (name: AlicePort, number: 0), eDFDFlowTracking.impl.AssetImpl@2bd5cc58 (name: BobPort, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.6/@responsibility.3"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#AliceBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@5ed9d594 (name: BobsMedia, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.7/@responsibility.3"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#BobBrowser[Forward][eDFDFlowTracking.impl.AssetImpl@2516503a (name: AlicesMedia, number: 0)]"/>
+  </edfdGraphTraces>
+  <edfdGraphTraces>
+    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="webrtc.mydsl#//@elements.5/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="wertc.graph#IDPY[Store][eDFDFlowTracking.impl.AssetImpl@4f764ad2 (name: BobBrowserID, number: 0)]"/>
   </edfdGraphTraces>
   <edfds href="webrtc.mydsl#WebRTC"/>
   <graphs href="wertc.graph#/"/>
