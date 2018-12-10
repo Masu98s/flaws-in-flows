@@ -433,7 +433,7 @@ abstract class eDFDToGraphTransformation {
  	
  	
     val initLabels = createRule.precondition(EEandDSElementMatcher.querySpecification).action[
-    	println('''Inferring labels for: «it.el.name»''')
+    	print('''Inferring labels for: «it.el.name»''')
     	
     	//find subgraph in target model
       	val subgraph = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, null).filter(Subgraphs).head
@@ -452,9 +452,11 @@ abstract class eDFDToGraphTransformation {
     		var setlabel = -1 // not set
     		for (GraphAsset gs: e.graphassets){
     			if (gs.label > setlabel)
-    				setlabel = gs.label	
+    				setlabel = gs.label
     		}
     		e.edgeLabel = setlabel
+    		print(''' to «e.edgeLabel»''')
+    		println()
     	}
 
     ].build
@@ -481,6 +483,7 @@ abstract class eDFDToGraphTransformation {
 								//set low output
 								outgoing.edgeLabel = 0
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for ecrypting asset:«ga.ID»''')
 								println()
 							}
@@ -497,6 +500,7 @@ abstract class eDFDToGraphTransformation {
 									outgoing.edgeLabel = 0
 								}
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for decrypting asset:«ga.ID»''')
 								println()
 							}
@@ -509,6 +513,7 @@ abstract class eDFDToGraphTransformation {
 								}
 								outgoing.edgeLabel = most_restrictive
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for comparing asset:«ga.ID»''')
 								println()
 							}
@@ -520,6 +525,7 @@ abstract class eDFDToGraphTransformation {
 								}
 								outgoing.edgeLabel = most_restrictive
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for joining asset:«ga.ID»''')
 								println()
 							}
@@ -532,6 +538,7 @@ abstract class eDFDToGraphTransformation {
 								}
 								outgoing.edgeLabel = most_restrictive
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for spliting asset:«ga.ID»''')
 								println()
 							}
@@ -543,6 +550,7 @@ abstract class eDFDToGraphTransformation {
 								}
 								outgoing.edgeLabel = most_restrictive
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for using asset:«ga.ID»''')
 								println()
 							}	
@@ -551,6 +559,7 @@ abstract class eDFDToGraphTransformation {
 								//copy labels (add semantic constraint - all assets in one copy responsibility must have the same label)
 								outgoing.edgeLabel = nr.incomingassets.get(0).label			
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for copying asset:«ga.ID»''')
 								println()		
 							}
@@ -558,6 +567,7 @@ abstract class eDFDToGraphTransformation {
 								//copy labels (add semantic constraint - all assets in one forward responsibility must have the same label)
 								outgoing.edgeLabel = nr.incomingassets.get(0).label	
 								print('''Label propagation of edge «outgoing.ID»''')
+								print(''' is «outgoing.edgeLabel»''')
 								print(''' for forwarding asset:«ga.ID»''')
 								println()
 							} 
@@ -590,6 +600,7 @@ abstract class eDFDToGraphTransformation {
 		    		}*/
 		    		outgoing.edgeLabel = edgecontainingassets.edgeLabel
 					print('''Label inferred for edge «outgoing.ID»''')
+					print(''' to «outgoing.edgeLabel»''')
 					print(''' since no label propagation rules apply to this edge.''')
 					println()
 				}
@@ -660,7 +671,6 @@ abstract class eDFDToGraphTransformation {
     	for (Element f : all_flows){
     		var outgoing = engine.edfd2simplegraph.getAllValuesOfgraphElements(null, null, f as NamedEntity).filter(Edge).head
 			var node = outgoing.source
-			println(f.number)
 			outgoing.visited = true
 			for (GraphAsset ga : outgoing.graphassets){
 			//for each asset, collect what kind of responsibility they are part of in the node
@@ -673,10 +683,11 @@ abstract class eDFDToGraphTransformation {
 					switch(nr.operation.toString){
 						case "[EncryptOrHash]":{
 							//set low output
-							outgoing.edgeLabel = 0
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for ecrypting asset:«ga.ID»''')
-							println()
+//							outgoing.edgeLabel = 0
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for ecrypting asset:«ga.ID»''')
+//							println()
 						}
 						case "[Decrypt]": {
 							var most_restrictive = -1
@@ -694,9 +705,10 @@ abstract class eDFDToGraphTransformation {
 							} */
 							
 							outgoing.edgeLabel = 1
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for decrypting asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for decrypting asset:«ga.ID»''')
+//							println()
 						}
 						//Comparator, Joiner, User => the same propagation
 						case "[Comparator]":{
@@ -706,9 +718,10 @@ abstract class eDFDToGraphTransformation {
 								if	(i.label > most_restrictive) most_restrictive = i.label
 							}
 							outgoing.edgeLabel = most_restrictive
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for comparing asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for comparing asset:«ga.ID»''')
+//							println()
 						}
 						case "[Joiner]":{
 							//join labels (most restrictive input to node responsibility
@@ -717,9 +730,10 @@ abstract class eDFDToGraphTransformation {
 								if	(i.label > most_restrictive) most_restrictive = i.label
 							}
 							outgoing.edgeLabel = most_restrictive
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for joining asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for joining asset:«ga.ID»''')
+//							println()
 						}
 						//splitter should be included (substring), to remain conservative
 						case "[Splitter]":{
@@ -729,9 +743,10 @@ abstract class eDFDToGraphTransformation {
 								if	(i.label > most_restrictive) most_restrictive = i.label
 							}
 							outgoing.edgeLabel = most_restrictive
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for spliting asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for spliting asset:«ga.ID»''')
+//							println()
 						}
 						case "[User]":{
 							//join labels (most restrictive input to node responsibility)
@@ -740,24 +755,27 @@ abstract class eDFDToGraphTransformation {
 								if	(i.label > most_restrictive) most_restrictive = i.label
 							}
 							outgoing.edgeLabel = most_restrictive
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for using asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for using asset:«ga.ID»''')
+//							println()
 						}	
 						//Copier and Forward => the same								
 						case "[Copier]":{
 							//copy labels (add semantic constraint - all assets in one copy responsibility must have the same label)
 							outgoing.edgeLabel = nr.incomingassets.get(0).label			
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for copying asset:«ga.ID»''')
-							println()		
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for copying asset:«ga.ID»''')
+//							println()		
 						}
 						case "[Forward]":{
 							//copy labels (add semantic constraint - all assets in one forward responsibility must have the same label)
 							outgoing.edgeLabel = nr.incomingassets.get(0).label	
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for forwarding asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for forwarding asset:«ga.ID»''')
+//							println()
 						}
 						case "[Store]":{
 							//most restrictive stored asset
@@ -766,9 +784,10 @@ abstract class eDFDToGraphTransformation {
 								if	(i.label > most_restrictive) most_restrictive = i.label
 							}
 							outgoing.edgeLabel = most_restrictive
-							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
-							print(''' for using asset:«ga.ID»''')
-							println()
+//							print('''Label propagation of edge «outgoing.ID», «outgoing.number»''')
+//							print(''' is «outgoing.edgeLabel»''')
+//							print(''' for using asset:«ga.ID»''')
+//							println()
 						}
 						//case "[Discarder]":
 						//case "[Verifier]":					
@@ -790,9 +809,15 @@ abstract class eDFDToGraphTransformation {
 						}
 					outgoing.edgeLabel = most_restrictive
 					print('''Label inferred for edge «outgoing.ID»''')
+					print(''' to «outgoing.edgeLabel»''')
 					print(''' since no label propagation rules apply to this edge.''')
 					println()
 				}
+				
+				print(f.number)
+				print(''': ''')
+				print(outgoing.edgeLabel)
+				println()
 			}
     	}
     	
