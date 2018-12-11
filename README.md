@@ -29,7 +29,7 @@ In the following, we provide steps to execute an analysis of a set of case studi
    Alternitevely, you can create a new project and model other systems using the DSL. After this, the analyst must create an empty model instance of a simple graph (.graph) and a traceability model (.traceability). The traceability model must contain the reference to the model instances of the simple graph and the SecDFD specified with the DSL.
 4. You can view the model istances of individual cases by opening the files .mydsl
    <p align="center">
-   <img src="figures/dsl-friendmap.png" width="350" title="Instance model of FriendMap">
+   <img src="figures/dsl-friendmap.png" width="500" title="Instance model of FriendMap">
    </p>
 5. Run the model transformation by opening the .traceability file, right-clicking on the EDFD To Graph element and selecting either (a) Transform, or (b) TransformEndToEnd
    <p align="center">
@@ -46,7 +46,7 @@ In the following, we provide steps to execute an analysis of a set of case studi
 8. The static check can be performed by right-clicking on the root element and selecting "Validate". 
    <p align="center">
    <img src="figures/click-validate.png" width="350" title="Validation with OCL constraints">
-   <img src="figures/validation-results.png" width="350" title="Validation results">
+   <img src="figures/validation-result.png" width="350" title="Validation result">
    </p>
 
 
