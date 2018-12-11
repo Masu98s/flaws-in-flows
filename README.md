@@ -30,7 +30,7 @@ In the following, we provide steps to execute an analysis of a set of case studi
    Alternitevely, you can create a new project and model other systems using the DSL. After this, the analyst must create an empty model instance of a simple graph (.graph) and a traceability model (.traceability). The traceability model must contain the reference to the model instances of the simple graph and the SecDFD specified with the DSL.
 4. You can view the model istances of individual cases by opening the files .mydsl
    <p align="center">
-   <img src="figures/dsl-friendmap.png" width="500" title="Instance model of FriendMap">
+   <img src="figures/dsl-friendmap.png" width="900" title="Instance model of FriendMap">
    </p>
 5. Run the model transformation by opening the .traceability file, right-clicking on the EDFD To Graph element and selecting either (a) Transform, or (b) TransformEndToEnd
    <p align="center">
