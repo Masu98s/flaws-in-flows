@@ -1,5 +1,5 @@
 # Flaws-in-flows
-Eclipse plug-in for a Security Analysis of SecDFDs
+Eclipse plug-in for a Security Analysis of SecDFDs [Link to full paper](docs/conference_041818_Fullpaper.pdf)
 
 
 # Description
