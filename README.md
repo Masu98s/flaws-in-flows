@@ -18,6 +18,9 @@ A final static check of the global policy is realized with the Object Constraint
 4. Xtext Complete SDK (v 2.12.0)
 5. VIATRA Query and Transformation SDK (v 1.6.2)
 
+# Case studies
+Together with the code base, we provide models and their analysis of four case studies. The cases studies are described in the pull paper. Here are [[screen-shots](docs/annmodels.pdf)] of the models "before" and "after" the analysis with the plug-in.
+
 # How to use the plug-in
 In the following, we provide steps to execute an analysis of a set of case studies.
 1. Import the source code of the plug-in into the Eclipse workspace.
