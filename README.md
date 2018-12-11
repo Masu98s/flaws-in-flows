@@ -23,7 +23,7 @@ In the following, we provide steps to execute an analysis of a set of case studi
 2. Launch the plug-in in a seperate Eclipse runtime engine
 3. Import the project located in the "runtime" folder
    This project includes subfolders with the models of the case studies: FriendMap, Hospital, JPmail, and WebRTC. The description of these cases can be found in the full version of the paper.
-   [Models of case studies in Eclipse Runtime](figures/runtime-project-explorer.png)
+   ![Models of case studies in Eclipse Runtime](figures/runtime-project-explorer.png)
    Alternitevely, you can create a new project and model other systems using the DSL. After this, the analyst must create an empty model instance of a simple graph (.graph) and a traceability model (.traceability). The traceability model must contain the reference to the model instances of the simple graph and the SecDFD specified with the DSL.
 4. You can view the model istances of individual cases by opening the files .mydsl
 5. Run the model transformation by opening the .traceability file, right-clicking on the EDFD To Graph element and selecting either (a) Transform, or (b) TransformEndToEnd
