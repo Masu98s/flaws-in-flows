@@ -23,17 +23,31 @@ In the following, we provide steps to execute an analysis of a set of case studi
 2. Launch the plug-in in a seperate Eclipse runtime engine
 3. Import the project located in the "runtime" folder
    This project includes subfolders with the models of the case studies: FriendMap, Hospital, JPmail, and WebRTC. The description of these cases can be found in the full version of the paper.
-   
    <p align="center">
    <img src="figures/runtime-project-explorer.png" width="350" title="Models of case studies in Eclipse Runtime">
    </p>
-   
    Alternitevely, you can create a new project and model other systems using the DSL. After this, the analyst must create an empty model instance of a simple graph (.graph) and a traceability model (.traceability). The traceability model must contain the reference to the model instances of the simple graph and the SecDFD specified with the DSL.
 4. You can view the model istances of individual cases by opening the files .mydsl
+   <p align="center">
+   <img src="figures/dsl-friendmap.png" width="350" title="Instance model of FriendMap">
+   </p>
 5. Run the model transformation by opening the .traceability file, right-clicking on the EDFD To Graph element and selecting either (a) Transform, or (b) TransformEndToEnd
+   <p align="center">
+   <img src="figures/transform-command.png" width="350" title="Command for transforming the SecDFD and running the analysis">
+   </p>
 6. The simple graph model instance is now pupulated with the relevant infromation for performing a static global policy check
+   <p align="center">
+   <img src="figures/populated-graph.png" width="350" title="Simple graph pupulated with relevant elements">
+   </p>
 7. Save the graph model and open it in the Eclipse workspace > Graph > model > .graph
+   <p align="center">
+   <img src="figures/open-graph-workspace.png" width="350" title="Open graph in Eclipse Workspace">
+   </p>
 8. The static check can be performed by right-clicking on the root element and selecting "Validate". 
+   <p align="center">
+   <img src="figures/click-validate.png" width="350" title="Validation with OCL constraints">
+   <img src="figures/validation-results.png" width="350" title="Validation results">
+   </p>
 
 
 
