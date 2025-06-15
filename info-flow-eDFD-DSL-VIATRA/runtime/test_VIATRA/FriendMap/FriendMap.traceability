@@ -1,156 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eDFDFlowTracking="http://www.example.org/eDFDFlowTracking" xmlns:graph="http://www.example.org/graph" xmlns:traceability="http://www.example.org/traceability">
+<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:secdfd="http://www.secdfd.org/secdfd" xmlns:graph="http://www.example.org/graph" xmlns:traceability="http://www.example.org/traceability">
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:EDFD" href="distriFriendMap.mydsl#DistriFriendMap"/>
+    <edfdElements xsi:type="secdfd:EDFD" href="distriFriendMap.mydsl#DistriFriendMap"/>
     <graphElements xsi:type="graph:Subgraphs" href="FriendMap.graph#//@subgraphs.0"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="distriFriendMap.mydsl#BobsLocation"/>
+    <edfdElements xsi:type="secdfd:Asset" href="distriFriendMap.mydsl#BobsLocation"/>
     <graphElements xsi:type="graph:GraphAsset" href="FriendMap.graph#BobsLocation"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="distriFriendMap.mydsl#Map"/>
+    <edfdElements xsi:type="secdfd:Asset" href="distriFriendMap.mydsl#Map"/>
     <graphElements xsi:type="graph:GraphAsset" href="FriendMap.graph#Map"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="distriFriendMap.mydsl#MapCode"/>
+    <edfdElements xsi:type="secdfd:Asset" href="distriFriendMap.mydsl#MapCode"/>
     <graphElements xsi:type="graph:GraphAsset" href="FriendMap.graph#MapCode"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="distriFriendMap.mydsl#ApplicationCode"/>
+    <edfdElements xsi:type="secdfd:Asset" href="distriFriendMap.mydsl#ApplicationCode"/>
     <graphElements xsi:type="graph:GraphAsset" href="FriendMap.graph#ApplicationCode"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="distriFriendMap.mydsl#AliceLocation"/>
+    <edfdElements xsi:type="secdfd:Asset" href="distriFriendMap.mydsl#AliceLocation"/>
     <graphElements xsi:type="graph:GraphAsset" href="FriendMap.graph#AliceLocation"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="distriFriendMap.mydsl#Google"/>
+    <edfdElements xsi:type="secdfd:ExternalEntity" href="distriFriendMap.mydsl#Google"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.0"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="distriFriendMap.mydsl#AliceWorkerNode"/>
+    <edfdElements xsi:type="secdfd:Process" href="distriFriendMap.mydsl#AliceWorkerNode"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.1"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="distriFriendMap.mydsl#MapServices"/>
+    <edfdElements xsi:type="secdfd:Process" href="distriFriendMap.mydsl#MapServices"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.2"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="distriFriendMap.mydsl#SNAPP"/>
+    <edfdElements xsi:type="secdfd:ExternalEntity" href="distriFriendMap.mydsl#SNAPP"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.3"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="distriFriendMap.mydsl#MapProvider"/>
+    <edfdElements xsi:type="secdfd:ExternalEntity" href="distriFriendMap.mydsl#MapProvider"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.4"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="distriFriendMap.mydsl#SocialNetworkAPI"/>
+    <edfdElements xsi:type="secdfd:Process" href="distriFriendMap.mydsl#SocialNetworkAPI"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.5"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="distriFriendMap.mydsl#LocalDS"/>
+    <edfdElements xsi:type="secdfd:DataStore" href="distriFriendMap.mydsl#LocalDS"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.6"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="distriFriendMap.mydsl#CreateMap"/>
+    <edfdElements xsi:type="secdfd:Process" href="distriFriendMap.mydsl#CreateMap"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.7"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:ExternalEntity" href="distriFriendMap.mydsl#FriendMap"/>
+    <edfdElements xsi:type="secdfd:ExternalEntity" href="distriFriendMap.mydsl#FriendMap"/>
     <graphElements xsi:type="graph:Node" href="FriendMap.graph#//@subgraphs.0/@nodes.8"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#requestMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#requestMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#requestMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#sendMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#sendMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#sendMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#readLocal"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#readLocal"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#readLocal"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#loadAppCode"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#loadAppCode"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#loadAppCode"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#requestLocation"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#requestLocation"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#requestLocation"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#sendLocations"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#sendLocations"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#sendLocations"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#postMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#postMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#postMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#getFriendMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#getFriendMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#getFriendMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#getMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#getMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#getMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#provideMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#provideMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#provideMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#requestLocations"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#requestLocations"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#requestLocations"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#requestEmptyMap"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#requestEmptyMap"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#requestEmptyMap"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#invokeFunction"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#invokeFunction"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#invokeFunction"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#post2SocialNetwork"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#post2SocialNetwork"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#post2SocialNetwork"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#storeLocal"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#storeLocal"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#storeLocal"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="distriFriendMap.mydsl#provideLoc"/>
+    <edfdElements xsi:type="secdfd:Flow" href="distriFriendMap.mydsl#provideLoc"/>
     <graphElements xsi:type="graph:Edge" href="FriendMap.graph#provideLoc"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.6/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#MapServices[Forward][eDFDFlowTracking.impl.AssetImpl@15f436d7 (name: MapCode, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.6/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#MapServices[Forward][secdfd.impl.AssetImpl@15f436d7 (name: MapCode, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.5/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#SocialNetworkAPI[Forward][eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.5/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#SocialNetworkAPI[Forward][secdfd.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.5/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#SocialNetworkAPI[Forward][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.5/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#SocialNetworkAPI[Forward][secdfd.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), secdfd.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.4/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#AliceWorkerNode[Copier][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.4/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#AliceWorkerNode[Copier][secdfd.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), secdfd.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0), secdfd.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.4/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#AliceWorkerNode[Store][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.4/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#AliceWorkerNode[Store][secdfd.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), secdfd.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0), secdfd.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.4/@responsibility.2"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#AliceWorkerNode[Forward][eDFDFlowTracking.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.4/@responsibility.2"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#AliceWorkerNode[Forward][secdfd.impl.AssetImpl@42a327e (name: Map, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="distriFriendMap.mydsl#//@elements.7/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#CreateMap[User][eDFDFlowTracking.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), eDFDFlowTracking.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="distriFriendMap.mydsl#//@elements.7/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="FriendMap.graph#CreateMap[User][secdfd.impl.AssetImpl@74bc3c06 (name: BobsLocation, number: 0), secdfd.impl.AssetImpl@ce1454c (name: AliceLocation, number: 0)]"/>
   </edfdGraphTraces>
   <edfds href="distriFriendMap.mydsl#DistriFriendMap"/>
   <graphs href="FriendMap.graph#/"/>

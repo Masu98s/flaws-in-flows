@@ -16,11 +16,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link graph.GraphAsset#getLabel <em>Label</em>}</li>
  *   <li>{@link graph.GraphAsset#getSource <em>Source</em>}</li>
  *   <li>{@link graph.GraphAsset#getTargets <em>Targets</em>}</li>
+ *   <li>{@link graph.GraphAsset#isEncrypted <em>Encrypted</em>}</li>
  * </ul>
  *
  * @see graph.GraphPackage#getGraphAsset()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AttackerObservationViolationSource AttackerObservationViolationTagret'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot AttackerObservationViolationSource='\n\t\tif self.Label = 0\n\t\tthen\n\t\t\tself.source.AttackerObservation &lt; 5\n\t\telse\n\t\t\tself.source.AttackerObservation &lt; 1\n\t\tendif\n\t\t' AttackerObservationViolationTagret='\n\t\tself.targets-&gt;forAll(t | \n\t\t\tif self.Label = 0\n\t\t\tthen\n\t\t\t\tt.AttackerObservation &lt; 5\n\t\t\telse\n\t\t\t\tt.AttackerObservation &lt; 1\n\t\t\tendif\n\t\t)\n\t\t'"
+ * @model
  * @generated
  */
 public interface GraphAsset extends Identifiable {
@@ -92,5 +92,27 @@ public interface GraphAsset extends Identifiable {
 	 * @generated
 	 */
 	EList<Node> getTargets();
+
+	/**
+	 * Returns the value of the '<em><b>Encrypted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Encrypted</em>' attribute.
+	 * @see #setEncrypted(boolean)
+	 * @see graph.GraphPackage#getGraphAsset_Encrypted()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isEncrypted();
+
+	/**
+	 * Sets the value of the '{@link graph.GraphAsset#isEncrypted <em>Encrypted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Encrypted</em>' attribute.
+	 * @see #isEncrypted()
+	 * @generated
+	 */
+	void setEncrypted(boolean value);
 
 } // GraphAsset

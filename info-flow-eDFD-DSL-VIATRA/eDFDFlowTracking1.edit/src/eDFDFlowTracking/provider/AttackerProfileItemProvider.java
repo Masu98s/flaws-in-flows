@@ -157,7 +157,7 @@ public class AttackerProfileItemProvider
 			getString("_UI_AttackerProfile_type") :
 			getString("_UI_AttackerProfile_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

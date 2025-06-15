@@ -68,7 +68,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int NUMBER_EDEFAULT = 0;
+	protected static final int NUMBER_EDEFAULT = -1;
 
 	/**
 	 * The cached value of the '{@link #getNumber() <em>Number</em>}' attribute.
@@ -124,6 +124,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return id;
 	}
@@ -133,6 +134,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = id;
 		id = newID;
@@ -145,6 +147,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNumber() {
 		return number;
 	}
@@ -154,6 +157,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumber(int newNumber) {
 		int oldNumber = number;
 		number = newNumber;
@@ -166,6 +170,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Node> getNodes() {
 		if (nodes == null) {
 			nodes = new EObjectContainmentEList<Node>(Node.class, this, GraphPackage.SUBGRAPHS__NODES);
@@ -178,6 +183,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GraphAsset> getAssets() {
 		if (assets == null) {
 			assets = new EObjectContainmentEList<GraphAsset>(GraphAsset.class, this, GraphPackage.SUBGRAPHS__ASSETS);
@@ -301,7 +307,7 @@ public class SubgraphsImpl extends MinimalEObjectImpl.Container implements Subgr
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (ID: ");
 		result.append(id);
 		result.append(", number: ");

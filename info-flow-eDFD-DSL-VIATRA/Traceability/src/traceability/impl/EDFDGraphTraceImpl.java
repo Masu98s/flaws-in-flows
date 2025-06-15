@@ -2,7 +2,7 @@
  */
 package traceability.impl;
 
-import eDFDFlowTracking.NamedEntity;
+import org.secdfd.model.NamedEntity;
 
 import graph.Identifiable;
 
@@ -78,6 +78,7 @@ public class EDFDGraphTraceImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<NamedEntity> getEdfdElements() {
 		if (edfdElements == null) {
 			edfdElements = new EObjectResolvingEList<NamedEntity>(NamedEntity.class, this, TraceabilityPackage.EDFD_GRAPH_TRACE__EDFD_ELEMENTS);
@@ -90,6 +91,7 @@ public class EDFDGraphTraceImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Identifiable> getGraphElements() {
 		if (graphElements == null) {
 			graphElements = new EObjectResolvingEList<Identifiable>(Identifiable.class, this, TraceabilityPackage.EDFD_GRAPH_TRACE__GRAPH_ELEMENTS);

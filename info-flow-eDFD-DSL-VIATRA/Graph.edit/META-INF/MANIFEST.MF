@@ -2,15 +2,17 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: Graph.edit;singleton:=true
+Automatic-Module-Name: Graph.edit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: graph.provider.GraphEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: eDFDFlowTracking.provider,
- graph.provider
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: graph.provider
 Require-Bundle: org.eclipse.core.runtime,
  Graph;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.secdfd.model;visibility:=reexport,
+ org.secdfd.model.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

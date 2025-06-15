@@ -67,6 +67,7 @@ public class GraphAssetItemProvider
 			addLabelPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetsPropertyDescriptor(object);
+			addEncryptedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -182,6 +183,28 @@ public class GraphAssetItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Encrypted feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEncryptedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GraphAsset_Encrypted_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GraphAsset_Encrypted_feature", "_UI_GraphAsset_type"),
+				 GraphPackage.Literals.GRAPH_ASSET__ENCRYPTED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns GraphAsset.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,7 +228,7 @@ public class GraphAssetItemProvider
 			getString("_UI_GraphAsset_type") :
 			getString("_UI_GraphAsset_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -222,6 +245,7 @@ public class GraphAssetItemProvider
 			case GraphPackage.GRAPH_ASSET__ID:
 			case GraphPackage.GRAPH_ASSET__NUMBER:
 			case GraphPackage.GRAPH_ASSET__LABEL:
+			case GraphPackage.GRAPH_ASSET__ENCRYPTED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

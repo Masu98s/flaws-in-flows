@@ -68,6 +68,7 @@ public class GraphImpl extends MinimalEObjectImpl.Container implements Graph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Subgraphs> getSubgraphs() {
 		if (subgraphs == null) {
 			subgraphs = new EObjectContainmentEList<Subgraphs>(Subgraphs.class, this, GraphPackage.GRAPH__SUBGRAPHS);

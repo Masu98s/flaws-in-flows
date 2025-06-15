@@ -2,16 +2,17 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: Traceability.tests;singleton:=true
+Automatic-Module-Name: Traceability.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: eDFDFlowTracking.tests,
- graph.tests,
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: graph.tests,
  traceability.tests
 Require-Bundle: org.eclipse.core.runtime,
  Traceability;visibility:=reexport,
+ org.secdfd.model;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.junit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

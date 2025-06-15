@@ -77,6 +77,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Edge createEdge() {
 		EdgeImpl edge = new EdgeImpl();
 		return edge;
@@ -87,6 +88,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GraphAsset createGraphAsset() {
 		GraphAssetImpl graphAsset = new GraphAssetImpl();
 		return graphAsset;
@@ -97,6 +99,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Node createNode() {
 		NodeImpl node = new NodeImpl();
 		return node;
@@ -107,6 +110,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Subgraphs createSubgraphs() {
 		SubgraphsImpl subgraphs = new SubgraphsImpl();
 		return subgraphs;
@@ -117,6 +121,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NodeResponsibility createNodeResponsibility() {
 		NodeResponsibilityImpl nodeResponsibility = new NodeResponsibilityImpl();
 		return nodeResponsibility;
@@ -127,6 +132,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Graph createGraph() {
 		GraphImpl graph = new GraphImpl();
 		return graph;
@@ -137,6 +143,7 @@ public class GraphFactoryImpl extends EFactoryImpl implements GraphFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GraphPackage getGraphPackage() {
 		return (GraphPackage) getEPackage();
 	}

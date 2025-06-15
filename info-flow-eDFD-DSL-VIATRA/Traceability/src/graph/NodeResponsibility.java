@@ -2,7 +2,7 @@
  */
 package graph;
 
-import eDFDFlowTracking.ResponsibilityType;
+import org.secdfd.model.ResponsibilityType;
 
 import java.math.BigInteger;
 
@@ -29,8 +29,8 @@ import org.eclipse.emf.common.util.EList;
 public interface NodeResponsibility extends Identifiable {
 	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' attribute list.
-	 * The list contents are of type {@link eDFDFlowTracking.ResponsibilityType}.
-	 * The literals are from the enumeration {@link eDFDFlowTracking.ResponsibilityType}.
+	 * The list contents are of type {@link org.secdfd.model.ResponsibilityType}.
+	 * The literals are from the enumeration {@link org.secdfd.model.ResponsibilityType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operation</em>' attribute list isn't clear,
@@ -38,7 +38,7 @@ public interface NodeResponsibility extends Identifiable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operation</em>' attribute list.
-	 * @see eDFDFlowTracking.ResponsibilityType
+	 * @see org.secdfd.model.ResponsibilityType
 	 * @see graph.GraphPackage#getNodeResponsibility_Operation()
 	 * @model default="Store"
 	 * @generated

@@ -2,7 +2,7 @@
  */
 package traceability.impl;
 
-import eDFDFlowTracking.EDFD;
+import org.secdfd.model.EDFD;
 
 import graph.Graph;
 
@@ -119,6 +119,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EDFDGraphTrace> getEdfdGraphTraces() {
 		if (edfdGraphTraces == null) {
 			edfdGraphTraces = new EObjectContainmentEList<EDFDGraphTrace>(EDFDGraphTrace.class, this, TraceabilityPackage.EDFD_TO_GRAPH__EDFD_GRAPH_TRACES);
@@ -131,6 +132,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDFD getEdfds() {
 		if (edfds != null && edfds.eIsProxy()) {
 			InternalEObject oldEdfds = (InternalEObject)edfds;
@@ -157,6 +159,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEdfds(EDFD newEdfds) {
 		EDFD oldEdfds = edfds;
 		edfds = newEdfds;
@@ -169,6 +172,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Graph getGraphs() {
 		if (graphs != null && graphs.eIsProxy()) {
 			InternalEObject oldGraphs = (InternalEObject)graphs;
@@ -195,6 +199,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGraphs(Graph newGraphs) {
 		Graph oldGraphs = graphs;
 		graphs = newGraphs;
@@ -207,6 +212,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Graph getEndtoendgraph() {
 		if (endtoendgraph != null && endtoendgraph.eIsProxy()) {
 			InternalEObject oldEndtoendgraph = (InternalEObject)endtoendgraph;
@@ -233,6 +239,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndtoendgraph(Graph newEndtoendgraph) {
 		Graph oldEndtoendgraph = endtoendgraph;
 		endtoendgraph = newEndtoendgraph;
@@ -245,6 +252,7 @@ public class EDFDToGraphImpl extends MinimalEObjectImpl.Container implements EDF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GraphEndToEndTrace> getGraphEndToEndTrace() {
 		if (graphEndToEndTrace == null) {
 			graphEndToEndTrace = new EObjectContainmentEList<GraphEndToEndTrace>(GraphEndToEndTrace.class, this, TraceabilityPackage.EDFD_TO_GRAPH__GRAPH_END_TO_END_TRACE);

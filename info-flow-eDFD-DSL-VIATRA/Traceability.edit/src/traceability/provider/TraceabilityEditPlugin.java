@@ -6,6 +6,8 @@ import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.secdfd.model.provider.SecdfdEditPlugin;
+
 /**
  * This is the central singleton for the Traceability edit plugin.
  * <!-- begin-user-doc -->
@@ -38,6 +40,7 @@ public final class TraceabilityEditPlugin extends EMFPlugin {
 	public TraceabilityEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     SecdfdEditPlugin.INSTANCE,
 		   });
 	}
 

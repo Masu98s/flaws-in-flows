@@ -251,7 +251,7 @@ public class EdgeItemProvider
 			getString("_UI_Edge_type") :
 			getString("_UI_Edge_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

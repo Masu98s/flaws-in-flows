@@ -205,7 +205,7 @@ public class NodeResponsibilityItemProvider
 			getString("_UI_NodeResponsibility_type") :
 			getString("_UI_NodeResponsibility_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

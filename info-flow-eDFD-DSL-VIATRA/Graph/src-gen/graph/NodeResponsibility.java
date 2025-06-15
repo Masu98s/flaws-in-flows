@@ -2,7 +2,7 @@
  */
 package graph;
 
-import eDFDFlowTracking.ResponsibilityType;
+import org.secdfd.model.ResponsibilityType;
 
 import java.math.BigInteger;
 

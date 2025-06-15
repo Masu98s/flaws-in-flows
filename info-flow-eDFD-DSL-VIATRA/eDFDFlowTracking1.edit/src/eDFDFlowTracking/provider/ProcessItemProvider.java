@@ -103,7 +103,7 @@ public class ProcessItemProvider extends ElementItemProvider {
 			getString("_UI_Process_type") :
 			getString("_UI_Process_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

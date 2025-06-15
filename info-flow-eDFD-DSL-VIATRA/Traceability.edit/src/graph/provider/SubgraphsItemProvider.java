@@ -170,7 +170,7 @@ public class SubgraphsItemProvider
 			getString("_UI_Subgraphs_type") :
 			getString("_UI_Subgraphs_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

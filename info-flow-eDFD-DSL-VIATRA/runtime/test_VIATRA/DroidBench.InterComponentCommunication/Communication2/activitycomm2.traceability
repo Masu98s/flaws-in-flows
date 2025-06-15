@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eDFDFlowTracking="http://www.example.org/eDFDFlowTracking" xmlns:graph="http://www.example.org/graph" xmlns:traceability="http://www.example.org/traceability">
+<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:secdfd="http://www.secdfd.org/secdfd" xmlns:graph="http://www.example.org/graph" xmlns:traceability="http://www.example.org/traceability">
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:EDFD" href="activity2.mydsl#ActivityCommunication2"/>
+    <edfdElements xsi:type="secdfd:EDFD" href="activity2.mydsl#ActivityCommunication2"/>
     <graphElements xsi:type="graph:Subgraphs" href="activitycomm2.graph#//@subgraphs.0"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="activity2.mydsl#Substring"/>
+    <edfdElements xsi:type="secdfd:Asset" href="activity2.mydsl#Substring"/>
     <graphElements xsi:type="graph:GraphAsset" href="activitycomm2.graph#Substring"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Asset" href="activity2.mydsl#InterAppAsset"/>
+    <edfdElements xsi:type="secdfd:Asset" href="activity2.mydsl#InterAppAsset"/>
     <graphElements xsi:type="graph:GraphAsset" href="activitycomm2.graph#InterAppAsset"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="activity2.mydsl#Activity2"/>
+    <edfdElements xsi:type="secdfd:Process" href="activity2.mydsl#Activity2"/>
     <graphElements xsi:type="graph:Node" href="activitycomm2.graph#//@subgraphs.0/@nodes.0"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="activity2.mydsl#SourceDS"/>
+    <edfdElements xsi:type="secdfd:DataStore" href="activity2.mydsl#SourceDS"/>
     <graphElements xsi:type="graph:Node" href="activitycomm2.graph#//@subgraphs.0/@nodes.1"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:DataStore" href="activity2.mydsl#SinkDS"/>
+    <edfdElements xsi:type="secdfd:DataStore" href="activity2.mydsl#SinkDS"/>
     <graphElements xsi:type="graph:Node" href="activitycomm2.graph#//@subgraphs.0/@nodes.2"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Process" href="activity2.mydsl#Activity1"/>
+    <edfdElements xsi:type="secdfd:Process" href="activity2.mydsl#Activity1"/>
     <graphElements xsi:type="graph:Node" href="activitycomm2.graph#//@subgraphs.0/@nodes.3"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="activity2.mydsl#readAppAsset"/>
+    <edfdElements xsi:type="secdfd:Flow" href="activity2.mydsl#readAppAsset"/>
     <graphElements xsi:type="graph:Edge" href="activitycomm2.graph#readAppAsset"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="activity2.mydsl#forwardAppAsset"/>
+    <edfdElements xsi:type="secdfd:Flow" href="activity2.mydsl#forwardAppAsset"/>
     <graphElements xsi:type="graph:Edge" href="activitycomm2.graph#forwardAppAsset"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Flow" href="activity2.mydsl#storeAppAsset"/>
+    <edfdElements xsi:type="secdfd:Flow" href="activity2.mydsl#storeAppAsset"/>
     <graphElements xsi:type="graph:Edge" href="activitycomm2.graph#storeAppAsset"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="activity2.mydsl#//@elements.3/@responsibility.1"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="activitycomm2.graph#Activity1[Store][eDFDFlowTracking.impl.AssetImpl@50dd2e86 (name: Substring, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="activity2.mydsl#//@elements.3/@responsibility.1"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="activitycomm2.graph#Activity1[Store][secdfd.impl.AssetImpl@50dd2e86 (name: Substring, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="activity2.mydsl#//@elements.2/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="activitycomm2.graph#Activity2[Forward][eDFDFlowTracking.impl.AssetImpl@35dba0b4 (name: InterAppAsset, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="activity2.mydsl#//@elements.2/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="activitycomm2.graph#Activity2[Forward][secdfd.impl.AssetImpl@35dba0b4 (name: InterAppAsset, number: 0)]"/>
   </edfdGraphTraces>
   <edfdGraphTraces>
-    <edfdElements xsi:type="eDFDFlowTracking:Responsibility" href="activity2.mydsl#//@elements.3/@responsibility.0"/>
-    <graphElements xsi:type="graph:NodeResponsibility" href="activitycomm2.graph#Activity1[Splitter][eDFDFlowTracking.impl.AssetImpl@35dba0b4 (name: InterAppAsset, number: 0)]"/>
+    <edfdElements xsi:type="secdfd:Responsibility" href="activity2.mydsl#//@elements.3/@responsibility.0"/>
+    <graphElements xsi:type="graph:NodeResponsibility" href="activitycomm2.graph#Activity1[Splitter][secdfd.impl.AssetImpl@35dba0b4 (name: InterAppAsset, number: 0)]"/>
   </edfdGraphTraces>
   <edfds href="activity2.mydsl#ActivityCommunication2"/>
   <graphs href="activitycomm2.graph#/"/>

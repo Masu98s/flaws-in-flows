@@ -165,7 +165,7 @@ public class FlowItemProvider extends ElementItemProvider {
 			getString("_UI_Flow_type") :
 			getString("_UI_Flow_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

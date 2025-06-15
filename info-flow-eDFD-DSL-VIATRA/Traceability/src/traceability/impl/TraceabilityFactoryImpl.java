@@ -69,6 +69,7 @@ public class TraceabilityFactoryImpl extends EFactoryImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDFDToGraph createEDFDToGraph() {
 		EDFDToGraphImpl edfdToGraph = new EDFDToGraphImpl();
 		return edfdToGraph;
@@ -79,6 +80,7 @@ public class TraceabilityFactoryImpl extends EFactoryImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDFDGraphTrace createEDFDGraphTrace() {
 		EDFDGraphTraceImpl edfdGraphTrace = new EDFDGraphTraceImpl();
 		return edfdGraphTrace;
@@ -89,6 +91,7 @@ public class TraceabilityFactoryImpl extends EFactoryImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GraphEndToEndTrace createGraphEndToEndTrace() {
 		GraphEndToEndTraceImpl graphEndToEndTrace = new GraphEndToEndTraceImpl();
 		return graphEndToEndTrace;
@@ -99,6 +102,7 @@ public class TraceabilityFactoryImpl extends EFactoryImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TraceabilityPackage getTraceabilityPackage() {
 		return (TraceabilityPackage)getEPackage();
 	}

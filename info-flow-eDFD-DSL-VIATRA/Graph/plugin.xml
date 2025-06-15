@@ -14,13 +14,4 @@
             genModel="model/graph.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated graph -->
-      <package
-            uri="http://www.example.org/eDFDFlowTracking"
-            class="eDFDFlowTracking.EDFDFlowTrackingPackage"
-            genModel="model/graph.genmodel"/>
-   </extension>
-
-
 </plugin>

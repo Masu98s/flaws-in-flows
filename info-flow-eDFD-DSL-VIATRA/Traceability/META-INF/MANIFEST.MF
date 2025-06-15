@@ -6,10 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: eDFDFlowTracking,
- eDFDFlowTracking.impl,
- eDFDFlowTracking.util,
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: org.secdfd.model,
+ org.secdfd.model.impl,
+ org.secdfd.model.util,
  graph,
  graph.impl,
  graph.util,
@@ -17,5 +17,9 @@ Export-Package: eDFDFlowTracking,
  traceability.impl,
  traceability.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.ocl.pivot;visibility:=reexport,
+ org.eclipse.ocl.examples.codegen;visibility:=reexport,
+ org.secdfd.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: Traceability

@@ -2,10 +2,11 @@
  */
 package graph.impl;
 
-import eDFDFlowTracking.ResponsibilityType;
+import org.secdfd.model.ResponsibilityType;
 
 import graph.GraphAsset;
 import graph.GraphPackage;
+import graph.GraphTables;
 import graph.NodeResponsibility;
 
 import java.lang.reflect.InvocationTargetException;
@@ -14,19 +15,28 @@ import java.math.BigInteger;
 
 import java.util.Collection;
 
+import java.util.Iterator;
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.library.collection.CollectionAsSequenceOperation;
+import org.eclipse.ocl.pivot.library.collection.OrderedCollectionFirstOperation;
+import org.eclipse.ocl.pivot.library.collection.OrderedCollectionLastOperation;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.SequenceValue;
+import org.eclipse.ocl.pivot.values.SequenceValue.Accumulator;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +84,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int NUMBER_EDEFAULT = 0;
+	protected static final int NUMBER_EDEFAULT = -1;
 
 	/**
 	 * The cached value of the '{@link #getNumber() <em>Number</em>}' attribute.
@@ -140,6 +150,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return id;
 	}
@@ -149,6 +160,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = id;
 		id = newID;
@@ -161,6 +173,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNumber() {
 		return number;
 	}
@@ -170,6 +183,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumber(int newNumber) {
 		int oldNumber = number;
 		number = newNumber;
@@ -182,6 +196,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ResponsibilityType> getOperation() {
 		if (operation == null) {
 			operation = new EDataTypeUniqueEList<ResponsibilityType>(ResponsibilityType.class, this, GraphPackage.NODE_RESPONSIBILITY__OPERATION);
@@ -194,6 +209,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GraphAsset> getOutgoingassets() {
 		if (outgoingassets == null) {
 			outgoingassets = new EObjectResolvingEList<GraphAsset>(GraphAsset.class, this, GraphPackage.NODE_RESPONSIBILITY__OUTGOINGASSETS);
@@ -206,6 +222,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GraphAsset> getIncomingassets() {
 		if (incomingassets == null) {
 			incomingassets = new EObjectResolvingEList<GraphAsset>(GraphAsset.class, this, GraphPackage.NODE_RESPONSIBILITY__INCOMINGASSETS);
@@ -214,51 +231,77 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #findMostRestrictiveLabel() <em>Find Most Restrictive Label</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #findMostRestrictiveLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate FIND_MOST_RESTRICTIVE_LABEL__EINVOCATION_DELEGATE = ((EOperation.Internal)GraphPackage.Literals.NODE_RESPONSIBILITY___FIND_MOST_RESTRICTIVE_LABEL).getInvocationDelegate();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger findMostRestrictiveLabel() {
-		try {
-			return (BigInteger)FIND_MOST_RESTRICTIVE_LABEL__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		/**
+		 * self.incomingassets->collect(a | a.Label)->asSequence()->last()
+		 */
+		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ List<GraphAsset> incomingassets = this.getIncomingassets();
+		final /*@NonInvalid*/ OrderedSetValue BOXED_incomingassets = idResolver.createOrderedSetOfAll(GraphTables.ORD_CLSSid_GraphAsset, incomingassets);
+		/*@Thrown*/ Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(GraphTables.SEQ_DATAid_EInt);
+		Iterator<Object> ITERATOR_a = BOXED_incomingassets.iterator();
+		/*@NonInvalid*/ SequenceValue collect;
+		while (true) {
+			if (!ITERATOR_a.hasNext()) {
+				collect = accumulator;
+				break;
+			}
+			/*@NonInvalid*/ GraphAsset a = (GraphAsset)ITERATOR_a.next();
+			/**
+			 * a.Label
+			 */
+			final /*@NonInvalid*/ int Label = a.getLabel();
+			final /*@NonInvalid*/ IntegerValue BOXED_Label = ValueUtil.integerValueOf(Label);
+			//
+			accumulator.add(BOXED_Label);
 		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
+		final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE.evaluate(collect);
+		final /*@Thrown*/ IntegerValue last = (IntegerValue)OrderedCollectionLastOperation.INSTANCE.evaluate(asSequence);
+		final BigInteger ECORE_last = ValueUtil.bigIntegerValueOf(last);
+		return ECORE_last;
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #findLeastRestrictiveLabel() <em>Find Least Restrictive Label</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #findLeastRestrictiveLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate FIND_LEAST_RESTRICTIVE_LABEL__EINVOCATION_DELEGATE = ((EOperation.Internal)GraphPackage.Literals.NODE_RESPONSIBILITY___FIND_LEAST_RESTRICTIVE_LABEL).getInvocationDelegate();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BigInteger findLeastRestrictiveLabel() {
-		try {
-			return (BigInteger)FIND_LEAST_RESTRICTIVE_LABEL__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		/**
+		 * self.incomingassets->collect(a | a.Label)->asSequence()->first()
+		 */
+		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ List<GraphAsset> incomingassets = this.getIncomingassets();
+		final /*@NonInvalid*/ OrderedSetValue BOXED_incomingassets = idResolver.createOrderedSetOfAll(GraphTables.ORD_CLSSid_GraphAsset, incomingassets);
+		/*@Thrown*/ Accumulator accumulator = ValueUtil.createSequenceAccumulatorValue(GraphTables.SEQ_DATAid_EInt);
+		Iterator<Object> ITERATOR_a = BOXED_incomingassets.iterator();
+		/*@NonInvalid*/ SequenceValue collect;
+		while (true) {
+			if (!ITERATOR_a.hasNext()) {
+				collect = accumulator;
+				break;
+			}
+			/*@NonInvalid*/ GraphAsset a = (GraphAsset)ITERATOR_a.next();
+			/**
+			 * a.Label
+			 */
+			final /*@NonInvalid*/ int Label = a.getLabel();
+			final /*@NonInvalid*/ IntegerValue BOXED_Label = ValueUtil.integerValueOf(Label);
+			//
+			accumulator.add(BOXED_Label);
 		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
+		final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE.evaluate(collect);
+		final /*@Thrown*/ IntegerValue first = (IntegerValue)OrderedCollectionFirstOperation.INSTANCE.evaluate(asSequence);
+		final BigInteger ECORE_first = ValueUtil.bigIntegerValueOf(first);
+		return ECORE_first;
 	}
 
 	/**
@@ -388,7 +431,7 @@ public class NodeResponsibilityImpl extends MinimalEObjectImpl.Container impleme
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (ID: ");
 		result.append(id);
 		result.append(", number: ");

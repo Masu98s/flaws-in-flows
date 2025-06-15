@@ -2,10 +2,7 @@
  */
 package traceability.impl;
 
-import eDFDFlowTracking.EDFDFlowTrackingPackage;
-
-import eDFDFlowTracking.impl.EDFDFlowTrackingPackageImpl;
-
+import org.secdfd.model.ModelPackage;
 import graph.GraphPackage;
 
 import graph.impl.GraphPackageImpl;
@@ -78,7 +75,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TraceabilityPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -92,28 +89,29 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 		if (isInited) return (TraceabilityPackage)EPackage.Registry.INSTANCE.getEPackage(TraceabilityPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TraceabilityPackageImpl theTraceabilityPackage = (TraceabilityPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TraceabilityPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TraceabilityPackageImpl());
+		Object registeredTraceabilityPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		TraceabilityPackageImpl theTraceabilityPackage = registeredTraceabilityPackage instanceof TraceabilityPackageImpl ? (TraceabilityPackageImpl)registeredTraceabilityPackage : new TraceabilityPackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		ModelPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		EDFDFlowTrackingPackageImpl theEDFDFlowTrackingPackage = (EDFDFlowTrackingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EDFDFlowTrackingPackage.eNS_URI) instanceof EDFDFlowTrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EDFDFlowTrackingPackage.eNS_URI) : EDFDFlowTrackingPackage.eINSTANCE);
-		GraphPackageImpl theGraphPackage = (GraphPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GraphPackage.eNS_URI) instanceof GraphPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GraphPackage.eNS_URI) : GraphPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GraphPackage.eNS_URI);
+		GraphPackageImpl theGraphPackage = (GraphPackageImpl)(registeredPackage instanceof GraphPackageImpl ? registeredPackage : GraphPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTraceabilityPackage.createPackageContents();
-		theEDFDFlowTrackingPackage.createPackageContents();
 		theGraphPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTraceabilityPackage.initializePackageContents();
-		theEDFDFlowTrackingPackage.initializePackageContents();
 		theGraphPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theTraceabilityPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TraceabilityPackage.eNS_URI, theTraceabilityPackage);
 		return theTraceabilityPackage;
@@ -124,6 +122,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEDFDToGraph() {
 		return edfdToGraphEClass;
 	}
@@ -133,6 +132,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDToGraph_EdfdGraphTraces() {
 		return (EReference)edfdToGraphEClass.getEStructuralFeatures().get(0);
 	}
@@ -142,6 +142,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDToGraph_Edfds() {
 		return (EReference)edfdToGraphEClass.getEStructuralFeatures().get(1);
 	}
@@ -151,6 +152,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDToGraph_Graphs() {
 		return (EReference)edfdToGraphEClass.getEStructuralFeatures().get(2);
 	}
@@ -160,6 +162,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDToGraph_Endtoendgraph() {
 		return (EReference)edfdToGraphEClass.getEStructuralFeatures().get(3);
 	}
@@ -169,6 +172,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDToGraph_GraphEndToEndTrace() {
 		return (EReference)edfdToGraphEClass.getEStructuralFeatures().get(4);
 	}
@@ -178,6 +182,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEDFDGraphTrace() {
 		return edfdGraphTraceEClass;
 	}
@@ -187,6 +192,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDGraphTrace_EdfdElements() {
 		return (EReference)edfdGraphTraceEClass.getEStructuralFeatures().get(0);
 	}
@@ -196,6 +202,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEDFDGraphTrace_GraphElements() {
 		return (EReference)edfdGraphTraceEClass.getEStructuralFeatures().get(1);
 	}
@@ -205,6 +212,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGraphEndToEndTrace() {
 		return graphEndToEndTraceEClass;
 	}
@@ -214,6 +222,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraphEndToEndTrace_EndtoendGraphElements() {
 		return (EReference)graphEndToEndTraceEClass.getEStructuralFeatures().get(0);
 	}
@@ -223,6 +232,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraphEndToEndTrace_GraphElements() {
 		return (EReference)graphEndToEndTraceEClass.getEStructuralFeatures().get(1);
 	}
@@ -232,6 +242,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TraceabilityFactory getTraceabilityFactory() {
 		return (TraceabilityFactory)getEFactoryInstance();
 	}
@@ -295,7 +306,7 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EDFDFlowTrackingPackage theEDFDFlowTrackingPackage = (EDFDFlowTrackingPackage)EPackage.Registry.INSTANCE.getEPackage(EDFDFlowTrackingPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		GraphPackage theGraphPackage = (GraphPackage)EPackage.Registry.INSTANCE.getEPackage(GraphPackage.eNS_URI);
 
 		// Create type parameters
@@ -307,13 +318,13 @@ public class TraceabilityPackageImpl extends EPackageImpl implements Traceabilit
 		// Initialize classes, features, and operations; add parameters
 		initEClass(edfdToGraphEClass, EDFDToGraph.class, "EDFDToGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEDFDToGraph_EdfdGraphTraces(), this.getEDFDGraphTrace(), null, "edfdGraphTraces", null, 0, -1, EDFDToGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEDFDToGraph_Edfds(), theEDFDFlowTrackingPackage.getEDFD(), null, "edfds", null, 0, 1, EDFDToGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEDFDToGraph_Edfds(), theModelPackage.getEDFD(), null, "edfds", null, 0, 1, EDFDToGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEDFDToGraph_Graphs(), theGraphPackage.getGraph(), null, "graphs", null, 0, 1, EDFDToGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEDFDToGraph_Endtoendgraph(), theGraphPackage.getGraph(), null, "endtoendgraph", null, 0, 1, EDFDToGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEDFDToGraph_GraphEndToEndTrace(), this.getGraphEndToEndTrace(), null, "graphEndToEndTrace", null, 0, -1, EDFDToGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edfdGraphTraceEClass, EDFDGraphTrace.class, "EDFDGraphTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEDFDGraphTrace_EdfdElements(), theEDFDFlowTrackingPackage.getNamedEntity(), null, "edfdElements", null, 0, -1, EDFDGraphTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEDFDGraphTrace_EdfdElements(), theModelPackage.getNamedEntity(), null, "edfdElements", null, 0, -1, EDFDGraphTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEDFDGraphTrace_GraphElements(), theGraphPackage.getIdentifiable(), null, "graphElements", null, 0, -1, EDFDGraphTrace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphEndToEndTraceEClass, GraphEndToEndTrace.class, "GraphEndToEndTrace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

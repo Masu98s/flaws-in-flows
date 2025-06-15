@@ -2,10 +2,7 @@
  */
 package graph.impl;
 
-import eDFDFlowTracking.EDFDFlowTrackingPackage;
-
-import eDFDFlowTracking.impl.EDFDFlowTrackingPackageImpl;
-
+import org.secdfd.model.ModelPackage;
 import graph.Edge;
 import graph.Graph;
 import graph.GraphAsset;
@@ -20,6 +17,7 @@ import graph.util.GraphValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -115,7 +113,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link GraphPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -129,28 +127,31 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		if (isInited) return (GraphPackage)EPackage.Registry.INSTANCE.getEPackage(GraphPackage.eNS_URI);
 
 		// Obtain or create and register package
-		GraphPackageImpl theGraphPackage = (GraphPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GraphPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GraphPackageImpl());
+		Object registeredGraphPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		GraphPackageImpl theGraphPackage = registeredGraphPackage instanceof GraphPackageImpl ? (GraphPackageImpl)registeredGraphPackage : new GraphPackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		ModelPackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		TraceabilityPackageImpl theTraceabilityPackage = (TraceabilityPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TraceabilityPackage.eNS_URI) instanceof TraceabilityPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TraceabilityPackage.eNS_URI) : TraceabilityPackage.eINSTANCE);
-		EDFDFlowTrackingPackageImpl theEDFDFlowTrackingPackage = (EDFDFlowTrackingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EDFDFlowTrackingPackage.eNS_URI) instanceof EDFDFlowTrackingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EDFDFlowTrackingPackage.eNS_URI) : EDFDFlowTrackingPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(TraceabilityPackage.eNS_URI);
+		TraceabilityPackageImpl theTraceabilityPackage = (TraceabilityPackageImpl)(registeredPackage instanceof TraceabilityPackageImpl ? registeredPackage : TraceabilityPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGraphPackage.createPackageContents();
 		theTraceabilityPackage.createPackageContents();
-		theEDFDFlowTrackingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGraphPackage.initializePackageContents();
 		theTraceabilityPackage.initializePackageContents();
-		theEDFDFlowTrackingPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theGraphPackage, 
+			(theGraphPackage,
 			 new EValidator.Descriptor() {
+				 @Override
 				 public EValidator getEValidator() {
 					 return GraphValidator.INSTANCE;
 				 }
@@ -159,7 +160,6 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		// Mark meta-data to indicate it can't be changed
 		theGraphPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(GraphPackage.eNS_URI, theGraphPackage);
 		return theGraphPackage;
@@ -170,6 +170,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEdge() {
 		return edgeEClass;
 	}
@@ -179,6 +180,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEdge_Target() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(0);
 	}
@@ -188,6 +190,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEdge_Source() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(1);
 	}
@@ -197,6 +200,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEdge_EdgeLabel() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(2);
 	}
@@ -206,6 +210,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEdge_Graphassets() {
 		return (EReference)edgeEClass.getEStructuralFeatures().get(3);
 	}
@@ -215,6 +220,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEdge_Visited() {
 		return (EAttribute)edgeEClass.getEStructuralFeatures().get(4);
 	}
@@ -224,6 +230,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIdentifiable() {
 		return identifiableEClass;
 	}
@@ -233,6 +240,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentifiable_ID() {
 		return (EAttribute)identifiableEClass.getEStructuralFeatures().get(0);
 	}
@@ -242,6 +250,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentifiable_Number() {
 		return (EAttribute)identifiableEClass.getEStructuralFeatures().get(1);
 	}
@@ -251,6 +260,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGraphAsset() {
 		return graphAssetEClass;
 	}
@@ -260,6 +270,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGraphAsset_Label() {
 		return (EAttribute)graphAssetEClass.getEStructuralFeatures().get(0);
 	}
@@ -269,6 +280,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraphAsset_Source() {
 		return (EReference)graphAssetEClass.getEStructuralFeatures().get(1);
 	}
@@ -278,6 +290,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraphAsset_Targets() {
 		return (EReference)graphAssetEClass.getEStructuralFeatures().get(2);
 	}
@@ -287,6 +300,17 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EAttribute getGraphAsset_Encrypted() {
+		return (EAttribute)graphAssetEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getNode() {
 		return nodeEClass;
 	}
@@ -296,6 +320,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNode_Outedges() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(0);
 	}
@@ -305,6 +330,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Name() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
 	}
@@ -314,6 +340,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNode_Responsibility() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
 	}
@@ -323,6 +350,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_AttackerObservation() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
 	}
@@ -332,6 +360,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Visited() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(4);
 	}
@@ -341,6 +370,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNode_Inedges() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(5);
 	}
@@ -350,6 +380,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNode_Attacker() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(6);
 	}
@@ -359,6 +390,147 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EOperation getNode__CopierSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__VerifierSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__BusinessSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__EncryptSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__JoinerSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__DecryptSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__StoreSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__ComparatorSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__DiscarderSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__AttackerObservationViolation__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__SplitterSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__ForwardSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__AuthenticatorSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getNode__UserSemanticConstraint__DiagnosticChain_Map() {
+		return nodeEClass.getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSubgraphs() {
 		return subgraphsEClass;
 	}
@@ -368,6 +540,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSubgraphs_Nodes() {
 		return (EReference)subgraphsEClass.getEStructuralFeatures().get(0);
 	}
@@ -377,6 +550,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSubgraphs_Assets() {
 		return (EReference)subgraphsEClass.getEStructuralFeatures().get(1);
 	}
@@ -386,6 +560,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNodeResponsibility() {
 		return nodeResponsibilityEClass;
 	}
@@ -395,6 +570,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNodeResponsibility_Operation() {
 		return (EAttribute)nodeResponsibilityEClass.getEStructuralFeatures().get(0);
 	}
@@ -404,6 +580,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNodeResponsibility_Outgoingassets() {
 		return (EReference)nodeResponsibilityEClass.getEStructuralFeatures().get(1);
 	}
@@ -413,6 +590,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNodeResponsibility_Incomingassets() {
 		return (EReference)nodeResponsibilityEClass.getEStructuralFeatures().get(2);
 	}
@@ -422,6 +600,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getNodeResponsibility__FindMostRestrictiveLabel() {
 		return nodeResponsibilityEClass.getEOperations().get(0);
 	}
@@ -431,6 +610,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getNodeResponsibility__FindLeastRestrictiveLabel() {
 		return nodeResponsibilityEClass.getEOperations().get(1);
 	}
@@ -440,6 +620,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGraph() {
 		return graphEClass;
 	}
@@ -449,6 +630,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGraph_Subgraphs() {
 		return (EReference)graphEClass.getEStructuralFeatures().get(0);
 	}
@@ -458,6 +640,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GraphFactory getGraphFactory() {
 		return (GraphFactory)getEFactoryInstance();
 	}
@@ -496,6 +679,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		createEAttribute(graphAssetEClass, GRAPH_ASSET__LABEL);
 		createEReference(graphAssetEClass, GRAPH_ASSET__SOURCE);
 		createEReference(graphAssetEClass, GRAPH_ASSET__TARGETS);
+		createEAttribute(graphAssetEClass, GRAPH_ASSET__ENCRYPTED);
 
 		nodeEClass = createEClass(NODE);
 		createEReference(nodeEClass, NODE__OUTEDGES);
@@ -505,6 +689,20 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		createEAttribute(nodeEClass, NODE__VISITED);
 		createEReference(nodeEClass, NODE__INEDGES);
 		createEAttribute(nodeEClass, NODE__ATTACKER);
+		createEOperation(nodeEClass, NODE___COPIER_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___VERIFIER_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___BUSINESS_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___ENCRYPT_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___JOINER_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___DECRYPT_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___STORE_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___COMPARATOR_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___DISCARDER_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___ATTACKER_OBSERVATION_VIOLATION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___SPLITTER_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___FORWARD_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___AUTHENTICATOR_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(nodeEClass, NODE___USER_SEMANTIC_CONSTRAINT__DIAGNOSTICCHAIN_MAP);
 
 		subgraphsEClass = createEClass(SUBGRAPHS);
 		createEReference(subgraphsEClass, SUBGRAPHS__NODES);
@@ -545,7 +743,7 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EDFDFlowTrackingPackage theEDFDFlowTrackingPackage = (EDFDFlowTrackingPackage)EPackage.Registry.INSTANCE.getEPackage(EDFDFlowTrackingPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -568,12 +766,13 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 
 		initEClass(identifiableEClass, Identifiable.class, "Identifiable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIdentifiable_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Identifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIdentifiable_Number(), ecorePackage.getEInt(), "number", null, 0, 1, Identifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIdentifiable_Number(), ecorePackage.getEInt(), "number", "-1", 1, 1, Identifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphAssetEClass, GraphAsset.class, "GraphAsset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGraphAsset_Label(), ecorePackage.getEInt(), "Label", "-1", 1, 1, GraphAsset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphAsset_Source(), this.getNode(), null, "source", null, 1, 1, GraphAsset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraphAsset_Targets(), this.getNode(), null, "targets", null, 1, -1, GraphAsset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGraphAsset_Encrypted(), ecorePackage.getEBoolean(), "Encrypted", null, 1, 1, GraphAsset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNode_Outedges(), this.getEdge(), null, "outedges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -584,12 +783,138 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		initEReference(getNode_Inedges(), this.getEdge(), null, "inedges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Attacker(), ecorePackage.getEBoolean(), "Attacker", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = initEOperation(getNode__CopierSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "CopierSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__VerifierSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "VerifierSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__BusinessSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "BusinessSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__EncryptSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "EncryptSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__JoinerSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "JoinerSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__DecryptSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "DecryptSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__StoreSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "StoreSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__ComparatorSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "ComparatorSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__DiscarderSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "DiscarderSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__AttackerObservationViolation__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "AttackerObservationViolation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__SplitterSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "SplitterSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__ForwardSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "ForwardSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__AuthenticatorSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "AuthenticatorSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getNode__UserSemanticConstraint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "UserSemanticConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(subgraphsEClass, Subgraphs.class, "Subgraphs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubgraphs_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Subgraphs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubgraphs_Assets(), this.getGraphAsset(), null, "assets", null, 0, -1, Subgraphs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeResponsibilityEClass, NodeResponsibility.class, "NodeResponsibility", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNodeResponsibility_Operation(), theEDFDFlowTrackingPackage.getResponsibilityType(), "operation", "Store", 0, -1, NodeResponsibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNodeResponsibility_Operation(), theModelPackage.getResponsibilityType(), "operation", "Store", 0, -1, NodeResponsibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNodeResponsibility_Outgoingassets(), this.getGraphAsset(), null, "outgoingassets", null, 0, -1, NodeResponsibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNodeResponsibility_Incomingassets(), this.getGraphAsset(), null, "incomingassets", null, 0, -1, NodeResponsibility.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -604,29 +929,10 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
-		// http://www.eclipse.org/OCL/Import
-		createImportAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
 		createPivotAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createImportAnnotations() {
-		String source = "http://www.eclipse.org/OCL/Import";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "eDFDFlowTracking", "../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#/",
-			 "ecore", "http://www.eclipse.org/emf/2002/Ecore"
-		   });
 	}
 
 	/**
@@ -636,26 +942,17 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });	
+		   });
 		addAnnotation
-		  (graphAssetEClass, 
-		   source, 
+		  (nodeEClass,
+		   source,
 		   new String[] {
-			 "constraints", "AttackerObservationViolationSource AttackerObservationViolationTagret"
-		   });	
-		addAnnotation
-		  (nodeEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "AttackerObservationViolation EncryptSemanticConstraint DecryptSemanticConstraint StoreSemanticConstraint BusinessSemanticConstraint ComparatorSemanticConstraint JoinerSemanticConstraint DiscarderSemanticConstraint CopierSemanticConstraint ForwardSemanticConstraint SplitterSemanticConstraint UserSemanticConstraint VerifierSemanticConstraint AuthenticatorSemanticConstraint"
+			   "constraints", "UserSemanticConstraint"
 		   });
 	}
 
@@ -666,44 +963,102 @@ public class GraphPackageImpl extends EPackageImpl implements GraphPackage {
 	 * @generated
 	 */
 	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
 		addAnnotation
-		  (graphAssetEClass, 
-		   source, 
+		  (getNode__CopierSemanticConstraint__DiagnosticChain_Map(),
+		   source,
 		   new String[] {
-			 "AttackerObservationViolationSource", "\n\t\tif self.Label = 0\n\t\tthen\n\t\t\tself.source.AttackerObservation < 5\n\t\telse\n\t\t\tself.source.AttackerObservation < 1\n\t\tendif\n\t\t",
-			 "AttackerObservationViolationTagret", "\n\t\tself.targets->forAll(t | \n\t\t\tif self.Label = 0\n\t\t\tthen\n\t\t\t\tt.AttackerObservation < 5\n\t\t\telse\n\t\t\t\tt.AttackerObservation < 1\n\t\t\tendif\n\t\t)\n\t\t"
-		   });	
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Copier.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- there has to be at least 1 incoming and 1 outgoing asset, and there has to be a responsibility on this node that stores the incoming assets locally\n\t\t\t\t\tr.outgoingassets->size() > 0 and r.incomingassets->size() > 0 and \n\t\t\t\t\t\tself.responsibility->select(r1 | r1.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t\t\t\t->select(r2 | r2.incomingassets->select(asset | r.incomingassets->includes(asset))->size()>0 or  \n\t\t\t\t\t\t\t\t\t\t  r2.outgoingassets->select(asset | r.incomingassets->includes(asset))->size()>0\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t->size() > 0\n\t\t\t\t)\n\t\t"
+		   });
 		addAnnotation
-		  (nodeEClass, 
-		   source, 
+		  (getNode__VerifierSemanticConstraint__DiagnosticChain_Map(),
+		   source,
 		   new String[] {
-			 "AttackerObservationViolation", "\n\t\t-- if a node is malicious then there is a violation if any of the outgoing edges are private!\n\t\t\tif self.Attacker = true\n\t\t\tthen\n\t\t\t\tself.outedges->forAll(e |\n\t\t\t\t\te.EdgeLabel < 1\n\t\t\t\t)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t",
-			 "EncryptSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*EncryptOrHash.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--there has to be something incoming and something outgoing\n\t\t\t\t\tr.incomingassets->size() > 0 and r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t",
-			 "DecryptSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Descrypt.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--same as encrypt\n\t\t\t\t\tr.incomingassets->size() > 0 and r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t",
-			 "StoreSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--there has to either be sth on the input or output\n\t\t\t\t\tr.incomingassets->size() > 0 or r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t",
-			 "BusinessSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Business.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--same as store\n\t\t\t\t\tr.incomingassets->size() > 0 or r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t",
-			 "ComparatorSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Comparator.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t-- comparator needs at least 2 on input and at least 1 on output\n\t\t\t\t\tr.incomingassets->size() >= 2 and r.outgoingassets->size() >= 1\n\t\t\t\t)\n\t\t",
-			 "JoinerSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Joiner.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- needs at least 2 on the input, at least one on the output and the number of outputs < number of inputs\n\t\t\t\t\tr.incomingassets->size() >= 2 and r.outgoingassets->size() >= 1 and r.outgoingassets->size() < r.incomingassets->size()\t\n\t\t\t\t)\n\t\t",
-			 "DiscarderSemanticConstraint", "\n\t\t-- after it is discarded is should not appear on output \n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Discarder.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- what ever is on the input, it should not appear on the output anymore\n\t\t\t\t\tr.incomingassets->forAll(a | r.outgoingassets->excludes(a))\n\t\t\t\t\t-- discarded assets are not considered a risk, so the attacker observation can violate the asset labels\n\t\t\t\t)\n\t\t",
-			 "CopierSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Copier.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- there has to be at least 1 incoming and 1 outgoing asset, and there has to be a responsibility on this node that stores the incoming assets locally\n\t\t\t\t\tr.outgoingassets->size() > 0 and r.incomingassets->size() > 0 and \n\t\t\t\t\t\tself.responsibility->select(r1 | r1.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t\t\t\t->select(r2 | r2.incomingassets->select(asset | r.incomingassets->includes(asset))->size()>0 or  \n\t\t\t\t\t\t\t\t\t\t  r2.outgoingassets->select(asset | r.incomingassets->includes(asset))->size()>0\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t->size() > 0\n\t\t\t\t)\n\t\t",
-			 "ForwardSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Forward.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\tr.outgoingassets->size() > 0 and r.incomingassets->size() > 0\n\t\t\t\t)\n\t\t",
-			 "SplitterSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Splitter.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- negated join operation\n\t\t\t\t\tr.outgoingassets->size() >= 2 and r.incomingassets->size() >= 1 and r.incomingassets->size() < r.outgoingassets->size()\t\n\t\t\t\t)\n\t\t",
-			 "UserSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*User.*$\'))\n\t\t\t\t->forAll(r |  \n\t\t\t\t\tr.incomingassets->size() > 0\t\n\t\t\t\t)\n\t\t",
-			 "VerifierSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Verifier.*$\'))\n\t\t\t\t->forAll(r |  \n\t\t\t\t\tr.incomingassets->size() > 0\t\n\t\t\t\t)\n\t\t",
-			 "AuthenticatorSemanticConstraint", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Authenticator.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t-- same as comparator!\n\t\t\t\t\tr.incomingassets->size() >= 2 and r.outgoingassets->size() >= 1\n\t\t\t\t)\n\t\t"
-		   });	
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Verifier.*$\'))\n\t\t\t\t->forAll(r |  \n\t\t\t\t\tr.incomingassets->size() > 0\t\n\t\t\t\t)\n\t\t"
+		   });
 		addAnnotation
-		  (getNodeResponsibility__FindMostRestrictiveLabel(), 
-		   source, 
+		  (getNode__BusinessSemanticConstraint__DiagnosticChain_Map(),
+		   source,
 		   new String[] {
-			 "body", "self.incomingassets->collect(a | a.Label)->asSequence()->last()"
-		   });	
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Business.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--same as store\n\t\t\t\t\tr.incomingassets->size() > 0 or r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t"
+		   });
 		addAnnotation
-		  (getNodeResponsibility__FindLeastRestrictiveLabel(), 
-		   source, 
+		  (getNode__EncryptSemanticConstraint__DiagnosticChain_Map(),
+		   source,
 		   new String[] {
-			 "body", "self.incomingassets->collect(a | a.Label)->asSequence()->first()"
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*EncryptOrHash.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--there has to be something incoming and something outgoing\n\t\t\t\t\tr.incomingassets->size() > 0 and r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__JoinerSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Joiner.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- needs at least 2 on the input, at least one on the output and the number of outputs < number of inputs\n\t\t\t\t\tr.incomingassets->size() >= 2 and r.outgoingassets->size() >= 1 and r.outgoingassets->size() < r.incomingassets->size()\t\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__DecryptSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Descrypt.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--same as encrypt\n\t\t\t\t\tr.incomingassets->size() > 0 and r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__StoreSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t--there has to either be sth on the input or output\n\t\t\t\t\tr.incomingassets->size() > 0 or r.outgoingassets->size() > 0\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__ComparatorSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Comparator.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t-- comparator needs at least 2 on input and at least 1 on output\n\t\t\t\t\tr.incomingassets->size() >= 2 and r.outgoingassets->size() >= 1\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__DiscarderSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t-- after it is discarded is should not appear on output \n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Discarder.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- what ever is on the input, it should not appear on the output anymore\n\t\t\t\t\tr.incomingassets->forAll(a | r.outgoingassets->excludes(a))\n\t\t\t\t\t-- discarded assets are not considered a risk, so the attacker observation can violate the asset labels\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__AttackerObservationViolation__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t-- if a node is malicious then there is a violation if any of the outgoing or incoming edges are private!\n\t\t\tif self.Attacker = true\n\t\t\tthen\n\t\t\t\tself.outedges->forAll(e |\n\t\t\t\t\te.EdgeLabel < 1\n\t\t\t\t) \n\t\t\t\tand\n\t\t\t\tself.inedges->forAll(e |\n\t\t\t\t\te.EdgeLabel < 1\n\t\t\t\t)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__SplitterSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Splitter.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\t-- negated join operation\n\t\t\t\t\tr.outgoingassets->size() >= 2 and r.incomingassets->size() >= 1 and r.incomingassets->size() < r.outgoingassets->size()\t\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__ForwardSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Forward.*$\'))\n\t\t\t\t->forAll(r | \n\t\t\t\t\tr.outgoingassets->size() > 0 and r.incomingassets->size() > 0\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__AuthenticatorSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*Authenticator.*$\'))\n\t\t\t\t->forAll(r |\n\t\t\t\t\t-- same as comparator!\n\t\t\t\t\tr.incomingassets->size() >= 2 and r.outgoingassets->size() >= 1\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNode__UserSemanticConstraint__DiagnosticChain_Map(),
+		   source,
+		   new String[] {
+			   "body", "\n\t\t\tself.responsibility->select(r | r.ID.matches(\'^.*User.*$\'))\n\t\t\t\t->forAll(r |  \n\t\t\t\t\tr.incomingassets->size() > 0\t\n\t\t\t\t)\n\t\t"
+		   });
+		addAnnotation
+		  (getNodeResponsibility__FindMostRestrictiveLabel(),
+		   source,
+		   new String[] {
+			   "body", "self.incomingassets->collect(a | a.Label)->asSequence()->last()"
+		   });
+		addAnnotation
+		  (getNodeResponsibility__FindLeastRestrictiveLabel(),
+		   source,
+		   new String[] {
+			   "body", "self.incomingassets->collect(a | a.Label)->asSequence()->first()"
 		   });
 	}
 

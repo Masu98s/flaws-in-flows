@@ -169,7 +169,7 @@ public class EDFDItemProvider
 			getString("_UI_EDFD_type") :
 			getString("_UI_EDFD_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

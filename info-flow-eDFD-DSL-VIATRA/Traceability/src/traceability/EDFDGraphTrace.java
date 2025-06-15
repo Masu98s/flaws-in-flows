@@ -2,7 +2,7 @@
  */
 package traceability;
 
-import eDFDFlowTracking.NamedEntity;
+import org.secdfd.model.NamedEntity;
 
 import graph.Identifiable;
 
@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface EDFDGraphTrace extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Edfd Elements</b></em>' reference list.
-	 * The list contents are of type {@link eDFDFlowTracking.NamedEntity}.
+	 * The list contents are of type {@link org.secdfd.model.NamedEntity}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Edfd Elements</em>' reference list isn't clear,

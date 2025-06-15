@@ -5,7 +5,7 @@ package edfdtosimplegraph.util;
 
 import edfdtosimplegraph.GraphMatch;
 import graph.Graph;
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
+import java.util.function.Consumer;
 
 /**
  * A match processor tailored for the edfdtosimplegraph.Graph pattern.
@@ -14,16 +14,18 @@ import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
  * 
  */
 @SuppressWarnings("all")
-public abstract class GraphProcessor implements IMatchProcessor<GraphMatch> {
-  /**
-   * Defines the action that is to be executed on each match.
-   * @param pG the value of pattern parameter g in the currently processed match
-   * 
-   */
-  public abstract void process(final Graph pG);
-  
-  @Override
-  public void process(final GraphMatch match) {
-    process(match.getG());
-  }
+public abstract class GraphProcessor implements Consumer<GraphMatch> {
+
+    /**
+     * Action executed for every pattern match.
+     *
+     * @param g value of pattern parameter {@code g}
+     */
+    public abstract void process(Graph g);
+
+    /** Delegates the Consumer interface to the {@link #process(Graph)} method. */
+    @Override
+    public final void accept(GraphMatch match) {
+        process(match.getG());
+    }
 }

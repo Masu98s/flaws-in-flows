@@ -10,13 +10,14 @@ import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 
-import edfdtosimplegraph.graphToEndToEndTransformation;
+import edfdtosimplegraph.eDFDToGraphTransformation;
+//import edfdtosimplegraph.graphToEndToEndTransformation;
 import traceability.EDFDToGraph;
 
 public class TransformEndToEndHandler extends AbstractHandler implements IHandler {
 
 	ViatraQueryEngine engine;
-	graphToEndToEndTransformation transformation;
+	eDFDToGraphTransformation transformation;
 	
 	@Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -31,7 +32,7 @@ public class TransformEndToEndHandler extends AbstractHandler implements IHandle
                 engine = ViatraQueryEngine.on(
                             new EMFScope(
                                 tracemodel.eResource().getResourceSet()));
-                transformation = new graphToEndToEndTransformation(tracemodel, engine) {};
+                transformation = new eDFDToGraphTransformation(tracemodel, engine) {};
                 
             } catch (ViatraQueryException e) {
                 throw new ExecutionException(e.getMessage(), e);

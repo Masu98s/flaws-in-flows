@@ -25,6 +25,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.QueryInitializationException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
+import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples; 
 
 /**
  * A pattern-specific query specification that can instantiate GraphMatcher in a type-safe way.
@@ -93,7 +94,7 @@ public final class GraphQuerySpecification extends BaseGeneratedEMFQuerySpecific
     private final static Object STATIC_INITIALIZER = ensureInitialized();
     
     public static Object ensureInitialized() {
-      INSTANCE.ensureInitializedInternalSneaky();
+      INSTANCE.ensureInitializedInternal(); 
       return null;
     }
   }
@@ -128,12 +129,12 @@ public final class GraphQuerySpecification extends BaseGeneratedEMFQuerySpecific
           {
               PBody body = new PBody(this);
               PVariable var_g = body.getOrCreateVariableByName("g");
-              new TypeConstraint(body, new FlatTuple(var_g), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/graph", "Graph")));
+              new TypeConstraint(body, Tuples.flatTupleOf(var_g), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/graph", "Graph")));
               body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
                  new ExportedParameter(body, var_g, parameter_pG)
               ));
               // 	Graph(g)
-              new TypeConstraint(body, new FlatTuple(var_g), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/graph", "Graph")));
+              new TypeConstraint(body, Tuples.flatTupleOf(var_g), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/graph", "Graph")));
               bodies.add(body);
           }
           // to silence compiler error

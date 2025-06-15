@@ -2,7 +2,8 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Traceability/src" modelPluginID="Traceability"
     modelName="Traceability" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0" copyrightFields="false"
+    usedGenPackages="../../org.secdfd.model/model/model.genmodel#//model ../../Graph/model/graph.genmodel#//graph"
     operationReflection="true" importOrganizing="true">
   <foreignModel>traceability.ecore</foreignModel>
   <genPackages prefix="Traceability" disposableProviderFactory="true" ecorePackage="traceability.ecore#/">
@@ -10,7 +11,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference traceability.ecore#//EDFDToGraph/edfdGraphTraces"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference traceability.ecore#//EDFDToGraph/edfds"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference traceability.ecore#//EDFDToGraph/graphs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference traceability.ecore#//EDFDToGraph/endtoendgraph"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference traceability.ecore#//EDFDToGraph/endtoendgraph"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference traceability.ecore#//EDFDToGraph/graphEndToEndTrace"/>
     </genClasses>
     <genClasses ecoreClass="traceability.ecore#//EDFDGraphTrace">
@@ -20,137 +21,6 @@
     <genClasses ecoreClass="traceability.ecore#//GraphEndToEndTrace">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference traceability.ecore#//GraphEndToEndTrace/endtoendGraphElements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference traceability.ecore#//GraphEndToEndTrace/graphElements"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="EDFDFlowTracking" ecorePackage="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Priority">
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Priority/H"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Priority/M"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Priority/L"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Channel">
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Channel/WiFi"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Channel/VLAN"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Channel/ETH"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType">
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Business"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Store"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Comparator"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Discarder"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Joiner"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Copier"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Splitter"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Forward"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/EncryptOrHash"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Decrypt"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Authenticator"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Authoriser"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Generator"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/Verifier"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ResponsibilityType/User"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Objective">
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Objective/Integrity"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Objective/Confidentiality"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Objective/Availability"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Objective/Accountability"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Layer">
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Layer/Transport"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Layer/Architectural"/>
-      <genEnumLiterals ecoreEnumLiteral="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Layer/Application"/>
-    </genEnums>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Asset">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Asset/value"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Asset/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Asset/targets"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Process">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Process/responsibility"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//EDFD">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//EDFD/asset"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//EDFD/trustzones"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//EDFD/elements"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//DataStore"/>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Flow">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Flow/Channel"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Flow/target"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Flow/source"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Flow/Label"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//ExternalEntity"/>
-    <genClasses image="false" ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Element">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Element/outflows"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Element/assumption"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Element/assets"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Element/inflows"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//NamedEntity">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//NamedEntity/name"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Value">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Value/Objective"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Value/Priority"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Assumption">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Assumption/Objective"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Assumption/Layer"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//AttackerProfile">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//AttackerProfile/Observation"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//TrustZone">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//TrustZone/elements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//TrustZone/subzones"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//TrustZone/attackerprofile"/>
-    </genClasses>
-    <genClasses ecoreClass="../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Responsibility">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Responsibility/Action"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Responsibility/incomeassets"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Responsibility/outcomeassets"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ../../eDFDFlowTracking1/model/eDFDFlowTracking1.ecore#//Responsibility/process"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Graph" ecorePackage="../../Graph/model/graph.ecore#/">
-    <genClasses ecoreClass="../../Graph/model/graph.ecore#//Edge">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Edge/target"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Edge/source"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//Edge/EdgeLabel"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Edge/graphassets"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//Edge/visited"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="../../Graph/model/graph.ecore#//Identifiable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//Identifiable/ID"/>
-    </genClasses>
-    <genClasses ecoreClass="../../Graph/model/graph.ecore#//GraphAsset">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//GraphAsset/Label"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//GraphAsset/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//GraphAsset/targets"/>
-    </genClasses>
-    <genClasses ecoreClass="../../Graph/model/graph.ecore#//Node">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Node/outedges"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//Node/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Node/responsibility"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//Node/AttackerObservation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//Node/visited"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Node/inedges"/>
-    </genClasses>
-    <genClasses ecoreClass="../../Graph/model/graph.ecore#//Subgraphs">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Subgraphs/nodes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Subgraphs/assets"/>
-    </genClasses>
-    <genClasses ecoreClass="../../Graph/model/graph.ecore#//NodeResponsibility">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../Graph/model/graph.ecore#//NodeResponsibility/operation"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//NodeResponsibility/outgoingassets"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//NodeResponsibility/incomingassets"/>
-      <genOperations ecoreOperation="../../Graph/model/graph.ecore#//NodeResponsibility/findMostRestrictiveLabel"/>
-      <genOperations ecoreOperation="../../Graph/model/graph.ecore#//NodeResponsibility/findLeastRestrictiveLabel"/>
-    </genClasses>
-    <genClasses ecoreClass="../../Graph/model/graph.ecore#//Graph">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../Graph/model/graph.ecore#//Graph/subgraphs"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

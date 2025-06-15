@@ -2,6 +2,8 @@
  */
 package graph;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -23,8 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see graph.GraphPackage#getNode()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AttackerObservationViolation EncryptSemanticConstraint DecryptSemanticConstraint StoreSemanticConstraint BusinessSemanticConstraint ComparatorSemanticConstraint JoinerSemanticConstraint DiscarderSemanticConstraint CopierSemanticConstraint ForwardSemanticConstraint SplitterSemanticConstraint UserSemanticConstraint VerifierSemanticConstraint AuthenticatorSemanticConstraint'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot AttackerObservationViolation='\n\t\t-- if a node is malicious then there is a violation if any of the outgoing edges are private!\n\t\t\tif self.Attacker = true\n\t\t\tthen\n\t\t\t\tself.outedges-&gt;forAll(e |\n\t\t\t\t\te.EdgeLabel &lt; 1\n\t\t\t\t)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t' EncryptSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*EncryptOrHash.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--there has to be something incoming and something outgoing\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 and r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t' DecryptSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Descrypt.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--same as encrypt\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 and r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t' StoreSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--there has to either be sth on the input or output\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 or r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t' BusinessSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Business.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--same as store\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 or r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t' ComparatorSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Comparator.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t-- comparator needs at least 2 on input and at least 1 on output\n\t\t\t\t\tr.incomingassets-&gt;size() &gt;= 2 and r.outgoingassets-&gt;size() &gt;= 1\n\t\t\t\t)\n\t\t' JoinerSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Joiner.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- needs at least 2 on the input, at least one on the output and the number of outputs &lt; number of inputs\n\t\t\t\t\tr.incomingassets-&gt;size() &gt;= 2 and r.outgoingassets-&gt;size() &gt;= 1 and r.outgoingassets-&gt;size() &lt; r.incomingassets-&gt;size()\t\n\t\t\t\t)\n\t\t' DiscarderSemanticConstraint='\n\t\t-- after it is discarded is should not appear on output \n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Discarder.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- what ever is on the input, it should not appear on the output anymore\n\t\t\t\t\tr.incomingassets-&gt;forAll(a | r.outgoingassets-&gt;excludes(a))\n\t\t\t\t\t-- discarded assets are not considered a risk, so the attacker observation can violate the asset labels\n\t\t\t\t)\n\t\t' CopierSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Copier.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- there has to be at least 1 incoming and 1 outgoing asset, and there has to be a responsibility on this node that stores the incoming assets locally\n\t\t\t\t\tr.outgoingassets-&gt;size() &gt; 0 and r.incomingassets-&gt;size() &gt; 0 and \n\t\t\t\t\t\tself.responsibility-&gt;select(r1 | r1.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t\t\t\t-&gt;select(r2 | r2.incomingassets-&gt;select(asset | r.incomingassets-&gt;includes(asset))-&gt;size()&gt;0 or  \n\t\t\t\t\t\t\t\t\t\t  r2.outgoingassets-&gt;select(asset | r.incomingassets-&gt;includes(asset))-&gt;size()&gt;0\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t' ForwardSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Forward.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\tr.outgoingassets-&gt;size() &gt; 0 and r.incomingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t' SplitterSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Splitter.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- negated join operation\n\t\t\t\t\tr.outgoingassets-&gt;size() &gt;= 2 and r.incomingassets-&gt;size() &gt;= 1 and r.incomingassets-&gt;size() &lt; r.outgoingassets-&gt;size()\t\n\t\t\t\t)\n\t\t' UserSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*User.*$\'))\n\t\t\t\t-&gt;forAll(r |  \n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0\t\n\t\t\t\t)\n\t\t' VerifierSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Verifier.*$\'))\n\t\t\t\t-&gt;forAll(r |  \n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0\t\n\t\t\t\t)\n\t\t' AuthenticatorSemanticConstraint='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Authenticator.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t-- same as comparator!\n\t\t\t\t\tr.incomingassets-&gt;size() &gt;= 2 and r.outgoingassets-&gt;size() &gt;= 1\n\t\t\t\t)\n\t\t'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UserSemanticConstraint'"
  * @generated
  */
 public interface Node extends Identifiable {
@@ -180,5 +181,117 @@ public interface Node extends Identifiable {
 	 * @generated
 	 */
 	void setAttacker(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Copier.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- there has to be at least 1 incoming and 1 outgoing asset, and there has to be a responsibility on this node that stores the incoming assets locally\n\t\t\t\t\tr.outgoingassets-&gt;size() &gt; 0 and r.incomingassets-&gt;size() &gt; 0 and \n\t\t\t\t\t\tself.responsibility-&gt;select(r1 | r1.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t\t\t\t-&gt;select(r2 | r2.incomingassets-&gt;select(asset | r.incomingassets-&gt;includes(asset))-&gt;size()&gt;0 or  \n\t\t\t\t\t\t\t\t\t\t  r2.outgoingassets-&gt;select(asset | r.incomingassets-&gt;includes(asset))-&gt;size()&gt;0\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean CopierSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Verifier.*$\'))\n\t\t\t\t-&gt;forAll(r |  \n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0\t\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean VerifierSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Business.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--same as store\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 or r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean BusinessSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*EncryptOrHash.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--there has to be something incoming and something outgoing\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 and r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean EncryptSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Joiner.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- needs at least 2 on the input, at least one on the output and the number of outputs &lt; number of inputs\n\t\t\t\t\tr.incomingassets-&gt;size() &gt;= 2 and r.outgoingassets-&gt;size() &gt;= 1 and r.outgoingassets-&gt;size() &lt; r.incomingassets-&gt;size()\t\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean JoinerSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Descrypt.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--same as encrypt\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 and r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean DecryptSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Store.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t--there has to either be sth on the input or output\n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0 or r.outgoingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean StoreSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Comparator.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t-- comparator needs at least 2 on input and at least 1 on output\n\t\t\t\t\tr.incomingassets-&gt;size() &gt;= 2 and r.outgoingassets-&gt;size() &gt;= 1\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean ComparatorSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t-- after it is discarded is should not appear on output \n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Discarder.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- what ever is on the input, it should not appear on the output anymore\n\t\t\t\t\tr.incomingassets-&gt;forAll(a | r.outgoingassets-&gt;excludes(a))\n\t\t\t\t\t-- discarded assets are not considered a risk, so the attacker observation can violate the asset labels\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean DiscarderSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t-- if a node is malicious then there is a violation if any of the outgoing or incoming edges are private!\n\t\t\tif self.Attacker = true\n\t\t\tthen\n\t\t\t\tself.outedges-&gt;forAll(e |\n\t\t\t\t\te.EdgeLabel &lt; 1\n\t\t\t\t) \n\t\t\t\tand\n\t\t\t\tself.inedges-&gt;forAll(e |\n\t\t\t\t\te.EdgeLabel &lt; 1\n\t\t\t\t)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t'"
+	 * @generated
+	 */
+	boolean AttackerObservationViolation(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Splitter.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\t-- negated join operation\n\t\t\t\t\tr.outgoingassets-&gt;size() &gt;= 2 and r.incomingassets-&gt;size() &gt;= 1 and r.incomingassets-&gt;size() &lt; r.outgoingassets-&gt;size()\t\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean SplitterSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Forward.*$\'))\n\t\t\t\t-&gt;forAll(r | \n\t\t\t\t\tr.outgoingassets-&gt;size() &gt; 0 and r.incomingassets-&gt;size() &gt; 0\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean ForwardSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*Authenticator.*$\'))\n\t\t\t\t-&gt;forAll(r |\n\t\t\t\t\t-- same as comparator!\n\t\t\t\t\tr.incomingassets-&gt;size() &gt;= 2 and r.outgoingassets-&gt;size() &gt;= 1\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean AuthenticatorSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.responsibility-&gt;select(r | r.ID.matches(\'^.*User.*$\'))\n\t\t\t\t-&gt;forAll(r |  \n\t\t\t\t\tr.incomingassets-&gt;size() &gt; 0\t\n\t\t\t\t)\n\t\t'"
+	 * @generated
+	 */
+	boolean UserSemanticConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Node

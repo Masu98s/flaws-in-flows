@@ -226,7 +226,7 @@ public class ResponsibilityItemProvider
 			getString("_UI_Responsibility_type") :
 			getString("_UI_Responsibility_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

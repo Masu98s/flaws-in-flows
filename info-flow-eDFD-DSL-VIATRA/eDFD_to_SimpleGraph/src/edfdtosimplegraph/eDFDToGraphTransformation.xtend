@@ -1,12 +1,14 @@
 package edfdtosimplegraph
 
-import eDFDFlowTracking.Asset
-import eDFDFlowTracking.AttackerProfile
-import eDFDFlowTracking.Element
-import eDFDFlowTracking.Flow
-import eDFDFlowTracking.NamedEntity
-import eDFDFlowTracking.Responsibility
-import eDFDFlowTracking.Value
+
+import edfdtosimplegraph.EDFD
+import org.secdfd.model.Asset
+import org.secdfd.model.AttackerProfile
+import org.secdfd.model.Element
+import org.secdfd.model.Flow
+import org.secdfd.model.NamedEntity
+import org.secdfd.model.Responsibility
+import org.secdfd.model.Value
 import graph.Edge
 import graph.GraphAsset
 import graph.GraphPackage
@@ -44,7 +46,7 @@ abstract class eDFDToGraphTransformation {
     protected ViatraQueryEngine engine
     protected Resource resource
     //protected BatchTransformationRule<?,?> exampleRule
-    val EDFDToGraph edfd2graph
+    var EDFDToGraph edfd2graph
         
     new(EDFDToGraph edfd2graph, ViatraQueryEngine engine){
     	this.edfd2graph = edfd2graph
@@ -69,7 +71,7 @@ abstract class eDFDToGraphTransformation {
  * user defined transformation rules
  */
  
-     val buildFirstSubgraphRule = createRule.precondition(EDFDMatcher.querySpecification).action[
+     val buildFirstSubgraphRule = createRule.precondition(edfdtosimplegraph.EDFD.Matcher.querySpecification).action[
     	val eDFD = it.edfd
     	
  		val graph = edfd2graph.graphs.createChild(graph_Subgraphs, subgraphs) => [
@@ -84,7 +86,7 @@ abstract class eDFDToGraphTransformation {
     	
     ].build
 
-    val eDFDNodeElementRule = createRule.precondition(NodeElementsMatcher.querySpecification).action[
+    val eDFDNodeElementRule = createRule.precondition(NodeElements.Matcher.querySpecification).action[
     	val eDFDElement = it.el
     	val eDFDElementName = eDFDElement.name
     	val eDFD = eDFDElement.eContainer
@@ -108,7 +110,7 @@ abstract class eDFDToGraphTransformation {
     	]
     ].build
     
-    val eDFDNodeAttackerZoneRule = createRule.precondition(BoundariesMatcher.querySpecification).action[
+    val eDFDNodeAttackerZoneRule = createRule.precondition(Boundaries.Matcher.querySpecification).action[
     	val eDFDBoundary = it.tb
     	
 		//find subgraph in target model
@@ -130,7 +132,7 @@ abstract class eDFDToGraphTransformation {
     	
     ].build
     
-    val eDFDOutFlowRule = createRule.precondition(NodeElementsMatcher.querySpecification).action[
+    val eDFDOutFlowRule = createRule.precondition(NodeElements.Matcher.querySpecification).action[
     	val eDFDElement = it.el
     	val eDFDElementName = eDFDElement.name
     	val eDFDOutgoingFlows = eDFDElement.outflows //list of flows
@@ -184,7 +186,7 @@ abstract class eDFDToGraphTransformation {
     ].build
     
     
-    val eDFDInFlowRule = createRule.precondition(NodeElementsMatcher.querySpecification).action[
+    val eDFDInFlowRule = createRule.precondition(NodeElements.Matcher.querySpecification).action[
     	if (it.el.inflows.size>0){
 	       	val eDFDElement = it.el
 	    	val eDFDElementName = eDFDElement.name
@@ -216,7 +218,7 @@ abstract class eDFDToGraphTransformation {
     ].build
  
     
-    val eDFDAssetRule = createRule.precondition(AssetsMatcher.querySpecification).action[
+    val eDFDAssetRule = createRule.precondition(Assets.Matcher.querySpecification).action[
     	val eDFDAsset = it.a
     	val eDFDAssetValues = eDFDAsset.value
     	val eDFD = eDFDAsset.eContainer
@@ -253,7 +255,7 @@ abstract class eDFDToGraphTransformation {
     ].build 
    
    
-    val eDFDProcessResponsibilitiesRule = createRule.precondition(ResponsibilitiesMatcher.querySpecification).action[
+    val eDFDProcessResponsibilitiesRule = createRule.precondition(Responsibilities.Matcher.querySpecification).action[
     	val eDFDResponsibility = it.r
     	val eDFDResponsibilityProcess = eDFDResponsibility.process as NamedEntity
     	val eDFDIncomingAssets = eDFDResponsibility.incomeassets
@@ -297,7 +299,7 @@ abstract class eDFDToGraphTransformation {
     ].build
      
  
-    val eDFDProcessRule = createRule.precondition(ProcessElementsMatcher.querySpecification).action[
+    val eDFDProcessRule = createRule.precondition(ProcessElements.Matcher.querySpecification).action[
     	val eDFDProcess = it.p
     	val eDFDProcessOutgoingFlows = eDFDProcess.outflows
     	val eDFDProcessName = eDFDProcess.name
@@ -330,7 +332,7 @@ abstract class eDFDToGraphTransformation {
     ].build
     
 
-    val eDFDTBRule = createRule.precondition(BoundariesAssetsMatcher.querySpecification).action[
+    val eDFDTBRule = createRule.precondition(BoundariesAssets.Matcher.querySpecification).action[
 	    /*
 		 * attacker profile from eDFD to graph -> attacker profiles are related to trust zones/subzones which are related to a group of elements. 
 		 * if the attacker profile has skill level: -1 (default; not set), 0 (she can neither read/modify info here), 1 (she can intercept/read info here), 2 (she can tamper with it), ...
@@ -370,7 +372,7 @@ abstract class eDFDToGraphTransformation {
    		
     ].build
     
-    val eDFDModifyAsset = createRule.precondition(EDFDAssetMatcher.querySpecification).action[
+    val eDFDModifyAsset = createRule.precondition(edfdtosimplegraph.EDFDAsset.Matcher.querySpecification).action[
     	val eDFDAsset = it.a
     	val eDFDAssetSource = eDFDAsset.source //reference to one element
     	val eDFDAssetTargets = eDFDAsset.targets //list of references to elements
@@ -405,7 +407,7 @@ abstract class eDFDToGraphTransformation {
     ].build
     
     
- 	val eDFDToOneGraphRule = createRule.precondition(EDFDMatcher.querySpecification).action[
+ 	val eDFDToOneGraphRule = createRule.precondition(edfdtosimplegraph.EDFD.Matcher.querySpecification).action[
  		val eDFD = it.edfd
  		val eDFDAllElements = eDFD.elements
  		val eDFDAllAssets = eDFD.asset
@@ -432,7 +434,7 @@ abstract class eDFDToGraphTransformation {
  	].build
  	
  	
-    val initLabels = createRule.precondition(EEandDSElementMatcher.querySpecification).action[
+    val initLabels = createRule.precondition(edfdtosimplegraph.EEandDSElement.Matcher.querySpecification).action[
     	print('''Inferring labels for: «it.el.name»''')
     	
     	//find subgraph in target model
@@ -619,7 +621,7 @@ abstract class eDFDToGraphTransformation {
 		return true 
     }
     
-    val propagateLabelsDS = createRule.precondition(DSElementsMatcher.querySpecification).action[
+    val propagateLabelsDS = createRule.precondition(edfdtosimplegraph.DSElements.Matcher.querySpecification).action[
     	//TODO new pattern for finding EE/DS with at least one outgoing flow in VIATRA
     	//- currently will only work correctly for 1 EE(or DS)
     	if (it.ds.outflows.length > 0){	
@@ -638,7 +640,7 @@ abstract class eDFDToGraphTransformation {
     	}
     ].build 
     
-    val propagateLabelsEE = createRule.precondition(EEElementsMatcher.querySpecification).action[
+    val propagateLabelsEE = createRule.precondition(edfdtosimplegraph.EEElements.Matcher.querySpecification).action[
     	//TODO new pattern for finding EE/DS with at least one outgoing flow in VIATRA
     	//- currently will only work correctly for 1 EE(or DS)
     	if (it.ee.outflows.length > 0){	
@@ -657,7 +659,7 @@ abstract class eDFDToGraphTransformation {
     	}
     ].build 
     
-    val propagateLabelsInOrder = createRule.precondition(EDFDMatcher.querySpecification).action[
+    val propagateLabelsInOrder = createRule.precondition(edfdtosimplegraph.EDFD.Matcher.querySpecification).action[
     	val all_elements = it.edfd.elements
 			
     	//print(all_elements)

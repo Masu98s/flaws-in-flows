@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link graph.impl.GraphAssetImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link graph.impl.GraphAssetImpl#getSource <em>Source</em>}</li>
  *   <li>{@link graph.impl.GraphAssetImpl#getTargets <em>Targets</em>}</li>
+ *   <li>{@link graph.impl.GraphAssetImpl#isEncrypted <em>Encrypted</em>}</li>
  * </ul>
  *
  * @generated
@@ -66,7 +67,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int NUMBER_EDEFAULT = 0;
+	protected static final int NUMBER_EDEFAULT = -1;
 
 	/**
 	 * The cached value of the '{@link #getNumber() <em>Number</em>}' attribute.
@@ -119,6 +120,26 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	protected EList<Node> targets;
 
 	/**
+	 * The default value of the '{@link #isEncrypted() <em>Encrypted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEncrypted()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ENCRYPTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEncrypted() <em>Encrypted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEncrypted()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean encrypted = ENCRYPTED_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -142,6 +163,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getID() {
 		return id;
 	}
@@ -151,6 +173,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setID(String newID) {
 		String oldID = id;
 		id = newID;
@@ -163,6 +186,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNumber() {
 		return number;
 	}
@@ -172,6 +196,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumber(int newNumber) {
 		int oldNumber = number;
 		number = newNumber;
@@ -184,6 +209,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLabel() {
 		return label;
 	}
@@ -193,6 +219,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabel(int newLabel) {
 		int oldLabel = label;
 		label = newLabel;
@@ -205,6 +232,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Node getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
@@ -231,6 +259,7 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(Node newSource) {
 		Node oldSource = source;
 		source = newSource;
@@ -243,11 +272,35 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Node> getTargets() {
 		if (targets == null) {
 			targets = new EObjectResolvingEList<Node>(Node.class, this, GraphPackage.GRAPH_ASSET__TARGETS);
 		}
 		return targets;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isEncrypted() {
+		return encrypted;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setEncrypted(boolean newEncrypted) {
+		boolean oldEncrypted = encrypted;
+		encrypted = newEncrypted;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GraphPackage.GRAPH_ASSET__ENCRYPTED, oldEncrypted, encrypted));
 	}
 
 	/**
@@ -269,6 +322,8 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 				return basicGetSource();
 			case GraphPackage.GRAPH_ASSET__TARGETS:
 				return getTargets();
+			case GraphPackage.GRAPH_ASSET__ENCRYPTED:
+				return isEncrypted();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,6 +353,9 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 				getTargets().clear();
 				getTargets().addAll((Collection<? extends Node>)newValue);
 				return;
+			case GraphPackage.GRAPH_ASSET__ENCRYPTED:
+				setEncrypted((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -325,6 +383,9 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 			case GraphPackage.GRAPH_ASSET__TARGETS:
 				getTargets().clear();
 				return;
+			case GraphPackage.GRAPH_ASSET__ENCRYPTED:
+				setEncrypted(ENCRYPTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -347,6 +408,8 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 				return source != null;
 			case GraphPackage.GRAPH_ASSET__TARGETS:
 				return targets != null && !targets.isEmpty();
+			case GraphPackage.GRAPH_ASSET__ENCRYPTED:
+				return encrypted != ENCRYPTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,13 +423,15 @@ public class GraphAssetImpl extends MinimalEObjectImpl.Container implements Grap
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (ID: ");
 		result.append(id);
 		result.append(", number: ");
 		result.append(number);
 		result.append(", Label: ");
 		result.append(label);
+		result.append(", Encrypted: ");
+		result.append(encrypted);
 		result.append(')');
 		return result.toString();
 	}

@@ -129,7 +129,7 @@ public class TrustZoneItemProvider extends ElementItemProvider {
 			getString("_UI_TrustZone_type") :
 			getString("_UI_TrustZone_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

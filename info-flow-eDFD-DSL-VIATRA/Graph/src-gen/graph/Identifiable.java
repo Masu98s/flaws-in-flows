@@ -50,6 +50,7 @@ public interface Identifiable extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Number</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Number</em>' attribute isn't clear,
@@ -59,7 +60,7 @@ public interface Identifiable extends EObject {
 	 * @return the value of the '<em>Number</em>' attribute.
 	 * @see #setNumber(int)
 	 * @see graph.GraphPackage#getIdentifiable_Number()
-	 * @model
+	 * @model default="-1" required="true"
 	 * @generated
 	 */
 	int getNumber();

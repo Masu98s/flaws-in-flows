@@ -2,7 +2,7 @@ package edfdtosimplegraph
 
 import "http://www.example.org/traceability"
 import "http://www.example.org/graph"
-import "http://www.example.org/eDFDFlowTracking"
+import "http://www.secdfd.org/secdfd"
 
 pattern EDFD(edfd : EDFD){
 	EDFD(edfd);

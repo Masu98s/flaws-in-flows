@@ -285,7 +285,7 @@ public class NodeItemProvider
 			getString("_UI_Node_type") :
 			getString("_UI_Node_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

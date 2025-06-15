@@ -129,7 +129,7 @@ public class EDFDToGraphItemProvider
 				 TraceabilityPackage.Literals.EDFD_TO_GRAPH__ENDTOENDGRAPH,
 				 true,
 				 false,
-				 false,
+				 true,
 				 null,
 				 null,
 				 null));
@@ -187,7 +187,7 @@ public class EDFDToGraphItemProvider
 	public String getText(Object object) {
 		return getString("_UI_EDFDToGraph_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -201,9 +201,6 @@ public class EDFDToGraphItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EDFDToGraph.class)) {
-			case TraceabilityPackage.EDFD_TO_GRAPH__ENDTOENDGRAPH:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case TraceabilityPackage.EDFD_TO_GRAPH__EDFD_GRAPH_TRACES:
 			case TraceabilityPackage.EDFD_TO_GRAPH__GRAPH_END_TO_END_TRACE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

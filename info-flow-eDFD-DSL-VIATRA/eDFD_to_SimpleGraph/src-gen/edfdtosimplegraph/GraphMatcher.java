@@ -10,7 +10,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
-import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
+
+import java.util.stream.Collectors;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
@@ -91,9 +92,11 @@ public class GraphMatcher extends BaseMatcher<GraphMatch> {
    * 
    */
   public Collection<GraphMatch> getAllMatches(final Graph pG) {
-    return rawGetAllMatches(new Object[]{pG});
-  }
-  
+	    return rawStreamAllMatches(new Object[] { pG })   // Stream<GraphMatch>
+	           .collect(Collectors.toSet());              // → Collection<GraphMatch>
+	}
+
+
   /**
    * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
    * Neither determinism nor randomness of selection is guaranteed.
@@ -102,7 +105,8 @@ public class GraphMatcher extends BaseMatcher<GraphMatch> {
    * 
    */
   public GraphMatch getOneArbitraryMatch(final Graph pG) {
-    return rawGetOneArbitraryMatch(new Object[]{pG});
+    return rawGetOneArbitraryMatch(new Object[]{pG})
+    		.orElse(null);
   }
   
   /**
@@ -132,7 +136,7 @@ public class GraphMatcher extends BaseMatcher<GraphMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final Graph pG, final IMatchProcessor<? super GraphMatch> processor) {
+  public void forEachMatch(final Graph pG, java.util.function.Consumer<? super GraphMatch> processor) {
     rawForEachMatch(new Object[]{pG}, processor);
   }
   
@@ -144,7 +148,7 @@ public class GraphMatcher extends BaseMatcher<GraphMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final Graph pG, final IMatchProcessor<? super GraphMatch> processor) {
+  public boolean forOneArbitraryMatch(final Graph pG, java.util.function.Consumer<? super GraphMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pG}, processor);
   }
   

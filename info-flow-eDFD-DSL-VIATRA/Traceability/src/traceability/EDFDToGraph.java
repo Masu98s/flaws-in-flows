@@ -2,7 +2,7 @@
  */
 package traceability;
 
-import eDFDFlowTracking.EDFD;
+import org.secdfd.model.EDFD;
 
 import graph.Graph;
 

@@ -136,7 +136,7 @@ public class ValueItemProvider
 			getString("_UI_Value_type") :
 			getString("_UI_Value_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -76,6 +76,7 @@ public class GraphEndToEndTraceImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Identifiable> getEndtoendGraphElements() {
 		if (endtoendGraphElements == null) {
 			endtoendGraphElements = new EObjectResolvingEList<Identifiable>(Identifiable.class, this, TraceabilityPackage.GRAPH_END_TO_END_TRACE__ENDTOEND_GRAPH_ELEMENTS);
@@ -88,6 +89,7 @@ public class GraphEndToEndTraceImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Identifiable> getGraphElements() {
 		if (graphElements == null) {
 			graphElements = new EObjectResolvingEList<Identifiable>(Identifiable.class, this, TraceabilityPackage.GRAPH_END_TO_END_TRACE__GRAPH_ELEMENTS);

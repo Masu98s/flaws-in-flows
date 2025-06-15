@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.example.secdfd
+Bundle-ManifestVersion: 2
+Bundle-Name: SecDFD DSL
+Bundle-Vendor: GU/Chalmers
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.secdfd.dsl;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.secdfd.model,
+ org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.37.0",
+ org.eclipse.xtend.lib;bundle-version="2.37.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.gravity.typegraph.basic
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: org.secdfd.dsl,
+ org.secdfd.dsl.formatting2,
+ org.secdfd.dsl.generator,
+ org.secdfd.dsl.scoping,
+ org.secdfd.dsl.validation,
+ org.secdfd.dsl.parser.antlr,
+ org.secdfd.dsl.parser.antlr.internal,
+ org.secdfd.dsl.services,
+ org.secdfd.dsl.serializer
+Import-Package: org.apache.log4j
