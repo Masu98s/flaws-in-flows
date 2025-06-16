@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graph="http://www.example.org/graph" xmlns:org.secdfd="http://www.secdfd.org/secdfd" xmlns:traceability="http://www.example.org/traceability">
+  <edfds href="distriFriendMap2.secdfd#DistriFriendMap"/>
+  <graphs href="FriendMap2.graph#/"/>
+  <endtoendgraph href="FriendMap2.graph#/"/>
+</traceability:EDFDToGraph>

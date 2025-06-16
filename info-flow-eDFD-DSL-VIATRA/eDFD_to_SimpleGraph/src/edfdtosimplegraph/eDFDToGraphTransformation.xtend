@@ -27,7 +27,7 @@ import traceability.TraceabilityPackage
 import graph.Subgraphs
 import java.util.Collections
 
-abstract class eDFDToGraphTransformation {
+class eDFDToGraphTransformation {
 	/** VIATRA Query Pattern group **/
 	val extension EDFDXformM2M edfdxformm2m = EDFDXformM2M.instance
 

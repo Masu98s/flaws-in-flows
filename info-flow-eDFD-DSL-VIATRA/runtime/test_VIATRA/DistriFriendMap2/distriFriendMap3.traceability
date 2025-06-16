@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:traceability="http://www.example.org/traceability">
+  <edfds href="distriFriendMap3.secdfd#DistriFriendMap"/>
+  <graphs href="distriFriendMap3.graph#/"/>
+</traceability:EDFDToGraph>

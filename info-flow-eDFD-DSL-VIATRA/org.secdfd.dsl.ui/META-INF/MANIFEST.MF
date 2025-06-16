@@ -16,10 +16,12 @@ Require-Bundle: org.secdfd.dsl,
  org.eclipse.ui.ide;bundle-version="3.18.500",
  org.eclipse.ui,
  org.eclipse.compare,
- org.eclipse.xtext.builder
+ org.eclipse.xtext.builder,
+ Traceability
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-21
-Export-Package: org.secdfd.dsl.ui.internal,
+Export-Package: org.secdfd.dsl.ui.commands,
  org.secdfd.dsl.ui.contentassist,
+ org.secdfd.dsl.ui.internal,
  org.secdfd.dsl.ui.quickfix
 Bundle-Activator: org.secdfd.dsl.ui.internal.DslActivator

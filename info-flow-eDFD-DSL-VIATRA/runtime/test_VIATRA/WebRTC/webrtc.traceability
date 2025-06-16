@@ -2,4 +2,5 @@
 <traceability:EDFDToGraph xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:traceability="http://www.example.org/traceability">
   <edfds href="webrtc.mydsl#WebRTC"/>
   <graphs href="webRTC.graph#/"/>
+  <endtoendgraph href="webRTC.graph#/"/>
 </traceability:EDFDToGraph>

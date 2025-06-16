@@ -11,6 +11,7 @@ Export-Package: org.secdfd.model,
  org.secdfd.model.impl,
  org.secdfd.model.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.ui
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.secdfd.model
